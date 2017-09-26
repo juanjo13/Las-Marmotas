@@ -185,7 +185,7 @@
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagenes/log.png"/>
+          <Image iconType="3" name="/Imagenes/logo bien3.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel7"/>
       </Properties>
@@ -221,13 +221,12 @@
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagenes/d13dae216c54aa4fe2ad723969f74b7f-l-neas-rojas.png"/>
+          <Image iconType="3" name="/Imagenes/esquina.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel10"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="-120" width="670" height="750"/>
+          <AbsoluteConstraints x="0" y="-90" width="670" height="750"/>
         </Constraint>
       </Constraints>
     </Component>

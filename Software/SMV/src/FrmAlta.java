@@ -131,7 +131,7 @@ public class FrmAlta extends javax.swing.JFrame {
         getContentPane().add(TxtAyno);
         TxtAyno.setBounds(170, 190, 140, 30);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/log.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo bien3.png"))); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(250, 50, 400, 240);
@@ -148,10 +148,9 @@ public class FrmAlta extends javax.swing.JFrame {
         getContentPane().add(TxtDesExtra);
         TxtDesExtra.setBounds(150, 320, 350, 40);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/d13dae216c54aa4fe2ad723969f74b7f-l-neas-rojas.png"))); // NOI18N
-        jLabel10.setText("jLabel10");
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/esquina.png"))); // NOI18N
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, -120, 670, 750);
+        jLabel10.setBounds(0, -90, 670, 750);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
