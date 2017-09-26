@@ -52,6 +52,8 @@ public class FrmAlta extends javax.swing.JFrame {
         BtnAgregar = new javax.swing.JButton();
         TxtDesExtra = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        BtnCombustibleIni = new javax.swing.JTextField();
 
         jLabel2.setText("jLabel2");
 
@@ -75,7 +77,7 @@ public class FrmAlta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnAtras);
-        BtnAtras.setBounds(590, 410, 60, 30);
+        BtnAtras.setBounds(590, 20, 60, 30);
 
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel5.setText("MARCA");
@@ -100,7 +102,7 @@ public class FrmAlta extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel4.setText("DESCRIPCIÓN EXTRA");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(260, 280, 230, 50);
+        jLabel4.setBounds(250, 330, 230, 50);
 
         TxtKm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -108,7 +110,7 @@ public class FrmAlta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(TxtKm);
-        TxtKm.setBounds(170, 240, 140, 30);
+        TxtKm.setBounds(170, 240, 160, 30);
 
         TxtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -116,9 +118,9 @@ public class FrmAlta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(TxtMarca);
-        TxtMarca.setBounds(170, 100, 140, 30);
+        TxtMarca.setBounds(170, 100, 160, 30);
         getContentPane().add(TxtModelo);
-        TxtModelo.setBounds(170, 150, 140, 30);
+        TxtModelo.setBounds(170, 150, 160, 30);
 
         TxtAyno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -129,12 +131,12 @@ public class FrmAlta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(TxtAyno);
-        TxtAyno.setBounds(170, 190, 140, 30);
+        TxtAyno.setBounds(170, 190, 160, 30);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo bien3.png"))); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(250, 50, 400, 240);
+        jLabel7.setBounds(270, 50, 400, 240);
 
         BtnAgregar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnAgregar.setText("Guardar");
@@ -144,13 +146,32 @@ public class FrmAlta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnAgregar);
-        BtnAgregar.setBounds(530, 320, 100, 50);
+        BtnAgregar.setBounds(560, 390, 100, 50);
+
+        TxtDesExtra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtDesExtraActionPerformed(evt);
+            }
+        });
         getContentPane().add(TxtDesExtra);
-        TxtDesExtra.setBounds(150, 320, 350, 40);
+        TxtDesExtra.setBounds(160, 370, 350, 40);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/esquina.png"))); // NOI18N
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, -90, 670, 750);
+        jLabel10.setBounds(0, -80, 670, 750);
+
+        jLabel11.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel11.setText("COMBUSTIBLE");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(70, 290, 130, 30);
+
+        BtnCombustibleIni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                BtnCombustibleIniKeyTyped(evt);
+            }
+        });
+        getContentPane().add(BtnCombustibleIni);
+        BtnCombustibleIni.setBounds(180, 290, 150, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -209,6 +230,20 @@ public class FrmAlta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TxtKmKeyTyped
 
+    private void TxtDesExtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDesExtraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtDesExtraActionPerformed
+
+    private void BtnCombustibleIniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCombustibleIniKeyTyped
+        char caracter = evt.getKeyChar();
+        if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_SPACE)
+                && (caracter != '.')) {
+            /* lo que deseo colocar aqui es si ya se pulso el caracter (.) el mismo no se pueda repetir*/
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Solo Números");
+        }
+    }//GEN-LAST:event_BtnCombustibleIniKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -247,6 +282,7 @@ public class FrmAlta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnAtras;
+    private javax.swing.JTextField BtnCombustibleIni;
     private javax.swing.JTextField TxtAyno;
     private javax.swing.JTextField TxtDesExtra;
     private javax.swing.JTextField TxtKm;
@@ -254,6 +290,7 @@ public class FrmAlta extends javax.swing.JFrame {
     private javax.swing.JTextField TxtModelo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
