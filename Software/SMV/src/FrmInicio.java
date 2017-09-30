@@ -1,3 +1,6 @@
+
+import java.awt.event.KeyEvent;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -56,6 +59,11 @@ public class FrmInicio extends javax.swing.JFrame {
                 BtnAgregarActionPerformed(evt);
             }
         });
+        BtnAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnAgregarKeyPressed(evt);
+            }
+        });
         getContentPane().add(BtnAgregar);
         BtnAgregar.setBounds(10, 100, 230, 70);
 
@@ -67,6 +75,11 @@ public class FrmInicio extends javax.swing.JFrame {
                 BtnSalirActionPerformed(evt);
             }
         });
+        BtnSalir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnSalirKeyPressed(evt);
+            }
+        });
         getContentPane().add(BtnSalir);
         BtnSalir.setBounds(80, 50, 110, 40);
 
@@ -74,15 +87,28 @@ public class FrmInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-        FrmAlta Alta = new FrmAlta();
-        Alta.setAlwaysOnTop(true);
-        Alta.setVisible(true);
+      //  FrmAlta Alta = new FrmAlta();
+      new FrmAltaV(this,true).setVisible(true);  
+     // Alta.setAlwaysOnTop(true);
+       // Alta.setVisible(true);
 
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
         System.exit(1);
     }//GEN-LAST:event_BtnSalirActionPerformed
+
+    private void BtnSalirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSalirKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            System.exit(1);
+        }
+    }//GEN-LAST:event_BtnSalirKeyPressed
+
+    private void BtnAgregarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAgregarKeyPressed
+         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+              new FrmAltaV(this,true).setVisible(true);  
+         }
+    }//GEN-LAST:event_BtnAgregarKeyPressed
 
     /**
      * @param args the command line arguments
