@@ -233,13 +233,34 @@ public class FrmAltaV extends javax.swing.JDialog {
         if ((((TxtMarca.getText().equals("")) | (TxtModelo.getText().equals("")) | (TxtAyno.getText().equals("")) | (TxtDesExtra.getText().equals("")) | (TxtKm.getText().equals(""))|(TxtCombustible.getText().equals(""))))) {
             JOptionPane.showMessageDialog(rootPane, "Llene todos los campos");
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
+           
+            try{
+               
+            vehiculo mvehiculo = new vehiculo();
+            mvehiculo.setMarca(TxtMarca.getText());
+            mvehiculo.setModelo(TxtModelo.getText());
+            mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
+            mvehiculo.setDesc_Extra(TxtDesExtra.getText());
+            mvehiculo.setComb_actual(Float.valueOf(TxtAyno.getText()));
+            mvehiculo.setKm_actual(Float.valueOf(TxtKm.getText()));
+            
+           
+         //   ControlProductor mControl = new ControlProductor();
+        //    mControl.agregarProductor(mProductor);
+       
+         
+         JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
             TxtMarca.setText(null);
             TxtModelo.setText(null);
             TxtAyno.setText(null);
             TxtDesExtra.setText(null);
             TxtCombustible.setText(null);
             TxtKm.setText(null);
+        }catch(Exception ex){
+            System.out.println(ex.toString());
+        }
+            
+            
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
@@ -252,13 +273,32 @@ public class FrmAltaV extends javax.swing.JDialog {
           if ((((TxtMarca.getText().equals("")) | (TxtModelo.getText().equals("")) | (TxtAyno.getText().equals("")) | (TxtDesExtra.getText().equals("")) | (TxtKm.getText().equals(""))|(TxtCombustible.getText().equals(""))))) {
             JOptionPane.showMessageDialog(rootPane, "Llene todos los campos");
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
+               try{
+               
+            vehiculo mvehiculo = new vehiculo();
+            mvehiculo.setMarca(TxtMarca.getText());
+            mvehiculo.setModelo(TxtModelo.getText());
+            mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
+            mvehiculo.setDesc_Extra(TxtDesExtra.getText());
+            mvehiculo.setComb_actual(Float.valueOf(TxtAyno.getText()));
+            mvehiculo.setKm_actual(Float.valueOf(TxtKm.getText()));
+            
+           
+         //   ControlProductor mControl = new ControlProductor();
+        //    mControl.agregarProductor(mProductor);
+       
+         
+         JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
             TxtMarca.setText(null);
             TxtModelo.setText(null);
             TxtAyno.setText(null);
             TxtDesExtra.setText(null);
             TxtCombustible.setText(null);
             TxtKm.setText(null);
+        }catch(Exception ex){
+            System.out.println(ex.toString());
+        }
+            
         }
       }
     }//GEN-LAST:event_BtnAgregarKeyPressed
