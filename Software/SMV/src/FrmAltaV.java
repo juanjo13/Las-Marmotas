@@ -207,7 +207,7 @@ public class FrmAltaV extends javax.swing.JDialog {
 
     private void TxtKmKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtKmKeyTyped
         char caracter = evt.getKeyChar();
-        if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_SPACE)
+        if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_BACK_SPACE)
             && (caracter != '.')) {
             /* lo que deseo colocar aqui es si ya se pulso el caracter (.) el mismo no se pueda repetir*/
             evt.consume();
@@ -217,7 +217,7 @@ public class FrmAltaV extends javax.swing.JDialog {
 
     private void TxtCombustibleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCombustibleKeyTyped
         char caracter = evt.getKeyChar();
-        if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_SPACE)
+        if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_BACK_SPACE)
             && (caracter != '.')) {
             /* lo que deseo colocar aqui es si ya se pulso el caracter (.) el mismo no se pueda repetir*/
             evt.consume();
