@@ -38,6 +38,18 @@ public class BD {
 
         return con;
     }
+    
+    public boolean agregarVehiculo(vehiculo mVehiculo) throws SQLException{
+        try{
+        String SQL = "insert into automovil values (null, '"+mVehiculo.getMarca() + "','"+ mVehiculo.getModelo() +
+                "','" + mVehiculo.getAnio() + "','" + mVehiculo.getDesc_Extra() + "','" + mVehiculo.getKm_actual()+
+                "','" + mVehiculo.getKm_recorr()+"','"+mVehiculo.getComb_actual()+"','"+ mVehiculo.getComb_gastado()+"');";
+        ejecutarActualizacion(SQL);
+        return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
 
     public ResultSet ejecutarConsulta(String instruccionQL) throws SQLException {
         ResultSet resultado = this.comando.executeQuery(instruccionQL);

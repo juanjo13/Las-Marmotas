@@ -241,15 +241,17 @@ public class FrmAltaV extends javax.swing.JDialog {
             mvehiculo.setModelo(TxtModelo.getText());
             mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
             mvehiculo.setDesc_Extra(TxtDesExtra.getText());
-            mvehiculo.setComb_actual(Float.valueOf(TxtAyno.getText()));
+            mvehiculo.setComb_actual(Float.valueOf(TxtCombustible.getText()));
             mvehiculo.setKm_actual(Float.valueOf(TxtKm.getText()));
             
-           
-         //   ControlProductor mControl = new ControlProductor();
-        //    mControl.agregarProductor(mProductor);
-       
-         
-         JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
+            BD mBD = new BD();
+            if(mBD.Conectar("localhost", "smv", "root", "")){
+                mBD.agregarVehiculo(mvehiculo);
+                JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
+            }else{
+                 JOptionPane.showMessageDialog(rootPane, "Error");
+            }
+            
             TxtMarca.setText(null);
             TxtModelo.setText(null);
             TxtAyno.setText(null);
