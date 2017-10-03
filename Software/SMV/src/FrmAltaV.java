@@ -245,7 +245,7 @@ public class FrmAltaV extends javax.swing.JDialog {
             mvehiculo.setKm_actual(Float.valueOf(TxtKm.getText()));
             
             BD mBD = new BD();
-            if(mBD.Conectar("localhost", "smv", "root", "Noteladigo")){
+            if(mBD.Conectar("localhost", "smv", "root", "")){
                 mBD.agregarVehiculo(mvehiculo);
                 JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
             TxtMarca.setText(null);
