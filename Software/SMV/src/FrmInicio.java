@@ -34,6 +34,7 @@ public class FrmInicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         BtnAgregar = new javax.swing.JButton();
         BtnSalir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("FrmInicio"); // NOI18N
@@ -83,6 +84,23 @@ public class FrmInicio extends javax.swing.JFrame {
         getContentPane().add(BtnSalir);
         BtnSalir.setBounds(80, 50, 110, 40);
 
+        jButton1.setBackground(new java.awt.Color(153, 153, 153));
+        jButton1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 0, 0));
+        jButton1.setText("Consultar Vehículo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(10, 190, 230, 80);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -95,12 +113,12 @@ public class FrmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-        System.exit(1);
+        System.exit(0);
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void BtnSalirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSalirKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            System.exit(1);
+            System.exit(0);
         }
     }//GEN-LAST:event_BtnSalirKeyPressed
 
@@ -109,6 +127,16 @@ public class FrmInicio extends javax.swing.JFrame {
               new FrmAltaV(this,true).setVisible(true);  
          }
     }//GEN-LAST:event_BtnAgregarKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         new FrmConsulta(this,true).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){ 
+        new FrmConsulta(this,true).setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -148,6 +176,7 @@ public class FrmInicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnSalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
