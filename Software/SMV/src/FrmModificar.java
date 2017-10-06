@@ -236,8 +236,8 @@ public class FrmModificar extends javax.swing.JDialog {
             mvehiculo.setModelo(TxtModelo.getText());
             mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
             mvehiculo.setDesc_Extra(TxtDesExtra.getText());
-            mvehiculo.setComb_actual(Float.valueOf(TxtCombustible.getText()));
-            mvehiculo.setKm_actual(Float.valueOf(TxtKm.getText()));
+       //     mvehiculo.setComb_actual(Float.valueOf(TxtCombustible.getText()));
+       //     mvehiculo.setKm_actual(Float.valueOf(TxtKm.getText()));
             
            
             BD mBD = new BD();
@@ -249,8 +249,8 @@ public class FrmModificar extends javax.swing.JDialog {
             TxtModelo.setText(null);
             TxtAyno.setText(null);
             TxtDesExtra.setText(null);
-            TxtCombustible.setText(null);
-            TxtKm.setText(null);
+       //     TxtCombustible.setText(null);
+         //   TxtKm.setText(null);
             }else{
                  JOptionPane.showMessageDialog(rootPane, "Error");
             }
