@@ -5,8 +5,8 @@ CREATE TABLE Automovil (
   Anio INTEGER UNSIGNED NOT NULL,
   Desc_Extra TEXT NOT NULL,
   Kilometraje_Actual FLOAT NOT NULL,
-  Kilometrtaje_Recorrido FLOAT NOT NULL,
-  Combustibe_Actual FLOAT NOT NULL,
+  Kilometraje_Recorrido FLOAT NOT NULL,
+  Combustible_Actual FLOAT NOT NULL,
   Combustible_Gastado FLOAT NOT NULL,
   PRIMARY KEY(idAutomovil)
 );
