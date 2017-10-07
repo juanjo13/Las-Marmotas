@@ -196,7 +196,7 @@ public class FrmModificar extends javax.swing.JDialog {
             mvehiculo.setDesc_Extra(TxtDesExtra.getText());
             
             BD mBD = new BD();
-            if(mBD.Conectar("localhost", "smv", "root", "")){
+            if(mBD.Conectar()){
                 mBD.agregarVehiculo(mvehiculo);
                 JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
             TxtMarca.setText(null);
@@ -241,7 +241,7 @@ public class FrmModificar extends javax.swing.JDialog {
             
            
             BD mBD = new BD();
-            if(mBD.Conectar("localhost", "smv", "root", "")){
+            if(mBD.Conectar()){
                 mBD.agregarVehiculo(mvehiculo);
                 JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
                 

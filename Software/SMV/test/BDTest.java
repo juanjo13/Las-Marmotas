@@ -28,13 +28,9 @@ public class BDTest {
     @Test
     public void testConectar() throws Exception {
         System.out.println("Conectar");
-        String host = "localhost";
-        String BD = "smv";
-        String User = "root";
-        String Password = "";
         BD mBd = new BD();
         boolean esperado = true;
-        boolean resultado = mBd.Conectar(host, BD, User, Password);
+        boolean resultado = mBd.Conectar();
         assertEquals(esperado, resultado);
        
     }
@@ -54,7 +50,7 @@ public class BDTest {
         mVehiculo.setComb_gastado(0);
         mVehiculo.setAnio(1992);
         mVehiculo.setDesc_Extra("nada");
-        mBd.Conectar("localhost", "smv", "root", "");
+        mBd.Conectar();
         boolean esperado = true;
         boolean resultado = mBd.agregarVehiculo(mVehiculo);
         assertEquals(esperado, resultado);

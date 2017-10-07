@@ -4,6 +4,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,7 +24,11 @@ public class BD {
 
 
     @SuppressWarnings("empty-statement")
-    public boolean Conectar(String host, String BD, String User, String Password) throws Exception {
+    public boolean Conectar() throws Exception {
+        String host = "localhost";
+        String BD = "smv";
+        String User = "root";
+        String Password = "";
         boolean con;
         try {
             DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
@@ -49,6 +55,25 @@ public class BD {
         }catch(Exception e){
             return false;
         }
+    }
+    public List<vehiculo> ConsultaGeneral()throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            vehiculo mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_actual(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometrtaje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustibe_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
     }
 
     public ResultSet ejecutarConsulta(String instruccionQL) throws SQLException {
