@@ -11,6 +11,7 @@
 public class vehiculo {
     private String Marca;
     private String Modelo;
+    private int identificador;
     private int anio;
     private float Km_actual;
     private float Km_recorr;
@@ -27,6 +28,14 @@ public class vehiculo {
         Comb_actual = 0;
         Comb_gastado = 0;
         Desc_Extra = "";
+    }
+
+    public int getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
     }
 
     public float getKm_actual() {

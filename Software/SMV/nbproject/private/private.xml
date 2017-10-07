@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/aide/Documents/Septimo/nacho/Las-Marmotas/Software/SMV/src/FrmInicio.java</file>
             <file>file:/C:/Users/aide/Documents/Septimo/nacho/Las-Marmotas/Software/SMV/src/BD.java</file>
             <file>file:/C:/Users/aide/Documents/Septimo/nacho/Las-Marmotas/Software/SMV/src/FrmAltaV.java</file>
@@ -12,6 +13,12 @@
             <file>file:/C:/Users/aide/Documents/Septimo/nacho/Las-Marmotas/Software/SMV/src/FrmConsulta.java</file>
             <file>file:/C:/Users/aide/Documents/Septimo/nacho/Las-Marmotas/Software/SMV/src/FrmCombustible.java</file>
             <file>file:/C:/Users/aide/Documents/Septimo/nacho/Las-Marmotas/Software/SMV/src/Main.java</file>
+=======
+            <file>file:/C:/Users/juanj/Desktop/7°%20Semestre/DAS/Repositorio/Las-Marmotas/Software/SMV/src/vehiculo.java</file>
+            <file>file:/C:/Users/juanj/Desktop/7°%20Semestre/DAS/Repositorio/Las-Marmotas/Software/SMV/src/BD.java</file>
+            <file>file:/C:/Users/juanj/Desktop/7°%20Semestre/DAS/Repositorio/Las-Marmotas/Software/SMV/src/FrmConsulta.java</file>
+            <file>file:/C:/Users/juanj/Desktop/7°%20Semestre/DAS/Repositorio/Las-Marmotas/Software/SMV/src/FrmAltaV.java</file>
+>>>>>>> a44b93c310002a06ec6c128d05a604319df32650
         </group>
     </open-files>
 </project-private>

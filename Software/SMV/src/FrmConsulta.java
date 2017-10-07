@@ -1,5 +1,7 @@
 
 import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -35,12 +37,12 @@ public class FrmConsulta extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtVehiculos = new javax.swing.JTable();
-        CBMarca = new javax.swing.JComboBox<>();
+        CBMarca = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        CBModelo = new javax.swing.JComboBox<>();
+        CBModelo = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
-        CMBAnyo = new javax.swing.JComboBox<>();
+        CMBAnyo = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
         BtnBuscar = new javax.swing.JButton();
         BtnModificar = new javax.swing.JButton();
@@ -50,6 +52,19 @@ public class FrmConsulta extends javax.swing.JDialog {
         BtnCombustible = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+
+        jLabel2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jLabel2FocusGained(evt);
+            }
+        });
 
         JtVehiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,18 +76,18 @@ public class FrmConsulta extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(JtVehiculos);
 
-        CBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("BÚSQUEDA");
 
         jLabel3.setText("MARCA");
 
-        CBModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBModelo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setText("MODELO");
 
-        CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("AÑO");
 
@@ -124,47 +139,48 @@ public class FrmConsulta extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(456, 456, 456)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(CBMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(CBModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(CMBAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(BtnBuscar)
-                        .addGap(30, 30, 30)
-                        .addComponent(BtnKilometraje))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(80, 80, 80)
-                                .addComponent(jLabel4)
-                                .addGap(89, 89, 89)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnCombustible)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(BtnModificar)
-                        .addGap(99, 99, 99)))
+                                .addComponent(CBMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(CBModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(CMBAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(BtnBuscar)
+                                .addGap(30, 30, 30)
+                                .addComponent(BtnKilometraje))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(80, 80, 80)
+                                        .addComponent(jLabel4)
+                                        .addGap(89, 89, 89)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnCombustible)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                .addComponent(BtnModificar)
+                                .addGap(99, 99, 99)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -245,6 +261,30 @@ public class FrmConsulta extends javax.swing.JDialog {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_BtnCombustibleActionPerformed
+
+    private void jLabel2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLabel2FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2FocusGained
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        try{
+            BD mBD = new BD();
+            mBD.Conectar();
+            List<vehiculo> ListaVehiculos = mBD.ConsultaGeneral();
+            Object[] encabezado = {"ID", "Marca", "Modelo", "Año", "Km Actual",
+            "Km Recorrido", "Combustible", "Desc Extra"};
+            DefaultTableModel modelo= new  DefaultTableModel(null,encabezado);
+            for(vehiculo mvehiculo:ListaVehiculos){
+                Object[] fila ={mvehiculo.getIdentificador(),mvehiculo.getMarca(), mvehiculo.getModelo(), mvehiculo.getAnio(),
+                                mvehiculo.getKm_actual(), mvehiculo.getKm_recorr(),mvehiculo.getComb_actual(), mvehiculo.getDesc_Extra()};
+                modelo.addRow(fila);
+            }
+            JtVehiculos.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
