@@ -50,7 +50,6 @@ public class FrmCombustible extends javax.swing.JDialog {
         BtnAceptar = new javax.swing.JButton();
         RbCargado = new javax.swing.JRadioButton();
         RbGastado = new javax.swing.JRadioButton();
-        lblid = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
         txtcom = new javax.swing.JTextField();
 
@@ -87,8 +86,6 @@ public class FrmCombustible extends javax.swing.JDialog {
         Grupo.add(RbGastado);
         RbGastado.setText("Gastado");
 
-        lblid.setText("ID");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,9 +94,7 @@ public class FrmCombustible extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(101, 101, 101)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblid))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +103,7 @@ public class FrmCombustible extends javax.swing.JDialog {
                                 .addGap(52, 52, 52)
                                 .addComponent(RbGastado))
                             .addComponent(TxtCombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(BtnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,9 +116,7 @@ public class FrmCombustible extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblid))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RbCargado)
@@ -308,7 +301,6 @@ public class FrmCombustible extends javax.swing.JDialog {
     private javax.swing.JRadioButton RbGastado;
     private javax.swing.JTextField TxtCombustible;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblid;
     private javax.swing.JTextField txtcom;
     private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
