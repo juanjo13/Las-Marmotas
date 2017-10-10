@@ -68,8 +68,8 @@ public class BD {
             mVehiculo.setAnio(consulta.getInt("Anio"));
             mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
             mVehiculo.setKm_actual(consulta.getFloat("Kilometraje_Actual"));
-            mVehiculo.setKm_recorr(consulta.getFloat("Kilometrtaje_Recorrido"));
-            mVehiculo.setComb_actual(consulta.getFloat("Combustibe_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
             mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
             ListaVehiculos.add(mVehiculo);
         }
@@ -92,6 +92,30 @@ public class BD {
         return resultado;
     }
 
+    public boolean agregarCombustibleGastado(vehiculo mVehiculo) throws SQLException{
+        try{
+            //update automovil set combustibe_actual=combustibe_actual-10, combustible_gastado=combustible_gastado+10 
+            //where idAutomovil=16
+        String SQL = "update automovil set combustible_actual=combustible_actual- '"+mVehiculo.getComb_gastado() + "',combustible_gastado=combustible_gastado+'"+ mVehiculo.getComb_gastado() +
+                "'where idAutomovil='" + mVehiculo.getIdentificador() +"';";
+        ejecutarActualizacion(SQL);
+        return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+        public boolean cargarCombustible(vehiculo mVehiculo) throws SQLException{
+        try{
+            //update automovil set combustibe_actual=combustibe_actual-10, combustible_gastado=combustible_gastado+10 
+            //where idAutomovil=16
+        String SQL = "update  automovil set combustible_actual=combustible_actual+ '"+mVehiculo.getComb_gastado() +
+                "'where idAutomovil='" + mVehiculo.getIdentificador() +"';";
+        ejecutarActualizacion(SQL);
+        return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
     public ResultSet ejecutarConsulta(String instruccionQL) throws SQLException {
         ResultSet resultado = this.comando.executeQuery(instruccionQL);
         return resultado;

@@ -155,7 +155,7 @@ public class FrmAltaV extends javax.swing.JDialog {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(180, 20, 360, 50);
 
-        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FLECHA_1.png"))); // NOI18N
+        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/regresa_1.png"))); // NOI18N
         BtnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAtrasActionPerformed(evt);
@@ -167,7 +167,7 @@ public class FrmAltaV extends javax.swing.JDialog {
             }
         });
         getContentPane().add(BtnAtras);
-        BtnAtras.setBounds(590, 20, 60, 30);
+        BtnAtras.setBounds(600, 0, 70, 50);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/esquina.png"))); // NOI18N
         getContentPane().add(jLabel10);
