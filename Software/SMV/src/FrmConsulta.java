@@ -1,6 +1,11 @@
 
 import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -76,7 +81,16 @@ public class FrmConsulta extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(JtVehiculos);
 
-        CBMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBMarca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBMarcaItemStateChanged(evt);
+            }
+        });
+        CBMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBMarcaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("BÚSQUEDA");
@@ -92,6 +106,11 @@ public class FrmConsulta extends javax.swing.JDialog {
         jLabel5.setText("AÑO");
 
         BtnBuscar.setText("BUSCAR");
+        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarActionPerformed(evt);
+            }
+        });
 
         BtnModificar.setText("MODIFICAR");
 
@@ -142,12 +161,10 @@ public class FrmConsulta extends javax.swing.JDialog {
                 .addGap(456, 456, 456)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +282,36 @@ public class FrmConsulta extends javax.swing.JDialog {
     private void jLabel2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLabel2FocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2FocusGained
-
+    public void llenarCmb_Marca(){
+        try {
+            BD mBD = new BD();
+            mBD.Conectar();
+            ResultSet resultado = mBD.ConsultarMarca();
+            CBMarca.addItem("Marca");
+            while(resultado.next()){
+                CBMarca.addItem(resultado.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void llenarCmb_Modelo(){
+        try {
+            BD mBD = new BD();
+            mBD.Conectar();
+            ResultSet resultado = mBD.ConsultarModelo();
+            CBMarca.addItem("Modelo");
+            while(resultado.next()){
+                CBMarca.addItem(resultado.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         try{
@@ -281,10 +327,24 @@ public class FrmConsulta extends javax.swing.JDialog {
                 modelo.addRow(fila);
             }
             JtVehiculos.setModel(modelo);
+            llenarCmb_Marca();
         }catch(Exception e){
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void CBMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBMarcaActionPerformed
+
+    private void CBMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBMarcaItemStateChanged
+
+    }//GEN-LAST:event_CBMarcaItemStateChanged
+
+    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+        // TODO add your handling code here:
+        String Marca = CBMarca.getSelectedItem().toString();
+    }//GEN-LAST:event_BtnBuscarActionPerformed
 
     /**
      * @param args the command line arguments

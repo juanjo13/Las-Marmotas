@@ -75,6 +75,22 @@ public class BD {
         }
         return ListaVehiculos;
     }
+    
+    public ResultSet ConsultarMarca() throws SQLException{
+        String sql = "select distinct marca from automovil";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    public ResultSet ConsultarModelo() throws SQLException{
+        String sql = "select distinct modelo from automovil";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    public ResultSet ConsultarAnio() throws SQLException{
+        String sql = "select distinct anio from automovil";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
 
     public ResultSet ejecutarConsulta(String instruccionQL) throws SQLException {
         ResultSet resultado = this.comando.executeQuery(instruccionQL);
