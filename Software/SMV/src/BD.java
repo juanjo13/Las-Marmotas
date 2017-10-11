@@ -75,18 +75,79 @@ public class BD {
         }
         return ListaVehiculos;
     }
+    //Buscar por Marca
+    public List<vehiculo> ConsultaPorMarca(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_actual(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //Buscar por Modelo
+    public List<vehiculo> ConsultaPorModelo(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_actual(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
     
-    public ResultSet ConsultarMarca() throws SQLException{
+    //Buscar por Año
+    public List<vehiculo> ConsultaPorAnio(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_actual(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    
+    public ResultSet ConsultarMarcas() throws SQLException{
         String sql = "select distinct marca from automovil";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
-    public ResultSet ConsultarModelo() throws SQLException{
+    public ResultSet ConsultarModelos() throws SQLException{
         String sql = "select distinct modelo from automovil";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
-    public ResultSet ConsultarAnio() throws SQLException{
+    public ResultSet ConsultarAnios() throws SQLException{
         String sql = "select distinct anio from automovil";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
