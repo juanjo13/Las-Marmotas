@@ -105,10 +105,8 @@ public class FrmInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-      //  FrmAlta Alta = new FrmAlta();
-      new FrmAltaV(this,true).setVisible(true);  
-     // Alta.setAlwaysOnTop(true);
-       // Alta.setVisible(true);
+
+        new FrmAltaV(this,true).setVisible(true);
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
