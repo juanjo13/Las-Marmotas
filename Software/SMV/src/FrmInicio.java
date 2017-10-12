@@ -109,7 +109,6 @@ public class FrmInicio extends javax.swing.JFrame {
       new FrmAltaV(this,true).setVisible(true);  
      // Alta.setAlwaysOnTop(true);
        // Alta.setVisible(true);
-
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
