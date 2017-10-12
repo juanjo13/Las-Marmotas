@@ -306,7 +306,6 @@ public class FrmConsulta extends javax.swing.JDialog {
         String c = lblc.getText();
         float co = Float.valueOf(c);
         new FrmCombustible(this, true, dato, co).setVisible(true);
-
 // TODO add your handling code here:
     }//GEN-LAST:event_BtnCombustibleActionPerformed
 
@@ -363,7 +362,8 @@ public class FrmConsulta extends javax.swing.JDialog {
     }
     
     public void LLenarTabla(List<vehiculo> ListaVehiculos){
-        Object[] encabezado = {"ID", "Marca", "Modelo", "Año", "Km Actual",
+        if(ListaVehiculos != null){
+            Object[] encabezado = {"ID", "Marca", "Modelo", "Año", "Km Actual",
                 "Km Recorrido", "Combustible", "Desc Extra"};
             DefaultTableModel modelo = new DefaultTableModel(null, encabezado);
             for (vehiculo mvehiculo : ListaVehiculos) {
@@ -372,6 +372,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                 modelo.addRow(fila);
             }
             JtVehiculos.setModel(modelo);
+        }
     }
     
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -404,30 +405,70 @@ public class FrmConsulta extends javax.swing.JDialog {
             mBD.Conectar();
             
             vehiculo mvehiculo = new vehiculo();
+            List<vehiculo> ListaVehiculos = null;
             //Buscar por Marca
             if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
                     & CMBAnyo.getSelectedItem().toString() == "Año") {
 
                 mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
-                List<vehiculo> ListaVehiculos = mBD.ConsultaPorMarca(mvehiculo);
-                LLenarTabla(ListaVehiculos);
+                ListaVehiculos = mBD.ConsultaPorMarca(mvehiculo);
                 
              //Buscar por Modelo
             }else if(CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
                     & CMBAnyo.getSelectedItem().toString() == "Año"){
                 
                 mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
-                List<vehiculo> ListaVehiculos = mBD.ConsultaPorModelo(mvehiculo);
-                LLenarTabla(ListaVehiculos);
+                ListaVehiculos = mBD.ConsultaPorModelo(mvehiculo);
+            //Buscar por Año    
             }else if(CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
                     & CMBAnyo.getSelectedItem().toString() != "Año"){
                 
                 mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
-                List<vehiculo> ListaVehiculos = mBD.ConsultaPorAnio(mvehiculo);
-                LLenarTabla(ListaVehiculos);
+                ListaVehiculos = mBD.ConsultaPorAnio(mvehiculo);
+              
+            //Buscar por Marca, Modelo Y Año.    
+            }else if(CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año"){
+                
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                ListaVehiculos = mBD.ConsultaMixta(mvehiculo);
+            
+            //Buscar Por Marca y Modelo
+            }else if(CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() == "Año"){
+                
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                ListaVehiculos = mBD.ConsultaMarcaModelo(mvehiculo);
+                
+            //Buscar Marca y Año
+            }else if(CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año"){
+                
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                ListaVehiculos = mBD.ConsultaMarcaAnio(mvehiculo);
+                
+            //Buscar Modelo y Año
+            }else if(CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año"){
+                
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                ListaVehiculos = mBD.ConsultaModeloAnio(mvehiculo);
+                
             }else {
-                JOptionPane.showMessageDialog(rootPane, "Error");
+                JOptionPane.showMessageDialog(rootPane, "No se encontro el vehículo");
             }
+            
+            if(ListaVehiculos == null || ListaVehiculos.size() > 0){
+                LLenarTabla(ListaVehiculos);
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "No se encontro el vehículo");
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }

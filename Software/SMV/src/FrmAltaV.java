@@ -188,7 +188,7 @@ public class FrmAltaV extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtMarcaKeyTyped
 
     private void TxtAynoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtAynoKeyPressed
-
+           
     }//GEN-LAST:event_TxtAynoKeyPressed
 
     private void TxtAynoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtAynoKeyTyped
