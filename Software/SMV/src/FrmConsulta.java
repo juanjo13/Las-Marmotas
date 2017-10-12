@@ -296,6 +296,7 @@ public class FrmConsulta extends javax.swing.JDialog {
         String c = lblc.getText();
         float co = Float.valueOf(c);
             new FrmCombustible(this, true, dato, co).setVisible(true);
+            lblid.setText("");
 
         }
     }//GEN-LAST:event_BtnCombustibleKeyPressed
@@ -306,6 +307,9 @@ public class FrmConsulta extends javax.swing.JDialog {
         String c = lblc.getText();
         float co = Float.valueOf(c);
         new FrmCombustible(this, true, dato, co).setVisible(true);
+
+        lblid.setText("");
+
 // TODO add your handling code here:
     }//GEN-LAST:event_BtnCombustibleActionPerformed
 
