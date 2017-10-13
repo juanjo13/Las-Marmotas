@@ -44,12 +44,12 @@ public class FrmConsulta extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtVehiculos = new javax.swing.JTable();
-        CBMarca = new javax.swing.JComboBox<String>();
+        CBMarca = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        CBModelo = new javax.swing.JComboBox<String>();
+        CBModelo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        CMBAnyo = new javax.swing.JComboBox<String>();
+        CMBAnyo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         BtnBuscar = new javax.swing.JButton();
         BtnModificar = new javax.swing.JButton();
@@ -95,7 +95,7 @@ public class FrmConsulta extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(JtVehiculos);
 
-        CBMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marca" }));
+        CBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca" }));
         CBMarca.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 CBMarcaItemStateChanged(evt);
@@ -112,11 +112,11 @@ public class FrmConsulta extends javax.swing.JDialog {
 
         jLabel3.setText("MARCA");
 
-        CBModelo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modelo" }));
+        CBModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
 
         jLabel4.setText("MODELO");
 
-        CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
+        CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
 
         jLabel5.setText("AÑO");
 
@@ -128,6 +128,16 @@ public class FrmConsulta extends javax.swing.JDialog {
         });
 
         BtnModificar.setText("MODIFICAR");
+        BtnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModificarActionPerformed(evt);
+            }
+        });
+        BtnModificar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnModificarKeyPressed(evt);
+            }
+        });
 
         BtnKilometraje.setText("REGISTRAR KILOMETRAJE");
         BtnKilometraje.addActionListener(new java.awt.event.ActionListener() {
@@ -512,6 +522,26 @@ public class FrmConsulta extends javax.swing.JDialog {
             System.out.println(ex.toString());
         }
     }//GEN-LAST:event_JtVehiculosKeyReleased
+
+    private void BtnModificarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnModificarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnModificarKeyPressed
+
+    private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
+        try{
+            int fila = JtVehiculos.getSelectedRow();
+            if (fila >= 0){
+                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                String Marc = JtVehiculos.getValueAt(fila, 1).toString();
+                String Mod = JtVehiculos.getValueAt(fila, 2).toString();
+                String A = JtVehiculos.getValueAt(fila, 3).toString();
+                String Desc = JtVehiculos.getValueAt(fila, 7).toString();                
+                new FrmModificar(this,true, ID, Marc, Mod, A, Desc).setVisible(true);
+            }            
+        }catch (Exception ex) {
+            System.out.println(ex.toString());
+        }        
+    }//GEN-LAST:event_BtnModificarActionPerformed
 
 
     /**

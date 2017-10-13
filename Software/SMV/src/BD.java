@@ -243,6 +243,20 @@ public class BD {
             return false;
         }
     }
+    
+    public boolean actualizarVehiculo(vehiculo mVehiculo) throws SQLException{
+        try{
+        String SQL = "update automovil set Marca= '" + mVehiculo.getMarca() 
+                + "', Modelo= '" + mVehiculo.getModelo() + "', Anio= '" 
+                + mVehiculo.getAnio() + "', Desc_Extra= '" + mVehiculo.getDesc_Extra() +
+                "' where idAutomovil='" + mVehiculo.getIdentificador() +"';";
+        ejecutarActualizacion(SQL);
+        return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    
         public boolean cargarCombustible(vehiculo mVehiculo) throws SQLException{
         try{
             //update automovil set combustibe_actual=combustibe_actual-10, combustible_gastado=combustible_gastado+10 
