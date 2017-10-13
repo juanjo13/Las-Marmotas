@@ -95,10 +95,8 @@ public class FrmConsulta extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(JtVehiculos);
 
-<<<<<<< HEAD
-=======
         CBMarca.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
->>>>>>> bd8b5db0fa3b813f446b4c655122ef54995e8e70
+
         CBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca" }));
         CBMarca.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -117,19 +115,17 @@ public class FrmConsulta extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel3.setText("MARCA");
 
-<<<<<<< HEAD
-=======
+
         CBModelo.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
->>>>>>> bd8b5db0fa3b813f446b4c655122ef54995e8e70
+
         CBModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
 
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel4.setText("MODELO");
 
-<<<<<<< HEAD
-=======
+
         CMBAnyo.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
->>>>>>> bd8b5db0fa3b813f446b4c655122ef54995e8e70
+
         CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
 
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
