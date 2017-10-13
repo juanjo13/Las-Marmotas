@@ -44,12 +44,12 @@ public class FrmConsulta extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtVehiculos = new javax.swing.JTable();
-        CBMarca = new javax.swing.JComboBox<String>();
+        CBMarca = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        CBModelo = new javax.swing.JComboBox<String>();
+        CBModelo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        CMBAnyo = new javax.swing.JComboBox<String>();
+        CMBAnyo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         BtnBuscar = new javax.swing.JButton();
         BtnModificar = new javax.swing.JButton();
@@ -95,7 +95,8 @@ public class FrmConsulta extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(JtVehiculos);
 
-        CBMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marca" }));
+        CBMarca.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        CBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca" }));
         CBMarca.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 CBMarcaItemStateChanged(evt);
@@ -107,19 +108,25 @@ public class FrmConsulta extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel1.setText("BÚSQUEDA");
 
+        jLabel3.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel3.setText("MARCA");
 
-        CBModelo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modelo" }));
+        CBModelo.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        CBModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel4.setText("MODELO");
 
-        CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
+        CMBAnyo.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
 
+        jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel5.setText("AÑO");
 
+        BtnBuscar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnBuscar.setText("BUSCAR");
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,8 +134,10 @@ public class FrmConsulta extends javax.swing.JDialog {
             }
         });
 
+        BtnModificar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnModificar.setText("MODIFICAR");
 
+        BtnKilometraje.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnKilometraje.setText("REGISTRAR KILOMETRAJE");
         BtnKilometraje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +165,7 @@ public class FrmConsulta extends javax.swing.JDialog {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo b.png"))); // NOI18N
         jLabel8.setText("jLabel8");
 
+        BtnCombustible.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnCombustible.setText("COMBUSTIBLE");
         BtnCombustible.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,13 +187,6 @@ public class FrmConsulta extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(721, 721, 721)
-                .addComponent(lblid)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
@@ -194,12 +197,10 @@ public class FrmConsulta extends javax.swing.JDialog {
                                 .addGap(63, 63, 63)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(44, 44, 44)
+                                        .addGap(26, 26, 26)
                                         .addComponent(jLabel3)
-                                        .addGap(80, 80, 80)
-                                        .addComponent(jLabel4)
-                                        .addGap(143, 143, 143)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(68, 68, 68)
+                                        .addComponent(jLabel4))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(CBMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -215,32 +216,44 @@ public class FrmConsulta extends javax.swing.JDialog {
                                         .addGap(18, 18, 18)
                                         .addComponent(BtnModificar))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(316, 316, 316)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(479, 479, 479)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(721, 721, 721)
+                .addComponent(lblid)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblid, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblc, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGap(0, 37, Short.MAX_VALUE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
@@ -254,10 +267,8 @@ public class FrmConsulta extends javax.swing.JDialog {
                                     .addComponent(BtnKilometraje)
                                     .addComponent(BtnCombustible)
                                     .addComponent(BtnModificar)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 19, Short.MAX_VALUE)))
+                            .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 22, Short.MAX_VALUE)))
                 .addGap(56, 56, 56)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -268,7 +279,7 @@ public class FrmConsulta extends javax.swing.JDialog {
 
     private void BtnKilometrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKilometrajeActionPerformed
         //    new (this,true).setVisible(true);
-        new FrmKilometraje(this, true).setVisible(true);
+  //      new FrmKilometraje(this, true).setVisible(true);
 
     }//GEN-LAST:event_BtnKilometrajeActionPerformed
 
@@ -285,7 +296,7 @@ public class FrmConsulta extends javax.swing.JDialog {
 
     private void BtnKilometrajeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKilometrajeKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            new FrmKilometraje(this, true).setVisible(true);
+          //  new FrmKilometraje(this, true).setVisible(true);
         }
     }//GEN-LAST:event_BtnKilometrajeKeyPressed
 

@@ -55,7 +55,7 @@ public class FrmCombustible extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel1.setText("COMBUSTIBLE");
 
         TxtCombustible.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -64,7 +64,7 @@ public class FrmCombustible extends javax.swing.JDialog {
             }
         });
 
-        BtnAceptar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        BtnAceptar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnAceptar.setText("ACEPTAR");
         BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,9 +81,11 @@ public class FrmCombustible extends javax.swing.JDialog {
         });
 
         Grupo.add(RbCargado);
+        RbCargado.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         RbCargado.setText("Cargado");
 
         Grupo.add(RbGastado);
+        RbGastado.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         RbGastado.setText("Gastado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
