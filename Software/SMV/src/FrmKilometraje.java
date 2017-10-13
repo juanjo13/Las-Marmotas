@@ -38,7 +38,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        BtnAceptar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        BtnAceptar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnAceptar.setText("ACEPTAR");
         BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +57,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel1.setText("KILOMETRAJE RECORRIDO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
