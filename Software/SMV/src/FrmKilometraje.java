@@ -101,52 +101,52 @@ public class FrmKilometraje extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
-//             if (TxtKilometraje.getText().equals("")) {
-//            JOptionPane.showMessageDialog(rootPane, "Llene el campo");
-//        } else {
-//              vehiculo mvehiculo = new vehiculo();
-//            mvehiculo.setKm_recorr(Float.valueOf(TxtKilometraje.getText()));
-//            mvehiculo.setIdentificador(Integer.valueOf(txtid.getText()));
-//            try {
-//                BD mBD = new BD();
-//                if (mBD.Conectar()) {
-//                    mBD.agregarKilometraje(mvehiculo);
-//                    JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
-//                    this.setVisible(false);
-//                }
-//
-//            } catch (Exception ex) {
-//                System.out.println(ex.toString());
-//                JOptionPane.showMessageDialog(rootPane, "Error");
-//            }
-//                this.setVisible(false);
-//             }
+             if (TxtKilometraje.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Llene el campo");
+        } else {
+              vehiculo mvehiculo = new vehiculo();
+            mvehiculo.setKm_recorr(Float.valueOf(TxtKilometraje.getText()));
+            mvehiculo.setIdentificador(Integer.valueOf(txtid.getText()));
+            try {
+                BD mBD = new BD();
+                if (mBD.Conectar()) {
+                    mBD.agregarKilometraje(mvehiculo);
+                    JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
+                    this.setVisible(false);
+                }
+
+            } catch (Exception ex) {
+                System.out.println(ex.toString());
+                JOptionPane.showMessageDialog(rootPane, "Error");
+            }
+                this.setVisible(false);
+             }
     }//GEN-LAST:event_BtnAceptarActionPerformed
 
     private void BtnAceptarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAceptarKeyPressed
-//          if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-//        if (TxtKilometraje.getText().equals("")) {
-//          //  JOptionPane.showMessageDialog(rootPane, "Llene el campo");
-//        } else {
-//                vehiculo mvehiculo = new vehiculo();
-//            mvehiculo.setKm_recorr(Float.valueOf(TxtKilometraje.getText()));
-//            mvehiculo.setIdentificador(Integer.valueOf(txtid.getText()));
-//            try {
-//                BD mBD = new BD();
-//                if (mBD.Conectar()) {
-//                    mBD.agregarKilometraje(mvehiculo);
-//                    JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
-//                    this.setVisible(false);
-//                }
-//
-//            } catch (Exception ex) {
-//                System.out.println(ex.toString());
-//                JOptionPane.showMessageDialog(rootPane, "Error");
-//            }
-//                this.setVisible(false);
-//             }
-//          }
-//          
+          if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (TxtKilometraje.getText().equals("")) {
+          //  JOptionPane.showMessageDialog(rootPane, "Llene el campo");
+        } else {
+                vehiculo mvehiculo = new vehiculo();
+            mvehiculo.setKm_recorr(Float.valueOf(TxtKilometraje.getText()));
+            mvehiculo.setIdentificador(Integer.valueOf(txtid.getText()));
+            try {
+                BD mBD = new BD();
+                if (mBD.Conectar()) {
+                    mBD.agregarKilometraje(mvehiculo);
+                    JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
+                    this.setVisible(false);
+                }
+
+            } catch (Exception ex) {
+                System.out.println(ex.toString());
+                JOptionPane.showMessageDialog(rootPane, "Error");
+            }
+                this.setVisible(false);
+             }
+          }
+          
     }//GEN-LAST:event_BtnAceptarKeyPressed
 
     private void TxtKilometrajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtKilometrajeKeyTyped
