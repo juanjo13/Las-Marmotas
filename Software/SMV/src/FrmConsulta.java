@@ -94,8 +94,11 @@ public class FrmConsulta extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(JtVehiculos);
-        CBMarca.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+<<<<<<< HEAD
+=======
 
+>>>>>>> f277442a624db4a57cc627dd0fe7fc703a72352e
+        CBMarca.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         CBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca" }));
         CBMarca.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -114,17 +117,13 @@ public class FrmConsulta extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel3.setText("MARCA");
 
-
         CBModelo.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
-
         CBModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
 
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel4.setText("MODELO");
 
-
         CMBAnyo.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
-
         CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
 
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
@@ -135,6 +134,11 @@ public class FrmConsulta extends javax.swing.JDialog {
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscarActionPerformed(evt);
+            }
+        });
+        BtnBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnBuscarKeyPressed(evt);
             }
         });
 
@@ -293,10 +297,10 @@ public class FrmConsulta extends javax.swing.JDialog {
 
     private void BtnKilometrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKilometrajeActionPerformed
 
-//        String id = lblid.getText();
-//        int dato = Integer.valueOf(id);
-//        new FrmKilometraje(this, true,dato).setVisible(true);
-//        lblid.setText("");
+        String id = lblid.getText();
+        int dato = Integer.valueOf(id);
+        new FrmKilometraje(this, true,dato).setVisible(true);
+        lblid.setText("");
 
     }//GEN-LAST:event_BtnKilometrajeActionPerformed
 
@@ -560,6 +564,83 @@ public class FrmConsulta extends javax.swing.JDialog {
             System.out.println(ex.toString());
         }        
     }//GEN-LAST:event_BtnModificarActionPerformed
+
+    private void BtnBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBuscarKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {  
+        try {
+            BD mBD = new BD();
+            mBD.Conectar();
+            
+            vehiculo mvehiculo = new vehiculo();
+            List<vehiculo> ListaVehiculos = null;
+            //Buscar por Marca
+            if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() == "Año") {
+
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                ListaVehiculos = mBD.ConsultaPorMarca(mvehiculo);
+                
+             //Buscar por Modelo
+            }else if(CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() == "Año"){
+                
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                ListaVehiculos = mBD.ConsultaPorModelo(mvehiculo);
+            //Buscar por Año    
+            }else if(CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año"){
+                
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                ListaVehiculos = mBD.ConsultaPorAnio(mvehiculo);
+              
+            //Buscar por Marca, Modelo Y Año.    
+            }else if(CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año"){
+                
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                ListaVehiculos = mBD.ConsultaMixta(mvehiculo);
+            
+            //Buscar Por Marca y Modelo
+            }else if(CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() == "Año"){
+                
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                ListaVehiculos = mBD.ConsultaMarcaModelo(mvehiculo);
+                
+            //Buscar Marca y Año
+            }else if(CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año"){
+                
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                ListaVehiculos = mBD.ConsultaMarcaAnio(mvehiculo);
+                
+            //Buscar Modelo y Año
+            }else if(CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año"){
+                
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                ListaVehiculos = mBD.ConsultaModeloAnio(mvehiculo);
+                
+            }else {
+                JOptionPane.showMessageDialog(rootPane, "No se encontro el vehículo");
+            }
+            
+            if(ListaVehiculos == null || ListaVehiculos.size() > 0){
+                LLenarTabla(ListaVehiculos);
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "No se encontro el vehículo");
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         }
+    }//GEN-LAST:event_BtnBuscarKeyPressed
 
 
     /**

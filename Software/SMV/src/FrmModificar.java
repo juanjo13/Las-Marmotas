@@ -216,7 +216,32 @@ public class FrmModificar extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnActualizarActionPerformed
 
     private void BtnActualizarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnActualizarKeyPressed
-      
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+         if ((((TxtMarca.getText().equals("")) | (TxtModelo.getText().equals("")) 
+                | (TxtAyno.getText().equals("")) 
+                | (TxtDesExtra.getText().equals(""))))) {
+            JOptionPane.showMessageDialog(rootPane, "Llene todos los campos");
+        } else {
+            try {
+                vehiculo mvehiculo = new vehiculo();
+                mvehiculo.setIdentificador(Integer.valueOf(lblid.getText()));
+                mvehiculo.setMarca(TxtMarca.getText());
+                mvehiculo.setModelo(TxtModelo.getText());
+                mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
+                mvehiculo.setDesc_Extra(TxtDesExtra.getText());
+                BD mBD = new BD();
+                if(mBD.Conectar()){
+                    mBD.actualizarVehiculo(mvehiculo);
+                    JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
+                    }else {
+                    JOptionPane.showMessageDialog(rootPane, "Error");
+                }
+            }catch(Exception ex){
+                System.out.println(ex.toString());
+                JOptionPane.showMessageDialog(rootPane, "Error ");                
+        }
+        }    
+         }
     }//GEN-LAST:event_BtnActualizarKeyPressed
 
     private void BtnAtrasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAtrasKeyPressed
