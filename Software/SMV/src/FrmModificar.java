@@ -19,9 +19,14 @@ public class FrmModificar extends javax.swing.JDialog {
      * Creates new form FrmModificar.
      */
     
-    public FrmModificar(java.awt.Frame parent, boolean modal) {
+    public FrmModificar(javax.swing.JDialog parent, boolean modal, int ID, String Marc, String Mod, String A, String Desc) {
         super(parent, modal);
         initComponents();
+        lblid.setText(String.valueOf(ID));
+        TxtMarca.setText(Marc);
+        TxtModelo.setText(Mod);
+        TxtAyno.setText(A);
+        TxtDesExtra.setText(Desc);
         this.setMinimumSize(new Dimension(700, 500));
         this.setLocationRelativeTo(null);
     }
@@ -48,6 +53,7 @@ public class FrmModificar extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         BtnAtras = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        lblid = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -126,7 +132,7 @@ public class FrmModificar extends javax.swing.JDialog {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(150, 20, 370, 50);
 
-        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FLECHA_1.png"))); // NOI18N
+        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/regresa_1.png"))); // NOI18N
         BtnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAtrasActionPerformed(evt);
@@ -138,11 +144,15 @@ public class FrmModificar extends javax.swing.JDialog {
             }
         });
         getContentPane().add(BtnAtras);
-        BtnAtras.setBounds(590, 20, 60, 30);
+        BtnAtras.setBounds(590, 20, 60, 50);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/esquina.png"))); // NOI18N
         getContentPane().add(jLabel10);
         jLabel10.setBounds(0, -80, 670, 750);
+
+        lblid.setText("i");
+        getContentPane().add(lblid);
+        lblid.setBounds(670, 200, 2, 14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -150,11 +160,12 @@ public class FrmModificar extends javax.swing.JDialog {
     private void TxtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtMarcaKeyTyped
         if (!Character.isLetter(evt.getKeyChar())
             != (evt.getKeyChar() == KeyEvent.VK_SPACE)
-            != (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
-            evt.consume();
-
-        } else {
+            != (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {            
+            
+            evt.consume();                 
             JOptionPane.showMessageDialog(rootPane, "¡Tipo de caracter no válido!");
+        } else {               
+            
         }
     }//GEN-LAST:event_TxtMarcaKeyTyped
 
@@ -164,14 +175,11 @@ public class FrmModificar extends javax.swing.JDialog {
 
     private void TxtAynoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtAynoKeyTyped
 
-        char caracter = evt.getKeyChar();
-
-        // Verificar si la tecla pulsada no es un digito
-        if (((caracter < '0')
-            || (caracter > '9'))
+        char caracter = evt.getKeyChar();       
+        if (((caracter < '0') || (caracter > '9'))
         && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
-        evt.consume();  // ignorar el evento de teclado
-        JOptionPane.showMessageDialog(rootPane, "Ingresar Solo Números");
+            evt.consume();  // ignorar el evento de teclado
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Solo Números");
         }
 
     }//GEN-LAST:event_TxtAynoKeyTyped
@@ -186,92 +194,41 @@ public class FrmModificar extends javax.swing.JDialog {
                 | (TxtDesExtra.getText().equals(""))))) {
             JOptionPane.showMessageDialog(rootPane, "Llene todos los campos");
         } else {
-           
-            try{
-               
-            vehiculo mvehiculo = new vehiculo();
-            mvehiculo.setMarca(TxtMarca.getText());
-            mvehiculo.setModelo(TxtModelo.getText());
-            mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
-            mvehiculo.setDesc_Extra(TxtDesExtra.getText());
-            
-            BD mBD = new BD();
-            if(mBD.Conectar()){
-                mBD.agregarVehiculo(mvehiculo);
-                JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
-            TxtMarca.setText(null);
-            TxtModelo.setText(null);
-            TxtAyno.setText(null);
-            TxtDesExtra.setText(null);
-
-            }else{
-                 JOptionPane.showMessageDialog(rootPane, "Error");
-            }
-            
-           
-        }catch(Exception ex){
-            System.out.println(ex.toString());
-              JOptionPane.showMessageDialog(rootPane, "Error ");
+            try {
+                vehiculo mvehiculo = new vehiculo();
+                mvehiculo.setIdentificador(Integer.valueOf(lblid.getText()));
+                mvehiculo.setMarca(TxtMarca.getText());
+                mvehiculo.setModelo(TxtModelo.getText());
+                mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
+                mvehiculo.setDesc_Extra(TxtDesExtra.getText());
+                BD mBD = new BD();
+                if(mBD.Conectar()){
+                    mBD.actualizarVehiculo(mvehiculo);
+                    JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
+                    }else {
+                    JOptionPane.showMessageDialog(rootPane, "Error");
+                }
+            }catch(Exception ex){
+                System.out.println(ex.toString());
+                JOptionPane.showMessageDialog(rootPane, "Error ");                
         }
-            
-            
-        }
+        }    
     }//GEN-LAST:event_BtnActualizarActionPerformed
+
+    private void BtnActualizarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnActualizarKeyPressed
+      
+    }//GEN-LAST:event_BtnActualizarKeyPressed
+
+    private void BtnAtrasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAtrasKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            this.setVisible(false);
+
+        }
+    }//GEN-LAST:event_BtnAtrasKeyPressed
 
     private void BtnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_BtnAtrasActionPerformed
-
-    private void BtnActualizarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnActualizarKeyPressed
-      if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-          if ((((TxtMarca.getText().equals("")) | (TxtModelo.getText().equals("")) 
-                  | (TxtAyno.getText().equals("")) 
-                  | (TxtDesExtra.getText().equals(""))))) {
-            JOptionPane.showMessageDialog(rootPane, "Llene todos los campos");
-        } else {
-               try{
-               
-            vehiculo mvehiculo = new vehiculo();
-            mvehiculo.setMarca(TxtMarca.getText());
-            mvehiculo.setModelo(TxtModelo.getText());
-            mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
-            mvehiculo.setDesc_Extra(TxtDesExtra.getText());
-       //     mvehiculo.setComb_actual(Float.valueOf(TxtCombustible.getText()));
-       //     mvehiculo.setKm_actual(Float.valueOf(TxtKm.getText()));
-            
-           
-            BD mBD = new BD();
-            if(mBD.Conectar()){
-                mBD.agregarVehiculo(mvehiculo);
-                JOptionPane.showMessageDialog(rootPane, "Vehículo Guardado con Exito");
-                
-            TxtMarca.setText(null);
-            TxtModelo.setText(null);
-            TxtAyno.setText(null);
-            TxtDesExtra.setText(null);
-       //     TxtCombustible.setText(null);
-         //   TxtKm.setText(null);
-            }else{
-                 JOptionPane.showMessageDialog(rootPane, "Error");
-            }
-         
-         
-        }catch(Exception ex){
-            System.out.println(ex.toString());
-            JOptionPane.showMessageDialog(rootPane, "Error ");
-            
-        }
-            
-        }
-      }
-    }//GEN-LAST:event_BtnActualizarKeyPressed
-
-    private void BtnAtrasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAtrasKeyPressed
-         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-              this.setVisible(false);
-
-         }
-    }//GEN-LAST:event_BtnAtrasKeyPressed
 
     /**
      * @param args the command line arguments
@@ -303,7 +260,12 @@ public class FrmModificar extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmModificar dialog = new FrmModificar(new javax.swing.JFrame(), true);
+                int ID = 0;
+                String Marc = "";
+                String Mod = "";
+                String A = "";
+                String Desc = "";
+                FrmModificar dialog = new FrmModificar(new javax.swing.JDialog(), true, ID, Marc, Mod, A, Desc);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -329,5 +291,6 @@ public class FrmModificar extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lblid;
     // End of variables declaration//GEN-END:variables
 }

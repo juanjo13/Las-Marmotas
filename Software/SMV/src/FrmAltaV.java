@@ -178,10 +178,11 @@ public class FrmAltaV extends javax.swing.JDialog {
 
     private void TxtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtMarcaKeyTyped
         if (!Character.isLetter(evt.getKeyChar())
-            != (evt.getKeyChar() == KeyEvent.VK_SPACE)
-            != (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
+            != (evt.getKeyChar() != KeyEvent.VK_SPACE)
+            != (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Solo Letras");
             evt.consume();
-
+        
         } else {
 
         }

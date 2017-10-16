@@ -94,8 +94,8 @@ public class FrmConsulta extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(JtVehiculos);
-
         CBMarca.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+
         CBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca" }));
         CBMarca.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -114,13 +114,17 @@ public class FrmConsulta extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel3.setText("MARCA");
 
+
         CBModelo.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+
         CBModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
 
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel4.setText("MODELO");
 
+
         CMBAnyo.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+
         CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
 
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
@@ -136,6 +140,16 @@ public class FrmConsulta extends javax.swing.JDialog {
 
         BtnModificar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnModificar.setText("MODIFICAR");
+        BtnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModificarActionPerformed(evt);
+            }
+        });
+        BtnModificar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnModificarKeyPressed(evt);
+            }
+        });
 
         BtnKilometraje.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnKilometraje.setText("REGISTRAR KILOMETRAJE");
@@ -278,8 +292,11 @@ public class FrmConsulta extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKilometrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKilometrajeActionPerformed
-        //    new (this,true).setVisible(true);
-  //      new FrmKilometraje(this, true).setVisible(true);
+
+//        String id = lblid.getText();
+//        int dato = Integer.valueOf(id);
+//        new FrmKilometraje(this, true,dato).setVisible(true);
+//        lblid.setText("");
 
     }//GEN-LAST:event_BtnKilometrajeActionPerformed
 
@@ -523,6 +540,26 @@ public class FrmConsulta extends javax.swing.JDialog {
             System.out.println(ex.toString());
         }
     }//GEN-LAST:event_JtVehiculosKeyReleased
+
+    private void BtnModificarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnModificarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnModificarKeyPressed
+
+    private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
+        try{
+            int fila = JtVehiculos.getSelectedRow();
+            if (fila >= 0){
+                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                String Marc = JtVehiculos.getValueAt(fila, 1).toString();
+                String Mod = JtVehiculos.getValueAt(fila, 2).toString();
+                String A = JtVehiculos.getValueAt(fila, 3).toString();
+                String Desc = JtVehiculos.getValueAt(fila, 7).toString();                
+                new FrmModificar(this,true, ID, Marc, Mod, A, Desc).setVisible(true);
+            }            
+        }catch (Exception ex) {
+            System.out.println(ex.toString());
+        }        
+    }//GEN-LAST:event_BtnModificarActionPerformed
 
 
     /**
