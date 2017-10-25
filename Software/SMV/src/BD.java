@@ -285,6 +285,19 @@ public class BD {
         ResultSet resultado = this.comando.executeQuery(instruccionQL);
         return resultado;
     }
+    public float combustibleGastado(vehiculo mVehiculo) throws SQLException {
+      //  float combustible=0;
+        
+        try{
+        String SQL = "select combustible_gastado from automovil where idAutomovil'"  + mVehiculo.getIdentificador() +"';";
+       ResultSet combustible= this.ejecutarConsulta(SQL);
+       float com=0;
+       com = combustible.getFloat(1);
+       return com;
+        }catch(Exception e){
+            return 0;
+        }
+    }
 
     
     public int ejecutarActualizacion(String instruccionDML) throws SQLException {
