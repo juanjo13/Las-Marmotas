@@ -94,10 +94,7 @@ public class FrmConsulta extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(JtVehiculos);
-<<<<<<< HEAD
-=======
 
->>>>>>> f277442a624db4a57cc627dd0fe7fc703a72352e
         CBMarca.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         CBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca" }));
         CBMarca.addItemListener(new java.awt.event.ItemListener() {
