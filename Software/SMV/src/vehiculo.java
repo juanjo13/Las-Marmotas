@@ -13,21 +13,30 @@ public class vehiculo {
     private String Modelo;
     private int identificador;
     private int anio;
-    private float Km_actual;
+    private float Km_inicial;
     private float Km_recorr;
     private float Comb_actual;
     private float Comb_gastado;
     private String Desc_Extra;
+    private float Km_carroceria;
+    private float Km_neumaticos;
+    private float Km_frenos;
+    private float Km_afinacion;
+    
     
     public vehiculo(){
         Marca = "";
         Modelo = "";
         anio = 0 ;
-        Km_actual = 0;
+        Km_inicial = 0;
         Km_recorr = 0;
         Comb_actual = 0;
         Comb_gastado = 0;
         Desc_Extra = "";
+        Km_carroceria=0;
+        Km_frenos=0;
+        Km_afinacion=0;
+        Km_neumaticos=0;
     }
 
     public int getIdentificador() {
@@ -38,12 +47,12 @@ public class vehiculo {
         this.identificador = identificador;
     }
 
-    public float getKm_actual() {
-        return Km_actual;
+    public float getKm_inicial() {
+        return Km_inicial;
     }
 
-    public void setKm_actual(float Km_actual) {
-        this.Km_actual = Km_actual;
+    public void setKm_inicial(float Km_actual) {
+        this.Km_inicial = Km_actual;
     }
 
     public float getKm_recorr() {
@@ -101,5 +110,33 @@ public class vehiculo {
     public void setDesc_Extra(String Desc_Extra) {
         this.Desc_Extra = Desc_Extra;
     }
-    
+    public float getKm_carroceria() {
+        return Km_carroceria;
+    }
+
+    public void setKm_carroceria(float Km_carroceria) {
+        this.Km_carroceria=Km_carroceria;
+    }
+    public float getKm_frenos() {
+        return Km_frenos;
+    }
+
+    public void setKm_frenos(float Km_frenos) {
+        this.Km_frenos=Km_frenos;
+    }
+    public float getKm_neumaticos() {
+        return Km_neumaticos;
+    }
+
+    public void setKm_neumaticos(float Km_neumaticos) {
+        this.Km_neumaticos=Km_neumaticos;
+    }
+    public float getKm_afinacion() {
+        return Km_afinacion;
+    }
+
+    public void setKm_afinacion(float Km_afinacion) {
+        this.Km_afinacion=Km_afinacion;
+    }
+
 }
