@@ -28,7 +28,9 @@ public class FrmConsulta extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         lblid.setVisible(false);
-        lblc.setVisible(false); 
+        lblc.setVisible(false);
+        lblCom.setVisible(false);
+        LblKm.setVisible(false);
     }
     //   int ID=0;
 
@@ -59,6 +61,12 @@ public class FrmConsulta extends javax.swing.JDialog {
         BtnCombustible = new javax.swing.JButton();
         lblid = new javax.swing.JLabel();
         lblc = new javax.swing.JLabel();
+        BtnEliminar = new javax.swing.JButton();
+        BtnRMantenimiento = new javax.swing.JButton();
+        BtnRendimiento = new javax.swing.JButton();
+        LblKm = new javax.swing.JLabel();
+        lblCom = new javax.swing.JLabel();
+        lblkmi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -197,6 +205,51 @@ public class FrmConsulta extends javax.swing.JDialog {
 
         lblc.setText("combustible");
 
+        BtnEliminar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        BtnEliminar.setText("ELIMINAR");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+        BtnEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnEliminarKeyPressed(evt);
+            }
+        });
+
+        BtnRMantenimiento.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        BtnRMantenimiento.setText("REGISTRAR MANTENIMIENTO");
+        BtnRMantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRMantenimientoActionPerformed(evt);
+            }
+        });
+        BtnRMantenimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnRMantenimientoKeyPressed(evt);
+            }
+        });
+
+        BtnRendimiento.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        BtnRendimiento.setText("RENDIMIENTO");
+        BtnRendimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRendimientoActionPerformed(evt);
+            }
+        });
+        BtnRendimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnRendimientoKeyPressed(evt);
+            }
+        });
+
+        LblKm.setText("recorrido");
+
+        lblCom.setText("combustible");
+
+        lblkmi.setText("inicial");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,87 +257,117 @@ public class FrmConsulta extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
+                                .addComponent(CBMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jLabel3)
-                                        .addGap(68, 68, 68)
-                                        .addComponent(jLabel4))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(CBMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
                                         .addComponent(CBModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(CMBAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(53, 53, 53)
-                                        .addComponent(BtnBuscar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BtnKilometraje)
-                                        .addGap(30, 30, 30)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CMBAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(BtnBuscar))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(260, 260, 260)
                                         .addComponent(BtnCombustible)
                                         .addGap(18, 18, 18)
-                                        .addComponent(BtnModificar))))
+                                        .addComponent(BtnRendimiento)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(BtnModificar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BtnRMantenimiento)
+                                        .addGap(188, 188, 188))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(479, 479, 479)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jLabel4)
+                                        .addGap(71, 71, 71)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 181, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(721, 721, 721)
-                .addComponent(lblid)
+                .addGap(510, 510, 510)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BtnKilometraje)
+                    .addComponent(lblid))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblc)
+                .addGap(23, 23, 23)
+                .addComponent(LblKm)
+                .addGap(18, 18, 18)
+                .addComponent(lblCom)
+                .addGap(16, 16, 16)
+                .addComponent(lblkmi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblid, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblc, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 37, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblid, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblc, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LblKm)
+                                    .addComponent(lblCom))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(34, 34, 34)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5)))
+                                    .addComponent(lblkmi))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(CBMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(CBModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(CMBAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(BtnBuscar)
                                     .addComponent(BtnKilometraje)
                                     .addComponent(BtnCombustible)
-                                    .addComponent(BtnModificar)))
+                                    .addComponent(BtnModificar)
+                                    .addComponent(BtnRendimiento)
+                                    .addComponent(BtnEliminar)))
                             .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 22, Short.MAX_VALUE)))
-                .addGap(56, 56, 56)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnBuscar)
+                            .addComponent(BtnRMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -298,6 +381,7 @@ public class FrmConsulta extends javax.swing.JDialog {
         int dato = Integer.valueOf(id);
         new FrmKilometraje(this, true,dato).setVisible(true);
         lblid.setText("");
+        
 
     }//GEN-LAST:event_BtnKilometrajeActionPerformed
 
@@ -396,12 +480,12 @@ public class FrmConsulta extends javax.swing.JDialog {
     
     public void LLenarTabla(List<vehiculo> ListaVehiculos){
         if(ListaVehiculos != null){
-            Object[] encabezado = {"ID", "Marca", "Modelo", "Año", "Km Actual",
-                "Km Recorrido", "Combustible", "Desc Extra"};
+            Object[] encabezado = {"ID", "Marca", "Modelo", "Año", "Km Inicial",
+                "Km Recorrido", "Combustible cargado","Combustible gastado", "Desc Extra"};
             DefaultTableModel modelo = new DefaultTableModel(null, encabezado);
             for (vehiculo mvehiculo : ListaVehiculos) {
                 Object[] fila = {mvehiculo.getIdentificador(), mvehiculo.getMarca(), mvehiculo.getModelo(), mvehiculo.getAnio(),
-                    mvehiculo.getKm_actual(), mvehiculo.getKm_recorr(), mvehiculo.getComb_actual(), mvehiculo.getDesc_Extra()};
+                    mvehiculo.getKm_inicial(), mvehiculo.getKm_recorr(), mvehiculo.getComb_actual(),mvehiculo.getComb_gastado(), mvehiculo.getDesc_Extra()};
                 modelo.addRow(fila);
             }
             JtVehiculos.setModel(modelo);
@@ -410,6 +494,7 @@ public class FrmConsulta extends javax.swing.JDialog {
     
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
+      
         try {
             BD mBD = new BD();
             mBD.Conectar();
@@ -517,6 +602,12 @@ public class FrmConsulta extends javax.swing.JDialog {
                 lblid.setText(String.valueOf(ID));
                 float Co = (float) JtVehiculos.getValueAt(fila, 6);
                 lblc.setText(String.valueOf(Co));
+                float km=(float) JtVehiculos.getValueAt(fila, 5);
+                LblKm.setText(String.valueOf(km));
+                float Combu = (float) JtVehiculos.getValueAt(fila, 7);
+                lblCom.setText(String.valueOf(Combu));
+                float kmi = (float) JtVehiculos.getValueAt(fila, 4);
+                lblkmi.setText(String.valueOf(kmi));
             }
 
         } catch (Exception ex) {
@@ -535,7 +626,14 @@ public class FrmConsulta extends javax.swing.JDialog {
                 float Co = (float) JtVehiculos.getValueAt(fila, 6);
                 lblc.setText(String.valueOf(Co));
                 // JOptionPane.showMessageDialog(this, "ID SELECCIONADO"+ID);
+                float km=(float) JtVehiculos.getValueAt(fila, 5);
+                LblKm.setText(String.valueOf(km));
+                float Combu = (float) JtVehiculos.getValueAt(fila, 7);
+                lblCom.setText(String.valueOf(Combu));
+                float kmi = (float) JtVehiculos.getValueAt(fila, 4);
+                lblkmi.setText(String.valueOf(kmi));
             }
+            
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
@@ -554,7 +652,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                 String Marc = JtVehiculos.getValueAt(fila, 1).toString();
                 String Mod = JtVehiculos.getValueAt(fila, 2).toString();
                 String A = JtVehiculos.getValueAt(fila, 3).toString();
-                String Desc = JtVehiculos.getValueAt(fila, 7).toString();                
+                String Desc = JtVehiculos.getValueAt(fila, 8).toString();                
                 new FrmModificar(this,true, ID, Marc, Mod, A, Desc).setVisible(true);
             }            
         }catch (Exception ex) {
@@ -639,6 +737,67 @@ public class FrmConsulta extends javax.swing.JDialog {
          }
     }//GEN-LAST:event_BtnBuscarKeyPressed
 
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void BtnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEliminarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEliminarKeyPressed
+
+    private void BtnRMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRMantenimientoActionPerformed
+        String id = lblid.getText();
+        int dato = Integer.valueOf(id);
+        String kmre=LblKm.getText();
+        float kmr= Float.valueOf(kmre);
+        String kmi=lblkmi.getText();
+        float kmin= Float.valueOf(kmi);
+        new FrmRegistroMantenimiento(this, true, dato,kmr,kmin).setVisible(true);
+        lblid.setText("");
+    }//GEN-LAST:event_BtnRMantenimientoActionPerformed
+
+    private void BtnRMantenimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRMantenimientoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnRMantenimientoKeyPressed
+
+    private void BtnRendimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRendimientoActionPerformed
+        Float km = Float.valueOf(LblKm.getText());
+        Float com=Float.valueOf(lblCom.getText());
+        if((km>0)&(com>0)){
+            Float Rendimiento=km/com;
+            Rendimiento mRendimiento = new Rendimiento();
+                mRendimiento.setId_vehiculo(Integer.valueOf(lblid.getText()));
+                 mRendimiento.setRendimiento(Float.valueOf(Rendimiento));       
+               try {
+                    BD mBD = new BD();
+                    if (mBD.Conectar()) {
+                        mBD.regRendimiento(mRendimiento);
+                        JOptionPane.showMessageDialog(rootPane, "Rendimiento de vehículo:"+Rendimiento+" Kilometros por Litro");
+                        LblKm.setText("");
+                        lblCom.setText("");
+                        lblid.setText("");
+                    }
+
+                } catch (Exception ex) {
+                    System.out.println(ex.toString());
+                    JOptionPane.showMessageDialog(rootPane, "ERROR");
+                    LblKm.setText("");
+                       lblCom.setText("");
+                       lblid.setText("");
+                    
+                }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Rendimiento no se puede calcular");
+              LblKm.setText("");
+                       lblCom.setText("");
+                       lblid.setText("");
+        }
+    }//GEN-LAST:event_BtnRendimientoActionPerformed
+
+    private void BtnRendimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRendimientoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnRendimientoKeyPressed
+
 
     /**
      * @param args the command line arguments
@@ -685,13 +844,17 @@ public class FrmConsulta extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
     private javax.swing.JButton BtnCombustible;
+    private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnKilometraje;
     private javax.swing.JButton BtnModificar;
+    private javax.swing.JButton BtnRMantenimiento;
     private javax.swing.JButton BtnRegresar;
+    private javax.swing.JButton BtnRendimiento;
     private javax.swing.JComboBox<String> CBMarca;
     private javax.swing.JComboBox<String> CBModelo;
     private javax.swing.JComboBox<String> CMBAnyo;
     private javax.swing.JTable JtVehiculos;
+    private javax.swing.JLabel LblKm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -699,7 +862,9 @@ public class FrmConsulta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCom;
     private javax.swing.JLabel lblc;
     private javax.swing.JLabel lblid;
+    private javax.swing.JLabel lblkmi;
     // End of variables declaration//GEN-END:variables
 }

@@ -243,7 +243,7 @@ public class FrmAltaV extends javax.swing.JDialog {
             mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
             mvehiculo.setDesc_Extra(TxtDesExtra.getText());
             mvehiculo.setComb_actual(Float.valueOf(TxtCombustible.getText()));
-            mvehiculo.setKm_actual(Float.valueOf(TxtKm.getText()));
+            mvehiculo.setKm_inicial(Float.valueOf(TxtKm.getText()));
             
             BD mBD = new BD();
             if(mBD.Conectar()){
@@ -286,7 +286,7 @@ public class FrmAltaV extends javax.swing.JDialog {
             mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
             mvehiculo.setDesc_Extra(TxtDesExtra.getText());
             mvehiculo.setComb_actual(Float.valueOf(TxtCombustible.getText()));
-            mvehiculo.setKm_actual(Float.valueOf(TxtKm.getText()));
+            mvehiculo.setKm_inicial(Float.valueOf(TxtKm.getText()));
             
            
             BD mBD = new BD();
