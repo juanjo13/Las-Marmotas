@@ -248,6 +248,8 @@ public class BD {
             //update automovil set combustibe_actual=combustibe_actual-10, combustible_gastado=combustible_gastado+10 
             //where idAutomovil=16
         String SQL = "update automovil set  Kilometraje_Recorrido= Kilometraje_Recorrido+'"+ mVehiculo.getKm_recorr() +
+                /* "',' Km_Afinacion +='" + mVehiculo.getKmA() + "',' KmSyF +='" + mVehiculo.getKmSyF + "',' Km_neumaticos +='"+
+                mVehiculo.getKmN + "',' Km_Carroceria +='" + mVehiculo.getKmCarr() + */
                 "'where idAutomovil='" + mVehiculo.getIdentificador() +"';";
         ejecutarActualizacion(SQL);
         return true;

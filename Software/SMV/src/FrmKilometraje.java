@@ -111,7 +111,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
                 BD mBD = new BD();
                 if (mBD.Conectar()) {
                     mBD.agregarKilometraje(mvehiculo);
-                    JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
+                    JOptionPane.showMessageDialog(rootPane, "OK");
                     this.setVisible(false);
                 }
 
