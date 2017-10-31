@@ -43,7 +43,7 @@ public class FrmInicio extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo bien3.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(450, 110, 490, 410);
+        jLabel1.setBounds(400, 110, 490, 410);
 
         jLabel2.setFont(new java.awt.Font("Trajan Pro", 1, 48)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bienvenido.png"))); // NOI18N

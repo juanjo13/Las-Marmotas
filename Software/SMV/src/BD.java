@@ -59,6 +59,16 @@ public class BD {
             return false;
         }
     }
+    public boolean EliminarVehiculo(vehiculo mVehiculo) throws SQLException{
+        try{
+            //+"');";
+        String SQL = "delete from automovil where idAutomovil = "+mVehiculo.getIdentificador()+";";
+        ejecutarActualizacion(SQL);
+        return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
     public List<vehiculo> ConsultaGeneral()throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
         String SQL = "select * from automovil";

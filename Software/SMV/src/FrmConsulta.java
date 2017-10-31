@@ -739,6 +739,24 @@ public class FrmConsulta extends javax.swing.JDialog {
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         // TODO add your handling code here:
+        String id = lblid.getText();
+        int dato = Integer.valueOf(id);
+        JOptionPane.showMessageDialog(rootPane, dato);
+        try{
+        if (dato >0){
+            vehiculo mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(dato);
+            BD mBD = new BD();
+            if(mBD.Conectar()){
+                mBD.EliminarVehiculo(mVehiculo);
+                JOptionPane.showMessageDialog(rootPane, "Automovil Eliminado con exito");
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Error al tratar de Eliminar Automovil");
+            }
+        }
+        }catch(Exception ex){
+            System.out.println(ex.toString());
+        }        
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEliminarKeyPressed
