@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author aide
@@ -22,13 +21,16 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
     /**
      * Creates new form FrmRegistroMantenimiento
      */
-    public FrmRegistroMantenimiento(javax.swing.JDialog parent, boolean modal, int ID,float kmr,float kmi) {
+    public FrmRegistroMantenimiento(javax.swing.JDialog parent, boolean modal, int ID, float kmr, float kmi) {
         super(parent, modal);
         initComponents();
-         setLocationRelativeTo(null);
-         txtid.setText(String.valueOf(ID));
-         txtKm.setText(String.valueOf(kmr));
-         kmini.setText(String.valueOf(kmi));
+        setLocationRelativeTo(null);
+        txtid.setText(String.valueOf(ID));
+        txtKm.setText(String.valueOf(kmr));
+        kmini.setText(String.valueOf(kmi));
+        txtid.setVisible(false);
+        txtKm.setVisible(false);
+        kmini.setVisible(false);
     }
 
     /**
@@ -130,6 +132,11 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
                 BtnRealizarActionPerformed(evt);
             }
         });
+        BtnRealizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnRealizarKeyPressed(evt);
+            }
+        });
 
         BtnAtras1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/regresa_1.png"))); // NOI18N
         BtnAtras1.addActionListener(new java.awt.event.ActionListener() {
@@ -152,67 +159,63 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
         lblkmn.setText("neumaticos");
 
         jLabel6.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
-        jLabel6.setText("Km");
+        jLabel6.setText("Km de mantenimiento");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(46, 46, 46)))
+                .addGap(18, 18, 18)
+                .addComponent(BtnAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RBN)
-                            .addComponent(RBC))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblkma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(kmCarroceria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(13, 13, 13)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                                .addComponent(BtnAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblkmn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(kmini, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(78, 78, 78)
-                                        .addComponent(jLabel1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(RBA)
-                                        .addGap(5, 5, 5)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(RBS)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(41, 41, 41)
+                                    .addComponent(RBA))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(RBC)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblkms)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(BtnRealizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(RBS))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(RBN)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblkma, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(kmCarroceria)
+                                .addComponent(lblkms))
+                            .addComponent(lblkmn)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BtnRealizar)
+                        .addGap(10, 10, 10)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(82, 82, 82))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(kmini, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 55, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,47 +224,50 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(RBC)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(kmCarroceria)
-                                .addComponent(jLabel3))))
-                    .addComponent(BtnAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(RBC)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(kmCarroceria, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(RBA, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblkma, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(lblkma, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(RBA))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RBS)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel4)
-                                .addComponent(lblkms)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(RBN)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblkmn)))
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnRealizar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblkms)
+                                .addGap(1, 1, 1))
+                            .addComponent(RBS)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(kmini, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblkmn)
+                                .addComponent(txtKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RBN)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(kmini, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnRealizar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -276,66 +282,69 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAtrasActionPerformed
 
     private void BtnAtrasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAtrasKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             this.setVisible(false);
 
         }
     }//GEN-LAST:event_BtnAtrasKeyPressed
-   
+
     private void BtnAtras1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtras1ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_BtnAtras1ActionPerformed
 
     private void BtnAtras1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAtras1KeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             this.setVisible(false);
 
         }
     }//GEN-LAST:event_BtnAtras1KeyPressed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-      
+
     }//GEN-LAST:event_formFocusGained
-    public void llenarLbls(){
+    public void llenarLbls() {
         try {
             BD mBD = new BD();
             mBD.Conectar();
             vehiculo mVehiculo = new vehiculo();
             mVehiculo.setIdentificador(Integer.valueOf(txtid.getText()));
             ResultSet resultado = mBD.ConskmCarroceria(mVehiculo);
-            while(resultado.next()){
+            while (resultado.next()) {
                 kmCarroceria.setText(resultado.getString(1));
             }
             ResultSet resultado1 = mBD.ConskmNeumaticos(mVehiculo);
-            while(resultado1.next()){
+            while (resultado1.next()) {
                 lblkmn.setText(resultado1.getString(1));
             }
             ResultSet resultado2 = mBD.ConskmFrenos(mVehiculo);
-            while(resultado2.next()){
+            while (resultado2.next()) {
                 lblkms.setText(resultado2.getString(1));
             }
             ResultSet resultado3 = mBD.ConskmAfinacion(mVehiculo);
-            while(resultado3.next()){
+            while (resultado3.next()) {
                 lblkma.setText(resultado3.getString(1));
             }
-            float c,a,s,n=0;
-            a=Float.valueOf(lblkma.getText());
-            c=Float.valueOf(kmCarroceria.getText());
-            s=Float.valueOf(lblkms.getText());
-            n=Float.valueOf(lblkmn.getText());
-            RBA.setVisible(false); RBS.setVisible(false); RBC.setVisible(false); RBN.setVisible(false);
-            if(a>=5000){
+            float c, a, s, n = 0;
+            a = Float.valueOf(lblkma.getText());
+            c = Float.valueOf(kmCarroceria.getText());
+            s = Float.valueOf(lblkms.getText());
+            n = Float.valueOf(lblkmn.getText());
+            RBA.setVisible(false);
+            RBS.setVisible(false);
+            RBC.setVisible(false);
+            RBN.setVisible(false);
+            if (a >= 5000) {
                 RBA.setVisible(true);
             }
-            if(s>=10000){
-               RBS.setVisible(true); 
+            if (s >= 10000) {
+                RBS.setVisible(true);
             }
-            if(n>=10000){
+            if (n >= 10000) {
                 RBN.setVisible(true);
-               }
-            if(c>=50000){
+            }
+            if (c >= 50000) {
                 RBC.setVisible(true);
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
@@ -344,74 +353,110 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
         }
     }
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-           try {
+        try {
             llenarLbls();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void BtnRealizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRealizarActionPerformed
-        int a=0; int s=0; int c=0; int n=0; float kms=0;
-        float kma=0; float kmn=0; float kmc=0;
+        int a = 0;
+        int s = 0;
+        int c = 0;
+        int n = 0;
+        float kms = 0;
+        float kma = 0;
+        float kmn = 0;
+        float kmc = 0;
         Mantenimiento mMantenimiento = new Mantenimiento();
-          vehiculo mVehiculo = new vehiculo();
-      //kmreccorido 
-      float KmTotal=Float.valueOf(kmini.getText())+Float.valueOf(txtKm.getText());
+        vehiculo mVehiculo = new vehiculo();
+        //kmreccorido 
+        float KmTotal = Float.valueOf(kmini.getText()) + Float.valueOf(txtKm.getText());
         mMantenimiento.setKm_recorrido(KmTotal);
-       mMantenimiento.setId_Vehiculo(Integer.valueOf(txtid.getText()));
-             mVehiculo.setIdentificador(Integer.valueOf(txtid.getText()));
-        if(RBA.isSelected()){
-           a=1;
-           kma=Float.valueOf(lblkma.getText());
-           
-//          Mantenimiento mMantenimiento = new Mantenimiento();
-//          vehiculo mVehiculo = new vehiculo();
-        //    float KmTotal=Float.valueOf(kmini.getText())+Float.valueOf(txtKm.getText());
-        //    mMantenimiento.setKm_recorrido(KmTotal);
-        //    mMantenimiento.setKm_realizado(Float.valueOf(kma.getText()));
-        //    mMantenimiento.setId_Vehiculo(Integer.valueOf(txtid.getText()));
-          //   mVehiculo.setIdentificador(Integer.valueOf(txtid.getText()));
-            
-//            try {
-//                BD mBD = new BD();
-//                if (mBD.Conectar()) {
-//                    mBD.MantenimientoAfinacion(mMantenimiento,mVehiculo);
-//                }
-//
-//            } catch (Exception ex) {
-//                System.out.println(ex.toString());
-//                JOptionPane.showMessageDialog(rootPane, "Error");
-//            } 
-        }else if(RBS.isSelected()){
-             s=1;
-           kms=Float.valueOf(lblkms.getText());
-          
-        }else if(RBN.isSelected()){
-         n=1;
-           kmn=Float.valueOf(lblkmn.getText());
-             
-        }else if(RBC.isSelected()){
-            c=1;
-           kmc=Float.valueOf(kmCarroceria.getText());
-            } 
+        mMantenimiento.setId_Vehiculo(Integer.valueOf(txtid.getText()));
+        mVehiculo.setIdentificador(Integer.valueOf(txtid.getText()));
+        if (RBA.isSelected()) {
+            a = 1;
+            kma = Float.valueOf(lblkma.getText());
+        }
+        if (RBS.isSelected()) {
+            s = 1;
+            kms = Float.valueOf(lblkms.getText());
+        }
+        if (RBN.isSelected()) {
+            n = 1;
+            kmn = Float.valueOf(lblkmn.getText());
+        }
+        if (RBC.isSelected()) {
+            c = 1;
+            kmc = Float.valueOf(kmCarroceria.getText());
+        }
         try {
+            BD mBD = new BD();
+            if (mBD.Conectar()) {
+                mBD.RegisMantenimientos(mMantenimiento, mVehiculo, a, s, n, c, kma, kms, kmc, kmn);
+                JOptionPane.showMessageDialog(rootPane, "Mantenimiento realizado");
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            JOptionPane.showMessageDialog(rootPane, "Error");
+        }
+
+        this.setVisible(false);
+
+
+    }//GEN-LAST:event_BtnRealizarActionPerformed
+
+    private void BtnRealizarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRealizarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int a = 0;
+            int s = 0;
+            int c = 0;
+            int n = 0;
+            float kms = 0;
+            float kma = 0;
+            float kmn = 0;
+            float kmc = 0;
+            Mantenimiento mMantenimiento = new Mantenimiento();
+            vehiculo mVehiculo = new vehiculo();
+            //kmreccorido 
+            float KmTotal = Float.valueOf(kmini.getText()) + Float.valueOf(txtKm.getText());
+            mMantenimiento.setKm_recorrido(KmTotal);
+            mMantenimiento.setId_Vehiculo(Integer.valueOf(txtid.getText()));
+            mVehiculo.setIdentificador(Integer.valueOf(txtid.getText()));
+            if (RBA.isSelected()) {
+                a = 1;
+                kma = Float.valueOf(lblkma.getText());
+            }
+            if (RBS.isSelected()) {
+                s = 1;
+                kms = Float.valueOf(lblkms.getText());
+            }
+            if (RBN.isSelected()) {
+                n = 1;
+                kmn = Float.valueOf(lblkmn.getText());
+            }
+            if (RBC.isSelected()) {
+                c = 1;
+                kmc = Float.valueOf(kmCarroceria.getText());
+            }
+            try {
                 BD mBD = new BD();
                 if (mBD.Conectar()) {
-                    mBD.RegisMantenimientos(mMantenimiento,mVehiculo,a,s,n,c,kma,kms, kmc, kmn);
+                    mBD.RegisMantenimientos(mMantenimiento, mVehiculo, a, s, n, c, kma, kms, kmc, kmn);
                 }
 
             } catch (Exception ex) {
                 System.out.println(ex.toString());
                 JOptionPane.showMessageDialog(rootPane, "Error");
-            } 
-        
-        
-                this.setVisible(false);
-             
-            
-            
-    }//GEN-LAST:event_BtnRealizarActionPerformed
+            }
+
+            this.setVisible(false);
+
+        }
+    }//GEN-LAST:event_BtnRealizarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -443,10 +488,10 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                int  id=0;
-                float kmr=0;
-                float kmin=0;
-                FrmRegistroMantenimiento dialog = new FrmRegistroMantenimiento(new javax.swing.JDialog(), true,id,kmr,kmin);
+                int id = 0;
+                float kmr = 0;
+                float kmin = 0;
+                FrmRegistroMantenimiento dialog = new FrmRegistroMantenimiento(new javax.swing.JDialog(), true, id, kmr, kmin);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

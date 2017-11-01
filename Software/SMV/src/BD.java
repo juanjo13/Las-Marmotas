@@ -378,8 +378,8 @@ public class BD {
         try{
          if(a==1){  
         String SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'a','"+mMantenimiento.getFecha()+"',1,"+ ka+
-                ","+mMantenimiento.getKm_recorrido()+");";
+                ",'a','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_recorrido()+
+                ","+ka+");";
                 
         ejecutarActualizacion(SQL);
         SQL="update automovil set km_afinacion=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
@@ -387,8 +387,8 @@ public class BD {
          }  
          if (s==1){
             String   SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'s','"+mMantenimiento.getFecha()+"',1,"+ ks+
-                ","+mMantenimiento.getKm_recorrido()+");";
+                ",'s','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_recorrido()+
+                ","+ks+");";
                 
         ejecutarActualizacion(SQL);
         SQL="update automovil set km_frenos=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
@@ -396,8 +396,8 @@ public class BD {
          }
           if(n==1){
                   String  SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'n','"+mMantenimiento.getFecha()+"',1,"+ kn+
-                ","+mMantenimiento.getKm_recorrido()+");";
+                ",'n','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_recorrido()+
+                ","+kn+");";
                 
         ejecutarActualizacion(SQL);
         SQL="update automovil set km_neumaticos=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
@@ -405,8 +405,8 @@ public class BD {
           }
          if(c==1){
                   String  SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'c','"+mMantenimiento.getFecha()+"',1,"+ kc+
-                ","+mMantenimiento.getKm_recorrido()+");";
+                ",'c','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_recorrido()+
+                ","+kc+");";
                 
         ejecutarActualizacion(SQL);
         SQL="update automovil set km_carroceria=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
@@ -419,49 +419,7 @@ public class BD {
         
     }
     }
-    public boolean MantenimientoSuspension(Mantenimiento mMantenimiento,vehiculo mVehiculo) throws SQLException{
-        try{
-           System.out.println(mMantenimiento.getFecha());
-        String SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'s',"+mMantenimiento.getFecha()+",1,"+ mMantenimiento.getKm_realizado()+
-                ","+mMantenimiento.getKm_recorrido()+");";
-        ejecutarActualizacion(SQL);
-            SQL="update automovil set km_afinacion=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
-        ejecutarActualizacion(SQL);
-                return true;
-        }catch(Exception e){
-            return false;
-        
-    }
-    }
-        public boolean MantenimientoNeumaticos(Mantenimiento mMantenimiento) throws SQLException{
-        try{
-           
-        String SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'n','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_realizado()+
-                ","+mMantenimiento.getKm_recorrido()+");";
-                
-        ejecutarActualizacion(SQL);
-                return true;
-        }catch(Exception e){
-            return false;
-        
-    }
-    }
-        public boolean MantenimientoCarroceria(Mantenimiento mMantenimiento) throws SQLException{
-        try{
-           
-        String SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'c','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_realizado()+
-                ","+mMantenimiento.getKm_recorrido()+");";
-                
-        ejecutarActualizacion(SQL);
-                return true;
-        }catch(Exception e){
-            return false;
-        
-    }
-    }
+    
     
 }
         
