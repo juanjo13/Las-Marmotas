@@ -721,11 +721,7 @@ public class FrmConsulta extends javax.swing.JDialog {
         // TODO add your handling code here:
         String id = lblid.getText();
         int dato = Integer.valueOf(id);
-<<<<<<< HEAD
        
-=======
-        JOptionPane.showMessageDialog(rootPane, dato);
->>>>>>> 001304cc5f97ed8a81e142db7080cab75c02f3ea
         try{
         if (dato >0){
             vehiculo mVehiculo = new vehiculo();
