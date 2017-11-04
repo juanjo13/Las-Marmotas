@@ -252,21 +252,12 @@ public class BD {
     }
     public boolean agregarKilometraje(vehiculo mVehiculo) throws SQLException{
         try{
-            //update automovil set combustibe_actual=combustibe_actual-10, combustible_gastado=combustible_gastado+10 
-            //where idAutomovil=16
-<<<<<<< HEAD
-        String SQL = "update automovil set  Kilometraje_Recorrido= Kilometraje_Recorrido+'"+ mVehiculo.getKm_recorr() +
-                /* "',' Km_Afinacion +='" + mVehiculo.getKmA() + "',' KmSyF +='" + mVehiculo.getKmSyF + "',' Km_neumaticos +='"+
-                mVehiculo.getKmN + "',' Km_Carroceria +='" + mVehiculo.getKmCarr() + */
-                "'where idAutomovil='" + mVehiculo.getIdentificador() +"';";
-=======
-        String SQL = "update automovil set  Kilometraje_Recorrido= Kilometraje_Recorrido+"+ mVehiculo.getKm_recorr() +
+        String SQL = "update automovil set  Kilometraje_Recorrido= Kilometraje_Recorrido+" + mVehiculo.getKm_recorr() +
                 ", km_carroceria=km_carroceria+"+mVehiculo.getKm_recorr()+
                 ", km_neumaticos=km_neumaticos+"+mVehiculo.getKm_recorr()+
                 ", km_frenos=km_frenos+"+mVehiculo.getKm_recorr()+
                 ", km_afinacion=km_afinacion+"+mVehiculo.getKm_recorr()+
-                "where idAutomovil=" + mVehiculo.getIdentificador() +";";
->>>>>>> ac8766d347d4383b4a9a9df6abebc43fc0ba12c7
+                "where idAutomovil=" + mVehiculo.getIdentificador() + ";";
         ejecutarActualizacion(SQL);
         return true;
         }catch(Exception e){
@@ -416,50 +407,6 @@ public class BD {
         
     }
     }
-    public boolean MantenimientoSuspension(Mantenimiento mMantenimiento,vehiculo mVehiculo) throws SQLException{
-        try{
-           System.out.println(mMantenimiento.getFecha());
-        String SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'s',"+mMantenimiento.getFecha()+",1,"+ mMantenimiento.getKm_realizado()+
-                ","+mMantenimiento.getKm_recorrido()+");";
-        ejecutarActualizacion(SQL);
-            SQL="update automovil set km_afinacion=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
-        ejecutarActualizacion(SQL);
-                return true;
-        }catch(Exception e){
-            return false;
-        
-    }
-    }
-        public boolean MantenimientoNeumaticos(Mantenimiento mMantenimiento) throws SQLException{
-        try{
-           
-        String SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'n','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_realizado()+
-                ","+mMantenimiento.getKm_recorrido()+");";
-                
-        ejecutarActualizacion(SQL);
-                return true;
-        }catch(Exception e){
-            return false;
-        
-    }
-    }
-        public boolean MantenimientoCarroceria(Mantenimiento mMantenimiento) throws SQLException{
-        try{
-           
-        String SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'c','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_realizado()+
-                ","+mMantenimiento.getKm_recorrido()+");";
-                
-        ejecutarActualizacion(SQL);
-                return true;
-        }catch(Exception e){
-            return false;
-        
-    }
-    }
-    
 }
         
         

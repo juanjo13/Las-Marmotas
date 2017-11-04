@@ -44,11 +44,7 @@ CREATE TABLE `automovil` (
 -- Dumping data for table `automovil`
 --
 
-LOCK TABLES `automovil` WRITE;
-/*!40000 ALTER TABLE `automovil` DISABLE KEYS */;
-INSERT INTO `automovil` VALUES (11,'GMC','5552',2016,'ES PERSONAL',5000,11000,100,1400,11000,11000,11000,0);
-/*!40000 ALTER TABLE `automovil` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `mantenimiento`
@@ -75,11 +71,6 @@ CREATE TABLE `mantenimiento` (
 -- Dumping data for table `mantenimiento`
 --
 
-LOCK TABLES `mantenimiento` WRITE;
-/*!40000 ALTER TABLE `mantenimiento` DISABLE KEYS */;
-INSERT INTO `mantenimiento` VALUES (24,11,'a','2017-10-29',1,11000,16000);
-/*!40000 ALTER TABLE `mantenimiento` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `rendimiento`
@@ -102,11 +93,7 @@ CREATE TABLE `rendimiento` (
 -- Dumping data for table `rendimiento`
 --
 
-LOCK TABLES `rendimiento` WRITE;
-/*!40000 ALTER TABLE `rendimiento` DISABLE KEYS */;
-INSERT INTO `rendimiento` VALUES (5,11,7.85714);
-/*!40000 ALTER TABLE `rendimiento` ENABLE KEYS */;
-UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

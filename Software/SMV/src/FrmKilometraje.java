@@ -1,5 +1,6 @@
 
 import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /*
@@ -40,6 +41,13 @@ public class FrmKilometraje extends javax.swing.JDialog {
         txtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         BtnAceptar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         BtnAceptar.setText("ACEPTAR");
@@ -110,8 +118,16 @@ public class FrmKilometraje extends javax.swing.JDialog {
             try {
                 BD mBD = new BD();
                 if (mBD.Conectar()) {
+                    double km = 0;
                     mBD.agregarKilometraje(mvehiculo);
-                    JOptionPane.showMessageDialog(rootPane, "OK");
+                    ResultSet result = mBD.ConskmFrenos(mvehiculo);
+                    while(result.next()){
+                        km = result.getDouble(1);
+                    }
+                    if(km >= 10000){
+                        JOptionPane.showMessageDialog(rootPane, "Necesita realizar Mantenimiento a los frenos y a lo");
+                    }
+                    JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
                     this.setVisible(false);
                 }
 
@@ -158,6 +174,10 @@ public class FrmKilometraje extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Ingresar Solo Números");
         }
     }//GEN-LAST:event_TxtKilometrajeKeyTyped
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
