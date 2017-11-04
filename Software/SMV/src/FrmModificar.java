@@ -52,23 +52,26 @@ public class FrmModificar extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         BtnAtras = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         lblid = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabel8.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 0, 0));
         jLabel8.setText("AÑO");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(80, 240, 100, 30);
 
         jLabel6.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 0, 0));
         jLabel6.setText("MODELO");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(80, 170, 110, 30);
 
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 0, 0));
         jLabel5.setText("MARCA");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(80, 100, 110, 30);
@@ -100,15 +103,18 @@ public class FrmModificar extends javax.swing.JDialog {
             }
         });
         getContentPane().add(TxtDesExtra);
-        TxtDesExtra.setBounds(130, 370, 350, 40);
+        TxtDesExtra.setBounds(150, 330, 350, 40);
 
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 0, 0));
         jLabel4.setText("DESCRIPCIÓN EXTRA");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(220, 330, 230, 50);
+        jLabel4.setBounds(230, 290, 230, 50);
 
+        BtnActualizar.setBackground(new java.awt.Color(255, 255, 255));
         BtnActualizar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
-        BtnActualizar.setText("Actualizar");
+        BtnActualizar.setForeground(new java.awt.Color(102, 0, 0));
+        BtnActualizar.setText("ACTUALIZAR");
         BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnActualizarActionPerformed(evt);
@@ -120,7 +126,7 @@ public class FrmModificar extends javax.swing.JDialog {
             }
         });
         getContentPane().add(BtnActualizar);
-        BtnActualizar.setBounds(530, 370, 110, 50);
+        BtnActualizar.setBounds(210, 390, 200, 30);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo bien3.png"))); // NOI18N
         jLabel7.setText("jLabel7");
@@ -128,11 +134,15 @@ public class FrmModificar extends javax.swing.JDialog {
         jLabel7.setBounds(270, 50, 400, 240);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setText("MODIFICACION DE VEHÍCULO");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("MODIFICACIÓN DE VEHÍCULO");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(150, 20, 370, 50);
+        jLabel3.setBounds(90, 10, 370, 50);
 
-        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/regresa_1.png"))); // NOI18N
+        BtnAtras.setBackground(new java.awt.Color(255, 255, 255));
+        BtnAtras.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
+        BtnAtras.setForeground(new java.awt.Color(102, 0, 0));
+        BtnAtras.setText("REGRESAR");
         BtnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAtrasActionPerformed(evt);
@@ -144,15 +154,16 @@ public class FrmModificar extends javax.swing.JDialog {
             }
         });
         getContentPane().add(BtnAtras);
-        BtnAtras.setBounds(590, 20, 60, 50);
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/esquina.png"))); // NOI18N
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, -80, 670, 750);
+        BtnAtras.setBounds(500, 20, 130, 30);
 
         lblid.setText("i");
         getContentPane().add(lblid);
         lblid.setBounds(670, 200, 2, 14);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ba_1.png"))); // NOI18N
+        jLabel9.setText("jLabel2");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(0, 0, 1455, 70);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -309,13 +320,13 @@ public class FrmModificar extends javax.swing.JDialog {
     private javax.swing.JTextField TxtDesExtra;
     private javax.swing.JTextField TxtMarca;
     private javax.swing.JTextField TxtModelo;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblid;
     // End of variables declaration//GEN-END:variables
 }

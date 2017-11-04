@@ -53,29 +53,35 @@ public class FrmAltaV extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(null);
 
         jLabel11.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 0, 0));
         jLabel11.setText("COMBUSTIBLE");
         getContentPane().add(jLabel11);
         jLabel11.setBounds(70, 290, 130, 30);
 
         jLabel9.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 0, 0));
         jLabel9.setText("KILOMETRAJE");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(60, 230, 110, 30);
 
         jLabel8.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 0, 0));
         jLabel8.setText("AÑO");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(90, 190, 100, 30);
 
         jLabel6.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 0, 0));
         jLabel6.setText("MODELO");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(90, 150, 110, 30);
 
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 0, 0));
         jLabel5.setText("MARCA");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(90, 100, 110, 30);
@@ -123,15 +129,18 @@ public class FrmAltaV extends javax.swing.JDialog {
             }
         });
         getContentPane().add(TxtDesExtra);
-        TxtDesExtra.setBounds(160, 370, 350, 40);
+        TxtDesExtra.setBounds(160, 360, 350, 40);
 
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 0, 0));
         jLabel4.setText("DESCRIPCIÓN EXTRA");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(250, 330, 230, 50);
+        jLabel4.setBounds(240, 320, 230, 50);
 
+        BtnAgregar.setBackground(new java.awt.Color(255, 255, 255));
         BtnAgregar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
-        BtnAgregar.setText("Guardar");
+        BtnAgregar.setForeground(new java.awt.Color(102, 0, 0));
+        BtnAgregar.setText("GUARDAR");
         BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAgregarActionPerformed(evt);
@@ -143,7 +152,7 @@ public class FrmAltaV extends javax.swing.JDialog {
             }
         });
         getContentPane().add(BtnAgregar);
-        BtnAgregar.setBounds(560, 390, 100, 50);
+        BtnAgregar.setBounds(270, 410, 150, 40);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo bien3.png"))); // NOI18N
         jLabel7.setText("jLabel7");
@@ -151,11 +160,15 @@ public class FrmAltaV extends javax.swing.JDialog {
         jLabel7.setBounds(270, 50, 400, 240);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("REGISTRO DE VEHÍCULO");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(180, 20, 360, 50);
+        jLabel3.setBounds(170, 0, 360, 50);
 
-        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/regresa_1.png"))); // NOI18N
+        BtnAtras.setBackground(new java.awt.Color(255, 255, 255));
+        BtnAtras.setFont(new java.awt.Font("Lucida Bright", 1, 18)); // NOI18N
+        BtnAtras.setForeground(new java.awt.Color(102, 0, 0));
+        BtnAtras.setText("REGRESAR");
         BtnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAtrasActionPerformed(evt);
@@ -167,11 +180,12 @@ public class FrmAltaV extends javax.swing.JDialog {
             }
         });
         getContentPane().add(BtnAtras);
-        BtnAtras.setBounds(600, 0, 70, 50);
+        BtnAtras.setBounds(530, 0, 140, 30);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/esquina.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ba_1.png"))); // NOI18N
+        jLabel10.setText("jLabel2");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, -80, 670, 750);
+        jLabel10.setBounds(0, 0, 1455, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

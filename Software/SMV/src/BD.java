@@ -384,6 +384,7 @@ public class BD {
         ejecutarActualizacion(SQL);
         SQL="update automovil set km_afinacion=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
         ejecutarActualizacion(SQL);
+    
          }  
          if (s==1){
             String   SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+

@@ -35,6 +35,8 @@ public class FrmInicio extends javax.swing.JFrame {
         BtnAgregar = new javax.swing.JButton();
         BtnSalir = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("FrmInicio"); // NOI18N
@@ -43,15 +45,15 @@ public class FrmInicio extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo bien3.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(400, 110, 490, 410);
+        jLabel1.setBounds(480, 10, 490, 410);
 
         jLabel2.setFont(new java.awt.Font("Trajan Pro", 1, 48)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bienvenido.png"))); // NOI18N
         jLabel2.setText("BIENVENIDO");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(480, 50, 460, 150);
+        jLabel2.setBounds(470, 350, 460, 150);
 
-        BtnAgregar.setBackground(new java.awt.Color(204, 204, 204));
+        BtnAgregar.setBackground(new java.awt.Color(255, 255, 255));
         BtnAgregar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         BtnAgregar.setForeground(new java.awt.Color(102, 0, 0));
         BtnAgregar.setText("AGREGAR VEHÍCULO");
@@ -66,8 +68,9 @@ public class FrmInicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnAgregar);
-        BtnAgregar.setBounds(10, 100, 230, 70);
+        BtnAgregar.setBounds(290, 550, 230, 70);
 
+        BtnSalir.setBackground(new java.awt.Color(255, 255, 255));
         BtnSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BtnSalir.setForeground(new java.awt.Color(102, 0, 0));
         BtnSalir.setText("SALIR");
@@ -82,9 +85,9 @@ public class FrmInicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnSalir);
-        BtnSalir.setBounds(80, 50, 110, 40);
+        BtnSalir.setBounds(950, 550, 210, 70);
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 153));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 0, 0));
         jButton1.setText("Consultar Vehículo");
@@ -99,7 +102,15 @@ public class FrmInicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(10, 190, 230, 80);
+        jButton1.setBounds(620, 550, 230, 70);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/barra2.png"))); // NOI18N
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, 540, 1417, 85);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BORDE.png"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(-40, 0, 1417, 85);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -176,5 +187,7 @@ public class FrmInicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }
