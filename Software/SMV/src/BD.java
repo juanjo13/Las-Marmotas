@@ -59,6 +59,16 @@ public class BD {
             return false;
         }
     }
+    public boolean EliminarVehiculo(vehiculo mVehiculo) throws SQLException{
+        try{
+            //+"');";
+        String SQL = "delete from automovil where idAutomovil = "+mVehiculo.getIdentificador()+";";
+        ejecutarActualizacion(SQL);
+        return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
     public List<vehiculo> ConsultaGeneral()throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
         String SQL = "select * from automovil";
@@ -366,17 +376,18 @@ public class BD {
         try{
          if(a==1){  
         String SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'a','"+mMantenimiento.getFecha()+"',1,"+ ka+
-                ","+mMantenimiento.getKm_recorrido()+");";
+                ",'a','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_recorrido()+
+                ","+ka+");";
                 
         ejecutarActualizacion(SQL);
         SQL="update automovil set km_afinacion=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
         ejecutarActualizacion(SQL);
+    
          }  
          if (s==1){
             String   SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'s','"+mMantenimiento.getFecha()+"',1,"+ ks+
-                ","+mMantenimiento.getKm_recorrido()+");";
+                ",'s','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_recorrido()+
+                ","+ks+");";
                 
         ejecutarActualizacion(SQL);
         SQL="update automovil set km_frenos=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
@@ -384,8 +395,8 @@ public class BD {
          }
           if(n==1){
                   String  SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'n','"+mMantenimiento.getFecha()+"',1,"+ kn+
-                ","+mMantenimiento.getKm_recorrido()+");";
+                ",'n','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_recorrido()+
+                ","+kn+");";
                 
         ejecutarActualizacion(SQL);
         SQL="update automovil set km_neumaticos=0 where idAutomovil="+mVehiculo.getIdentificador()+";";
@@ -393,8 +404,8 @@ public class BD {
           }
          if(c==1){
                   String  SQL = "insert into mantenimiento values (null,"+ mMantenimiento.getId_Vehiculo()+
-                ",'c','"+mMantenimiento.getFecha()+"',1,"+ kc+
-                ","+mMantenimiento.getKm_recorrido()+");";
+                ",'c','"+mMantenimiento.getFecha()+"',1,"+ mMantenimiento.getKm_recorrido()+
+                ","+kc+");";
                 
         ejecutarActualizacion(SQL);
         SQL="update automovil set km_carroceria=0 where idAutomovil="+mVehiculo.getIdentificador()+";";

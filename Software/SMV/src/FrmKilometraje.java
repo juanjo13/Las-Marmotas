@@ -1,6 +1,8 @@
 
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -18,12 +20,16 @@ public class FrmKilometraje extends javax.swing.JDialog {
     /**
      * Creates new form FrmKilometraje
      */
-    public FrmKilometraje(javax.swing.JDialog parent, boolean modal, int ID) {
+    double kmSF = 0;
+    double kmN = 0;
+    float kmi = 0;
+    public FrmKilometraje(javax.swing.JDialog parent, boolean modal, int ID, String kmi) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
          txtid.setText(String.valueOf(ID));
          txtid.setVisible(false);
+         this.kmi = Float.parseFloat(kmi);
     }
 
     /**
@@ -39,6 +45,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
         TxtKilometraje = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -48,8 +55,11 @@ public class FrmKilometraje extends javax.swing.JDialog {
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        BtnAceptar.setBackground(new java.awt.Color(255, 255, 255));
         BtnAceptar.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        BtnAceptar.setForeground(new java.awt.Color(102, 0, 0));
         BtnAceptar.setText("ACEPTAR");
         BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,45 +79,74 @@ public class FrmKilometraje extends javax.swing.JDialog {
         });
 
         jLabel1.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
-        jLabel1.setText("KILOMETRAJE RECORRIDO");
+        jLabel1.setText("REGISTRO KILOMETRAJE RECORRIDO");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BORDE.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(TxtKilometraje, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(BtnAceptar)))
-                .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addComponent(txtid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(BtnAceptar)
+                .addGap(115, 115, 115)
+                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(TxtKilometraje, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TxtKilometraje, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnAceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void VerificarKilometraje(){
+         try {
+            BD mBD = new BD();
+            vehiculo mV = new vehiculo();
+            mBD.Conectar();
+            mV.setIdentificador(Integer.valueOf(txtid.getText()));
+            ResultSet result = mBD.ConskmFrenos(mV);
+            while(result.next()){
+                kmSF = result.getDouble(1);
+            }
+            
+            mV.setIdentificador(Integer.valueOf(txtid.getText()));
+            ResultSet result1 = mBD.ConskmNeumaticos(mV);
+            while(result1.next()){
+                kmN = result1.getDouble(1);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrmKilometraje.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
              if (TxtKilometraje.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Llene el campo");
@@ -118,17 +157,31 @@ public class FrmKilometraje extends javax.swing.JDialog {
             try {
                 BD mBD = new BD();
                 if (mBD.Conectar()) {
-                    double km = 0;
                     mBD.agregarKilometraje(mvehiculo);
-                    ResultSet result = mBD.ConskmFrenos(mvehiculo);
-                    while(result.next()){
-                        km = result.getDouble(1);
+                    VerificarKilometraje();
+                    
+                    if(kmSF >= 10000 && kmN >= 10000){
+                        int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimientos Necesarios:\n*Suspension Y Frenos\n*Neumaticos\n Desea Realizarlos Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else if(kmSF >= 10000){
+                       int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimiento de Suspension Y Frenos Necesario\n Desea Realizarlo Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else if(kmN >= 10000){
+                       int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimiento de Neumaticos Necesario\n Desea Realizarlo Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else{
+                        JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
+                        this.setVisible(false);
                     }
-                    if(km >= 10000){
-                        JOptionPane.showMessageDialog(rootPane, "Necesita realizar Mantenimiento a los frenos y a lo");
-                    }
-                    JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
-                    this.setVisible(false);
                 }
 
             } catch (Exception ex) {
@@ -151,8 +204,30 @@ public class FrmKilometraje extends javax.swing.JDialog {
                 BD mBD = new BD();
                 if (mBD.Conectar()) {
                     mBD.agregarKilometraje(mvehiculo);
-                    JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
-                    this.setVisible(false);
+                    VerificarKilometraje();
+                    
+                    if(kmSF >= 10000 && kmN >= 10000){
+                        int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimientos Necesarios:\n*Suspension Y Frenos\n*Neumaticos\n Desea Realizarlos Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else if(kmSF >= 10000){
+                       int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimiento de Suspension Y Frenos Necesario\n Desea Realizarlo Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else if(kmN >= 10000){
+                       int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimiento de Neumaticos Necesario\n Desea Realizarlo Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else{
+                        JOptionPane.showMessageDialog(rootPane, "Kilometraje recorrido");
+                        this.setVisible(false);
+                    }
                 }
 
             } catch (Exception ex) {
@@ -176,7 +251,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtKilometrajeKeyTyped
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_formWindowGainedFocus
 
     /**
@@ -210,7 +285,8 @@ public class FrmKilometraje extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 int dato=0;
-                FrmKilometraje dialog = new FrmKilometraje(new javax.swing.JDialog(), true, dato );
+                String kmi = "";
+                FrmKilometraje dialog = new FrmKilometraje(new javax.swing.JDialog(), true, dato, kmi );
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -226,6 +302,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
     private javax.swing.JButton BtnAceptar;
     private javax.swing.JTextField TxtKilometraje;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }
