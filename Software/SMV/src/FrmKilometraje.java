@@ -312,7 +312,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
                             new FrmRegistroMantenimiento(this, true, 
                                     Integer.valueOf(txtid.getText()), 
                                     Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
-                        }
+                        }//condicion del comentario
                     } else if(kmA >= 5000) {
                         int n = JOptionPane.showConfirmDialog(rootPane, 
                                 "Afinacion Necesaria\nRealizarlo Ahora?",
