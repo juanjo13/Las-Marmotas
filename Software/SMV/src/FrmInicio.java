@@ -108,7 +108,7 @@ public class FrmInicio extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(0, 540, 1417, 85);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BORDE.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/REGISTRO BIEN.png"))); // NOI18N
         getContentPane().add(jLabel8);
         jLabel8.setBounds(-40, 0, 1417, 85);
 
