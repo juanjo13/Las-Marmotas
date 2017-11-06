@@ -173,7 +173,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
                     mBD.agregarKilometraje(mvehiculo);
                     VerificarKilometraje();   
                     
-                    if(kmC >= 50000 && kmA > 5000 && kmSF > 10000 && kmN > 10000) {
+                    if(kmC >= 50000 && kmA >= 5000 && kmSF >= 10000 && kmN >= 10000) {
                         int n = JOptionPane.showConfirmDialog(rootPane, 
                                 "Mantenimientos Necesarios:\n "
                                         + "*Carroceria\n "
@@ -186,27 +186,127 @@ public class FrmKilometraje extends javax.swing.JDialog {
                                     Integer.valueOf(txtid.getText()), 
                                     Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
                         }
-                    } else if(kmSF >= 10000 && kmN >= 10000){
-                        int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimientos Necesarios:\n*Suspension Y Frenos\n*Neumaticos\n Desea Realizarlos Ahora?",
+                    }else if(kmC >= 50000 && kmA >= 5000 && kmSF >=10000) {
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n "
+                                        + "*Carroceria\n "
+                                        + "*Afinacion\n"
+                                        + "*Suspension y Frenos\nRealizarlo Ahora?",
+                                "Aviso",JOptionPane.YES_NO_OPTION);
+                        if (n == 0){
+                            new FrmRegistroMantenimiento(this, true, 
+                                    Integer.valueOf(txtid.getText()), 
+                                    Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                        }
+                    }else if(kmC >= 50000 && kmA >= 5000 && kmN >=10000) {
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n "
+                                        + "*Carroceria\n "
+                                        + "*Afinacion\n"
+                                        + "*Neumaticos\nRealizarlo Ahora?",
+                                "Aviso",JOptionPane.YES_NO_OPTION);
+                        if (n == 0){
+                            new FrmRegistroMantenimiento(this, true, 
+                                    Integer.valueOf(txtid.getText()), 
+                                    Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                        }
+                    }else if(kmC >= 50000 && kmN >= 10000 && kmSF >=10000) {
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n "
+                                        + "*Carroceria\n "
+                                        + "*Neumaticos\n"
+                                        + "*Suspension y Frenos\nRealizarlo Ahora?",
+                                "Aviso",JOptionPane.YES_NO_OPTION);
+                        if (n == 0){
+                            new FrmRegistroMantenimiento(this, true, 
+                                    Integer.valueOf(txtid.getText()), 
+                                    Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                        }
+                    }else if(kmN >= 10000 && kmA >= 5000 && kmSF >=10000) {
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n "
+                                        + "*Neumaticos\n "
+                                        + "*Afinacion\n"
+                                        + "*Suspension y Frenos\nRealizarlo Ahora?",
+                                "Aviso",JOptionPane.YES_NO_OPTION);
+                        if (n == 0){
+                            new FrmRegistroMantenimiento(this, true, 
+                                    Integer.valueOf(txtid.getText()), 
+                                    Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                        }
+                    }else if(kmC >= 50000 && kmA >= 5000 ) {
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n "
+                                        + "*Carroceria\n "
+                                        + "*Afinacion\nRealizarlo Ahora?",
+                                "Aviso",JOptionPane.YES_NO_OPTION);
+                        if (n == 0){
+                            new FrmRegistroMantenimiento(this, true, 
+                                    Integer.valueOf(txtid.getText()), 
+                                    Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                        }
+                    }else if(kmSF >= 10000 && kmN >= 10000){
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n"
+                                        +"*Suspension Y Frenos\n"
+                                        +"*Neumaticos\nRealizarlos Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else if(kmSF >= 10000 && kmC >= 50000){
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n"
+                                        +"*Suspension Y Frenos\n"
+                                        +"*Carroceria\nRealizarlos Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else if(kmSF >= 10000 && kmA >= 5000){
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n"
+                                        +"*Suspension Y Frenos\n"
+                                        +"*Afinación\nRealizarlos Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else if(kmC >= 50000 && kmN >= 10000){
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n"
+                                        +"*Carroceria\n"
+                                        +"*Neumaticos\nRealizarlos Ahora?",
+                               "Aviso",JOptionPane.YES_NO_OPTION);
+                      if (n == 0){
+                          new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
+                       }
+                    }else if(kmA >= 5000 && kmN >= 10000){
+                        int n = JOptionPane.showConfirmDialog(rootPane, 
+                                "Mantenimientos Necesarios:\n"
+                                        +"*Afinación\n"
+                                        +"*Neumaticos\nRealizarlos Ahora?",
                                "Aviso",JOptionPane.YES_NO_OPTION);
                       if (n == 0){
                           new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
                        }
                     }else if(kmSF >= 10000){
-                       int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimiento de Suspension Y Frenos Necesario\n Desea Realizarlo Ahora?",
+                       int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimiento de Suspension Y Frenos Necesario\n"+
+                               "Realizarlo Ahora?",
                                "Aviso",JOptionPane.YES_NO_OPTION);
                       if (n == 0){
                           new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
                        }
                     }else if(kmN >= 10000){
-                       int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimiento de Neumaticos Necesario\n Desea Realizarlo Ahora?",
+                       int n = JOptionPane.showConfirmDialog(rootPane, "Mantenimiento de Neumaticos Necesario\n"
+                               +"Realizarlo Ahora?",
                                "Aviso",JOptionPane.YES_NO_OPTION);
                       if (n == 0){
                           new FrmRegistroMantenimiento(this, true,Integer.valueOf(txtid.getText()),Float.valueOf(TxtKilometraje.getText()), kmi).setVisible(true);
                        }
                     } else if(kmC >= 50000) {
                         int n = JOptionPane.showConfirmDialog(rootPane, 
-                                "Mantenimiento de Carroceria Necesaria\n Desea Realizarlo Ahora?",
+                                "Mantenimiento de Carroceria Necesaria\nRealizarlo Ahora?",
                                 "Aviso",JOptionPane.YES_NO_OPTION);
                         if (n == 0){
                             new FrmRegistroMantenimiento(this, true, 
@@ -215,7 +315,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
                         }
                     } else if(kmA >= 5000) {
                         int n = JOptionPane.showConfirmDialog(rootPane, 
-                                "Afinacion Necesaria\n Desea Realizarlo Ahora?",
+                                "Afinacion Necesaria\nRealizarlo Ahora?",
                                 "Aviso",JOptionPane.YES_NO_OPTION);
                         if (n == 0){
                             new FrmRegistroMantenimiento(this, true, 
