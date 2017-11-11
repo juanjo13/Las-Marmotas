@@ -258,6 +258,7 @@ public class FrmAltaV extends javax.swing.JDialog {
             mvehiculo.setDesc_Extra(TxtDesExtra.getText());
             mvehiculo.setComb_actual(Float.valueOf(TxtCombustible.getText()));
             mvehiculo.setKm_inicial(Float.valueOf(TxtKm.getText()));
+            mvehiculo.setEstado("activo");
             
             BD mBD = new BD();
             if(mBD.Conectar()){
@@ -277,9 +278,7 @@ public class FrmAltaV extends javax.swing.JDialog {
         }catch(Exception ex){
             System.out.println(ex.toString());
               JOptionPane.showMessageDialog(rootPane, "Error ");
-        }
-            
-            
+        }                        
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
@@ -301,6 +300,7 @@ public class FrmAltaV extends javax.swing.JDialog {
             mvehiculo.setDesc_Extra(TxtDesExtra.getText());
             mvehiculo.setComb_actual(Float.valueOf(TxtCombustible.getText()));
             mvehiculo.setKm_inicial(Float.valueOf(TxtKm.getText()));
+            mvehiculo.setEstado("activo");
             
            
             BD mBD = new BD();

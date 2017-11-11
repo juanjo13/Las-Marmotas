@@ -52,7 +52,8 @@ public class BD {
         String SQL = "insert into automovil values (null, '"+mVehiculo.getMarca() + "','"+ mVehiculo.getModelo() +
                 "','" + mVehiculo.getAnio() + "','" + mVehiculo.getDesc_Extra() + "','" + mVehiculo.getKm_inicial()+
                 "','" + mVehiculo.getKm_recorr()+"','"+mVehiculo.getComb_actual()+"','"+ mVehiculo.getComb_gastado()+"','"+
-                mVehiculo.getKm_carroceria()+"','"+mVehiculo.getKm_neumaticos()+"','"+mVehiculo.getKm_frenos()+"','"+mVehiculo.getKm_afinacion()+"');";
+                mVehiculo.getKm_carroceria()+"','"+mVehiculo.getKm_neumaticos()+"','"+mVehiculo.getKm_frenos()+
+                "','"+mVehiculo.getKm_afinacion()+"','" + mVehiculo.getEstado() +"');";
         ejecutarActualizacion(SQL);
         return true;
         }catch(Exception e){
@@ -61,7 +62,6 @@ public class BD {
     }
     public boolean EliminarVehiculo(vehiculo mVehiculo) throws SQLException{
         try{
-            //+"');";
         String SQL = "delete from automovil where idAutomovil = "+mVehiculo.getIdentificador()+";";
         ejecutarActualizacion(SQL);
         return true;
@@ -88,6 +88,7 @@ public class BD {
             mVehiculo.setKm_neumaticos(consulta.getFloat("km_neumaticos"));
             mVehiculo.setKm_frenos(consulta.getFloat("km_frenos"));
             mVehiculo.setKm_afinacion(consulta.getFloat("km_afinacion"));
+            mVehiculo.setEstado(consulta.getString("estado"));
             ListaVehiculos.add(mVehiculo);
         }
         return ListaVehiculos;
@@ -108,6 +109,7 @@ public class BD {
             mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
             mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
             mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
             ListaVehiculos.add(mVehiculo);
         }
         return ListaVehiculos;
@@ -128,6 +130,7 @@ public class BD {
             mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
             mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
             mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
             ListaVehiculos.add(mVehiculo);
         }
         return ListaVehiculos;
@@ -149,6 +152,7 @@ public class BD {
             mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
             mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
             mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
             ListaVehiculos.add(mVehiculo);
         }
         return ListaVehiculos;
@@ -170,6 +174,7 @@ public class BD {
             mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
             mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
             mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
             ListaVehiculos.add(mVehiculo);
         }
         return ListaVehiculos;
@@ -190,6 +195,7 @@ public class BD {
             mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
             mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
             mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
             ListaVehiculos.add(mVehiculo);
         }
         return ListaVehiculos;
@@ -209,6 +215,7 @@ public class BD {
             mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
             mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
             mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
             ListaVehiculos.add(mVehiculo);
         }
         return ListaVehiculos;
@@ -228,6 +235,7 @@ public class BD {
             mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
             mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
             mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
             ListaVehiculos.add(mVehiculo);
         }
         return ListaVehiculos;
@@ -280,7 +288,8 @@ public class BD {
         String SQL = "update automovil set Marca= '" + mVehiculo.getMarca() 
                 + "', Modelo= '" + mVehiculo.getModelo() + "', Anio= '" 
                 + mVehiculo.getAnio() + "', Desc_Extra= '" + mVehiculo.getDesc_Extra() +
-                "' where idAutomovil='" + mVehiculo.getIdentificador() +"';";
+                "', estado= '" + mVehiculo.getEstado() + "' where idAutomovil='" 
+                + mVehiculo.getIdentificador() +"';";
         ejecutarActualizacion(SQL);
         return true;
         }catch(Exception e){

@@ -272,7 +272,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 1363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1409, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1459, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -319,7 +319,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                         .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtnModificar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -347,18 +347,14 @@ public class FrmConsulta extends javax.swing.JDialog {
                     .addComponent(BtnModificar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LblKm)
-                            .addComponent(lblCom)
-                            .addComponent(lblkmi)
-                            .addComponent(lblid)
-                            .addComponent(lblc))
-                        .addGap(29, 29, 29)))
+                    .addComponent(BtnBuscar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LblKm)
+                        .addComponent(lblCom)
+                        .addComponent(lblkmi)
+                        .addComponent(lblid)
+                        .addComponent(lblc)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -471,11 +467,12 @@ public class FrmConsulta extends javax.swing.JDialog {
     public void LLenarTabla(List<vehiculo> ListaVehiculos){
         if(ListaVehiculos != null){
             Object[] encabezado = {"ID", "Marca", "Modelo", "Año", "Km Inicial",
-                "Km Recorrido", "Combustible cargado","Combustible gastado", "Desc Extra"};
+                "Km Recorrido", "Combustible cargado","Combustible gastado", "Desc Extra", "estado"};
             DefaultTableModel modelo = new DefaultTableModel(null, encabezado);
             for (vehiculo mvehiculo : ListaVehiculos) {
                 Object[] fila = {mvehiculo.getIdentificador(), mvehiculo.getMarca(), mvehiculo.getModelo(), mvehiculo.getAnio(),
-                    mvehiculo.getKm_inicial(), mvehiculo.getKm_recorr(), mvehiculo.getComb_actual(),mvehiculo.getComb_gastado(), mvehiculo.getDesc_Extra()};
+                    mvehiculo.getKm_inicial(), mvehiculo.getKm_recorr(), mvehiculo.getComb_actual(),mvehiculo.getComb_gastado(), 
+                    mvehiculo.getDesc_Extra(), mvehiculo.getEstado()};
                 modelo.addRow(fila);
             }
             JtVehiculos.setModel(modelo);

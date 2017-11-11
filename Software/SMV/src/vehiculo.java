@@ -11,8 +11,9 @@
 public class vehiculo {
     private String Marca;
     private String Modelo;
+    private String estado;
     private int identificador;
-    private int anio;
+    private int anio;    
     private float Km_inicial;
     private float Km_recorr;
     private float Comb_actual;
@@ -37,6 +38,15 @@ public class vehiculo {
         Km_frenos=0;
         Km_afinacion=0;
         Km_neumaticos=0;
+        estado = "";
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public int getIdentificador() {
