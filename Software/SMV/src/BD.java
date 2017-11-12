@@ -62,7 +62,7 @@ public class BD {
     }
     public boolean EliminarVehiculo(vehiculo mVehiculo) throws SQLException{
         try{
-        String SQL = "delete from automovil where idAutomovil = "+mVehiculo.getIdentificador()+";";
+        String SQL = "update automovil set estado='inactivo' where idAutomovil = "+mVehiculo.getIdentificador()+";";
         ejecutarActualizacion(SQL);
         return true;
         }catch(Exception e){
