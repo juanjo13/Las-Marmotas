@@ -460,6 +460,8 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
             kmc = Float.valueOf(kmCarroceria.getText());
         }
         try {
+          
+       
             BD mBD = new BD();
             if (mBD.Conectar()) {
                 mBD.RegisMantenimientos(mMantenimiento, mVehiculo, a, s, n, c, kma, kms, kmc, kmn);

@@ -212,6 +212,7 @@ public class FrmModificar extends javax.swing.JDialog {
                 mvehiculo.setModelo(TxtModelo.getText());
                 mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
                 mvehiculo.setDesc_Extra(TxtDesExtra.getText());
+                mvehiculo.setEstado("activo");
                 BD mBD = new BD();
                 if(mBD.Conectar()){
                     mBD.actualizarVehiculo(mvehiculo);
@@ -240,6 +241,7 @@ public class FrmModificar extends javax.swing.JDialog {
                 mvehiculo.setModelo(TxtModelo.getText());
                 mvehiculo.setAnio(Integer.valueOf(TxtAyno.getText()));
                 mvehiculo.setDesc_Extra(TxtDesExtra.getText());
+                mvehiculo.setEstado("activo");
                 BD mBD = new BD();
                 if(mBD.Conectar()){
                     mBD.actualizarVehiculo(mvehiculo);
