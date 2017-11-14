@@ -436,7 +436,7 @@ public class FrmConsulta extends javax.swing.JDialog {
         String kmi = lblkmi.getText();
         int dato = Integer.valueOf(id);
         new FrmKilometraje(this, true, dato, kmi).setVisible(true);
-        lblid.setText("");
+      //  lblid.setText("");
 
 
     }//GEN-LAST:event_BtnKilometrajeActionPerformed
@@ -646,8 +646,10 @@ public class FrmConsulta extends javax.swing.JDialog {
                 modelo.addRow(fila);
             }
             
-            JtVehiculos.setModel(modelo);
-            JtVehiculos.getSelectionModel().setSelectionInterval(0, 0);
+          JtVehiculos.setModel(modelo);
+          JtVehiculos.getSelectionModel().setSelectionInterval(0, 0);
+         
+          
         }
     }
 
@@ -980,7 +982,7 @@ public class FrmConsulta extends javax.swing.JDialog {
         if (dato != 0) {
 
             if ((kmre > 0) || (comb > 0)) {
-                int n = JOptionPane.showConfirmDialog(rootPane, "Esta seguro de la eliminación\n",
+                int n = JOptionPane.showConfirmDialog(rootPane, "Su vehículo pasara a estado inactivo ¿esta seguro?\n",
                         "Aviso", JOptionPane.YES_NO_OPTION);
                 if (n == 0) {
                     try {
@@ -988,8 +990,8 @@ public class FrmConsulta extends javax.swing.JDialog {
                         mVehiculo.setIdentificador(dato);
                         BD mBD = new BD();
                         if (mBD.Conectar()) {
-                            mBD.EliminarVehiculo(mVehiculo);
-                            JOptionPane.showMessageDialog(rootPane, "Vehículo Eliminado con Exito");
+                            mBD.Vehiculo_inactivo(mVehiculo);
+                            JOptionPane.showMessageDialog(rootPane, "Vehículo inactivo con Exito");
 
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "Error");
@@ -1000,10 +1002,32 @@ public class FrmConsulta extends javax.swing.JDialog {
                     }
                 }
                 }else{
-                JOptionPane.showMessageDialog(rootPane, "Vehículo no se puede eliminar");
-            }
-            }
+                
+                 try {
+                     int c = JOptionPane.showConfirmDialog(rootPane, "Su vehículo sera eliminado por completo ¿esta seguro?\n",
+                        "Aviso", JOptionPane.YES_NO_OPTION);
+                if (c == 0){
+                        vehiculo mVehiculo = new vehiculo();
+                        mVehiculo.setIdentificador(dato);
+                        BD mBD = new BD();
+                        if (mBD.Conectar()) {
+                            mBD.EliminarVehiculo(mVehiculo);
+                            JOptionPane.showMessageDialog(rootPane, "Vehículo Eliminado con Exito");
 
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "Error");
+                        }
+                    }
+                    } catch (Exception ex) {
+                        System.out.println(ex.toString());
+                        JOptionPane.showMessageDialog(rootPane, "Error ");
+                    }
+                }
+            }else{
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un vehículo ");
+        }
+            
+    
 
     }//GEN-LAST:event_BtnEliminarActionPerformed
 

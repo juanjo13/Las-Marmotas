@@ -60,9 +60,18 @@ public class BD {
             return false;
         }
     }
-    public boolean EliminarVehiculo(vehiculo mVehiculo) throws SQLException{
+    public boolean Vehiculo_inactivo(vehiculo mVehiculo) throws SQLException{
         try{
         String SQL = "update automovil set estado='inactivo' where idAutomovil = "+mVehiculo.getIdentificador()+";";
+        ejecutarActualizacion(SQL);
+        return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    public boolean EliminarVehiculo(vehiculo mVehiculo) throws SQLException{
+        try{
+        String SQL = "delete from automovil where idAutomovil = "+mVehiculo.getIdentificador()+";";
         ejecutarActualizacion(SQL);
         return true;
         }catch(Exception e){
