@@ -32,7 +32,7 @@ public class FrmConsulta extends javax.swing.JDialog {
         lblCom.setVisible(false);
         LblKm.setVisible(false);
         lblkmi.setVisible(false);
-        estado.setVisible(false);
+        estado.setVisible(true);
     }
     //   int ID=0;
 
@@ -645,7 +645,9 @@ public class FrmConsulta extends javax.swing.JDialog {
                     mvehiculo.getDesc_Extra(), mvehiculo.getEstado()};
                 modelo.addRow(fila);
             }
+            
             JtVehiculos.setModel(modelo);
+            JtVehiculos.getSelectionModel().setSelectionInterval(0, 0);
         }
     }
 
@@ -695,11 +697,11 @@ public class FrmConsulta extends javax.swing.JDialog {
                 llenarCmb_Marca();
                 llenarCmb_Modelo();
                 llenarCmb_Anio();
-                BtnKilometraje.setEnabled(false);
-                BtnCombustible.setEnabled(false);
-                BtnEliminar.setEnabled(false);
-                BtnModificar.setEnabled(false);
-                BtnRMantenimiento.setEnabled(false);
+//                BtnKilometraje.setEnabled(false);
+//                BtnCombustible.setEnabled(false);
+//                BtnEliminar.setEnabled(false);
+//                BtnModificar.setEnabled(false);
+//                BtnRMantenimiento.setEnabled(false);
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -808,6 +810,19 @@ public class FrmConsulta extends javax.swing.JDialog {
                 lblkmi.setText(String.valueOf(kmi));
                 String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
                 estado.setText(String.valueOf(estado1));
+                if(estado1.equals( "activo")){
+                BtnKilometraje.setEnabled(true);
+                BtnCombustible.setEnabled(true);
+                BtnEliminar.setEnabled(true);
+                BtnModificar.setEnabled(true);
+                BtnRMantenimiento.setEnabled(true);
+                }else if(estado1.equals("inactivo")){
+                     BtnKilometraje.setEnabled(false);
+                BtnCombustible.setEnabled(false);
+                BtnEliminar.setEnabled(false);
+                BtnModificar.setEnabled(false);
+                BtnRMantenimiento.setEnabled(false);
+                }
 
             }
 
@@ -835,6 +850,19 @@ public class FrmConsulta extends javax.swing.JDialog {
                 lblkmi.setText(String.valueOf(kmi));
                 String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
                 estado.setText(String.valueOf(estado1));
+                if(estado1.equals("activo")){
+                BtnKilometraje.setEnabled(true);
+                BtnCombustible.setEnabled(true);
+                BtnEliminar.setEnabled(true);
+                BtnModificar.setEnabled(true);
+                BtnRMantenimiento.setEnabled(true);
+                }else if(estado1.equals("inactivo")){
+                     BtnKilometraje.setEnabled(false);
+                BtnCombustible.setEnabled(false);
+                BtnEliminar.setEnabled(false);
+                BtnModificar.setEnabled(false);
+                BtnRMantenimiento.setEnabled(false);
+                }
 
             }
 
@@ -1093,11 +1121,11 @@ public class FrmConsulta extends javax.swing.JDialog {
                 llenarCmb_Marca();
                 llenarCmb_Modelo();
                 llenarCmb_Anio();
-                BtnKilometraje.setEnabled(false);
-                BtnCombustible.setEnabled(false);
-                BtnEliminar.setEnabled(false);
-                BtnModificar.setEnabled(false);
-                BtnRMantenimiento.setEnabled(false);
+//                BtnKilometraje.setEnabled(true);
+//                BtnCombustible.setEnabled(true);
+//                BtnEliminar.setEnabled(true);
+//                BtnModificar.setEnabled(true);
+//                BtnRMantenimiento.setEnabled(true);
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
