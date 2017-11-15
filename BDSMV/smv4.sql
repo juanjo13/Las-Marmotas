@@ -47,7 +47,7 @@ CREATE TABLE `automovil` (
 
 LOCK TABLES `automovil` WRITE;
 /*!40000 ALTER TABLE `automovil` DISABLE KEYS */;
-INSERT INTO `automovil` VALUES (19,'GMC','444',444,'444',444,80000,444,0,0,80000,80000,0,'activo');
+
 /*!40000 ALTER TABLE `automovil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +78,7 @@ CREATE TABLE `mantenimiento` (
 
 LOCK TABLES `mantenimiento` WRITE;
 /*!40000 ALTER TABLE `mantenimiento` DISABLE KEYS */;
-INSERT INTO `mantenimiento` VALUES (2,19,'a','2017-11-12',1,80444,80000),(3,19,'c','2017-11-12',1,80444,80000);
+
 /*!40000 ALTER TABLE `mantenimiento` ENABLE KEYS */;
 UNLOCK TABLES;
 
