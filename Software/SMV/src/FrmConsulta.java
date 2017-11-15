@@ -741,25 +741,47 @@ public class FrmConsulta extends javax.swing.JDialog {
 
             vehiculo mvehiculo = new vehiculo();
             List<vehiculo> ListaVehiculos = null;
+            String estado = cmbTipos.getSelectedItem().toString();
             //Buscar por Marca
             if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
                     & CMBAnyo.getSelectedItem().toString() == "Año") {
 
                 mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
-                ListaVehiculos = mBD.ConsultaPorMarca(mvehiculo);
+                if(estado.equals("Todos")){
+                    ListaVehiculos = mBD.ConsultaPorMarca(mvehiculo);
+                }else if(estado.equals("Activos")){
+                    ListaVehiculos = mBD.ConsultaPorMarca_Activos(mvehiculo);
+                }else if(estado.equals("Inactivos")){
+                    ListaVehiculos = mBD.ConsultaPorMarca_Inactivos(mvehiculo);
+
+                }
 
                 //Buscar por Modelo
             } else if (CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
                     & CMBAnyo.getSelectedItem().toString() == "Año") {
 
                 mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
-                ListaVehiculos = mBD.ConsultaPorModelo(mvehiculo);
+                
+                if(estado.equals("Todos")){
+                    ListaVehiculos = mBD.ConsultaPorModelo(mvehiculo);
+                }else if(estado.equals("Activos")){
+                    ListaVehiculos = mBD.ConsultaPorModelo_Activos(mvehiculo);
+                }else if(estado.equals("Inactivos")){
+                    ListaVehiculos = mBD.ConsultaPorModelo_Inactivos(mvehiculo);
+                }
                 //Buscar por Año    
             } else if (CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
                     & CMBAnyo.getSelectedItem().toString() != "Año") {
 
                 mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
-                ListaVehiculos = mBD.ConsultaPorAnio(mvehiculo);
+                
+                if(estado.equals("Todos")){
+                    ListaVehiculos = mBD.ConsultaPorAnio(mvehiculo);
+                }else if(estado.equals("Activos")){
+                    ListaVehiculos = mBD.ConsultaPorAnio_Activos(mvehiculo);
+                }else if(estado.equals("Inactivos")){
+                    ListaVehiculos = mBD.ConsultaPorAnio_Inactivos(mvehiculo);
+                }
 
                 //Buscar por Marca, Modelo Y Año.    
             } else if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
@@ -768,7 +790,14 @@ public class FrmConsulta extends javax.swing.JDialog {
                 mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
                 mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
                 mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
-                ListaVehiculos = mBD.ConsultaMixta(mvehiculo);
+                
+                if(estado.equals("Todos")){
+                    ListaVehiculos = mBD.ConsultaMixta(mvehiculo);
+                }else if(estado.equals("Activos")){
+                    ListaVehiculos = mBD.ConsultaMixta_Activos(mvehiculo);
+                }else if(estado.equals("Inactivos")){
+                    ListaVehiculos = mBD.ConsultaMixta_Inactivos(mvehiculo);
+                }
 
                 //Buscar Por Marca y Modelo
             } else if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
@@ -776,7 +805,14 @@ public class FrmConsulta extends javax.swing.JDialog {
 
                 mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
                 mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
-                ListaVehiculos = mBD.ConsultaMarcaModelo(mvehiculo);
+                
+                if(estado.equals("Todos")){
+                    ListaVehiculos = mBD.ConsultaMarcaModelo(mvehiculo);
+                }else if(estado.equals("Activos")){
+                    ListaVehiculos = mBD.ConsultaMarcaModelo_Activos(mvehiculo);
+                }else if(estado.equals("Inactivos")){
+                    ListaVehiculos = mBD.ConsultaMarcaModelo_Inactivos(mvehiculo);
+                }
 
                 //Buscar Marca y Año
             } else if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
@@ -784,7 +820,14 @@ public class FrmConsulta extends javax.swing.JDialog {
 
                 mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
                 mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
-                ListaVehiculos = mBD.ConsultaMarcaAnio(mvehiculo);
+                
+                if(estado.equals("Todos")){
+                    ListaVehiculos = mBD.ConsultaMarcaAnio(mvehiculo);
+                }else if(estado.equals("Activos")){
+                    ListaVehiculos = mBD.ConsultaMarcaAnio_Activos(mvehiculo);
+                }else if(estado.equals("Inactivos")){
+                    ListaVehiculos = mBD.ConsultaMarcaAnio_Inactivos(mvehiculo);
+                }
 
                 //Buscar Modelo y Año
             } else if (CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
@@ -792,7 +835,14 @@ public class FrmConsulta extends javax.swing.JDialog {
 
                 mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
                 mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
-                ListaVehiculos = mBD.ConsultaModeloAnio(mvehiculo);
+                
+                if(estado.equals("Todos")){
+                    ListaVehiculos = mBD.ConsultaModeloAnio(mvehiculo);
+                }else if(estado.equals("Activos")){
+                    ListaVehiculos = mBD.ConsultaModeloAnio_Activos(mvehiculo);
+                }else if(estado.equals("Inactivos")){
+                    ListaVehiculos = mBD.ConsultaModeloAnio_Inactivos(mvehiculo);
+                }
 
             } else {
                 JOptionPane.showMessageDialog(rootPane, "No se encontro el vehículo");

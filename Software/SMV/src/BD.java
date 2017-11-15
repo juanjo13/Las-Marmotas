@@ -174,10 +174,97 @@ public class BD {
         }
         return ListaVehiculos;
     }
+    
+    //Buscar por Marca en vehiculos activos
+    public List<vehiculo> ConsultaPorMarca_Activos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and estado = 'activo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    
+    //Buscar por marca en vehiculos inactivos
+    public List<vehiculo> ConsultaPorMarca_Inactivos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and estado = 'inactivo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
     //Buscar por Modelo
     public List<vehiculo> ConsultaPorModelo(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
         String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    
+    //Buscar por Modelo en vehiculos activos
+    public List<vehiculo> ConsultaPorModelo_Activos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and estado = 'activo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //Buscar por Modelo en vehiculos inactivos
+    public List<vehiculo> ConsultaPorModelo_Inactivos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and estado='inactivo';";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -217,6 +304,49 @@ public class BD {
         }
         return ListaVehiculos;
     }
+    //Buscar por Año en vehiculos activos
+    public List<vehiculo> ConsultaPorAnio_Activos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and estado='activo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //Buscar por Año en vehiculos inactivos
+    public List<vehiculo> ConsultaPorAnio_Inactivos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and estado = 'inactivo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    
     //Buscar por Marca, Modelo y Año
     public List<vehiculo> ConsultaMixta(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
@@ -239,7 +369,51 @@ public class BD {
         }
         return ListaVehiculos;
     }
-    
+    //Buscar por Marca, Modelo y Año en vehiculos activos
+    public List<vehiculo> ConsultaMixta_Activos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and marca='" + mVehiculo.getMarca()+
+                "' and modelo='" + mVehiculo.getModelo() +"' and estado = 'activo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //Buscar por Marca, Modelo y Año en vehiculos en inactivos
+    public List<vehiculo> ConsultaMixta_Inactivos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and marca='" + mVehiculo.getMarca()+
+                "' and modelo='" + mVehiculo.getModelo() +"' and estado = 'inactivo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //Buscar por marca modelo 
     public List<vehiculo> ConsultaMarcaModelo(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
         String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and modelo='" + mVehiculo.getModelo()+"';";
@@ -260,6 +434,50 @@ public class BD {
         }
         return ListaVehiculos;
     }
+    //Buscar por marca modelo en vehiculos activos 
+    public List<vehiculo> ConsultaMarcaModelo_Activos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and modelo='" + mVehiculo.getModelo()+"' and estado = 'activo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //Buscar por marca modelo en vehiculos inactivos
+    public List<vehiculo> ConsultaMarcaModelo_Inactivos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and modelo='" + mVehiculo.getModelo()+"' and estado = 'inactivo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    
+    //Buscar por marca año
     public List<vehiculo> ConsultaMarcaAnio(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
         String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and anio='" + mVehiculo.getAnio()+"';";
@@ -280,9 +498,95 @@ public class BD {
         }
         return ListaVehiculos;
     }
+    //Buscar por marca año en vehiculos activos
+    public List<vehiculo> ConsultaMarcaAnio_Activos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'activo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //Buscar por marca año en vehiculos inactivos
+    public List<vehiculo> ConsultaMarcaAnio_Inactivos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'inactivo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    
+    //Buscar por modelo año
     public List<vehiculo> ConsultaModeloAnio(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
         String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and anio='" + mVehiculo.getAnio()+"';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //Buscar por modelo año en vehiculos activos
+    public List<vehiculo> ConsultaModeloAnio_Activos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'activo';";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //Buscar por modelo año en vehiculos inactivos
+    public List<vehiculo> ConsultaModeloAnio_Inactivos(vehiculo mVehiculo)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'inactivo';";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
