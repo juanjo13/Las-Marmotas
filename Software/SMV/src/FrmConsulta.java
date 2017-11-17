@@ -1,10 +1,14 @@
 
+import com.itextpdf.text.BadElementException;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -1332,7 +1336,32 @@ public class FrmConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnRendimientoKeyPressed
 
     private void BtnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReporteActionPerformed
-        // TODO add your handling code here:
+        JFileChooser dir = new JFileChooser();
+        int opcion = dir.showSaveDialog(this);
+        File f = null;
+        if(opcion == JFileChooser.APPROVE_OPTION){
+            f = dir.getSelectedFile();
+            int fila = JtVehiculos.getSelectedRow();
+            if(fila >=0){
+                try {
+                    int id =(int) JtVehiculos.getValueAt(fila, 0);
+                    Reporte mReporte = new Reporte();
+                    mReporte.GenerarReporte(f.toString(), id);
+                    //JOptionPane.showMessageDialog(rootPane, "seleccionaste el vehiculo " + id + " y se guardara en: " + f.toString());
+                
+                
+                } catch (BadElementException ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Seleccione un Vehículo");
+            }
+        }
+        
+        
     }//GEN-LAST:event_BtnReporteActionPerformed
 
     private void BtnReporteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnReporteKeyPressed

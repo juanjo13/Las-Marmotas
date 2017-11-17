@@ -604,6 +604,26 @@ public class BD {
         }
         return ListaVehiculos;
     }
+    public vehiculo ConsultaReporte(int id)throws SQLException{
+        vehiculo mVehiculo = new vehiculo();
+        String SQL = "select * from automovil where idAutomovil=" + id + ";";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+        }
+        
+        return mVehiculo;
+    }
     public ResultSet ConsultarMarcas() throws SQLException{
         String sql = "select distinct marca from automovil";
         ResultSet resultado = ejecutarConsulta(sql);

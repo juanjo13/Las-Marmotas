@@ -29,8 +29,8 @@ public class Mantenimiento {
      Id_Vehiculo=0;
      Tipo="";
      Estado=0;
-    Km_recorrido=0;
-    Km_realizado=0;
+     Km_recorrido=0;
+     Km_realizado=0;
     }
     public int getId_Mantenimiento() {
         return Id_Mantenimiento;
