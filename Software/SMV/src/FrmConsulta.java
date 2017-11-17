@@ -446,12 +446,19 @@ public class FrmConsulta extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKilometrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKilometrajeActionPerformed
-
-        String id = lblid.getText();
-        String kmi = lblkmi.getText();
-        int dato = Integer.valueOf(id);
-        new FrmKilometraje(this, true, dato, kmi).setVisible(true);
-      //  lblid.setText("");
+        int fila = JtVehiculos.getSelectedRow();
+        if (fila >= 0) {
+            int ID = (int) JtVehiculos.getValueAt(fila, 0);
+            lblid.setText(String.valueOf(ID));
+            //   float Co = (float) JtVehiculos.getValueAt(fila, 6);
+            //    lblc.setText(String.valueOf(Co));
+            float km = (float) JtVehiculos.getValueAt(fila, 5);
+            String id = lblid.getText();
+            String kmi = lblkmi.getText();
+            int dato = Integer.valueOf(id);
+            new FrmKilometraje(this, true, ID, km).setVisible(true);
+            //  lblid.setText("");
+        }
 
 
     }//GEN-LAST:event_BtnKilometrajeActionPerformed
@@ -469,30 +476,42 @@ public class FrmConsulta extends javax.swing.JDialog {
 
     private void BtnKilometrajeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKilometrajeKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            //  new FrmKilometraje(this, true).setVisible(true);
+            int fila = JtVehiculos.getSelectedRow();
+            if (fila >= 0) {
+                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                lblid.setText(String.valueOf(ID));
+                //   float Co = (float) JtVehiculos.getValueAt(fila, 6);
+                //    lblc.setText(String.valueOf(Co));
+                float km = (float) JtVehiculos.getValueAt(fila, 5);
+                String id = lblid.getText();
+                String kmi = lblkmi.getText();
+                int dato = Integer.valueOf(id);
+                new FrmKilometraje(this, true, ID, km).setVisible(true);
+            }
+            //  lblid.setText("");
         }
     }//GEN-LAST:event_BtnKilometrajeKeyPressed
 
     private void BtnCombustibleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCombustibleKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String id = lblid.getText();
-            int dato = Integer.valueOf(id);
-            String c = lblc.getText();
-            float co = Float.valueOf(c);
-            new FrmCombustible(this, true, dato, co).setVisible(true);
-            lblid.setText("");
-
+            int fila = JtVehiculos.getSelectedRow();
+            if (fila >= 0) {
+                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                float Combu = (float) JtVehiculos.getValueAt(fila, 6);
+                new FrmCombustible(this, true, ID, Combu).setVisible(true);
+                lblid.setText("");
+            }
         }
     }//GEN-LAST:event_BtnCombustibleKeyPressed
 
     private void BtnCombustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCombustibleActionPerformed
-        String id = lblid.getText();
-        int dato = Integer.valueOf(id);
-        String c = lblc.getText();
-        float co = Float.valueOf(c);
-        new FrmCombustible(this, true, dato, co).setVisible(true);
-
-        lblid.setText("");
+        int fila = JtVehiculos.getSelectedRow();
+        if (fila >= 0) {
+            int ID = (int) JtVehiculos.getValueAt(fila, 0);
+            float Combu = (float) JtVehiculos.getValueAt(fila, 6);
+            new FrmCombustible(this, true, ID, Combu).setVisible(true);
+            lblid.setText("");
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_BtnCombustibleActionPerformed
@@ -660,16 +679,15 @@ public class FrmConsulta extends javax.swing.JDialog {
                     mvehiculo.getDesc_Extra(), mvehiculo.getEstado()};
                 modelo.addRow(fila);
             }
-            
-          JtVehiculos.setModel(modelo);
-          JtVehiculos.getSelectionModel().setSelectionInterval(0, 0);
-         
-          
+
+            JtVehiculos.setModel(modelo);
+            JtVehiculos.getSelectionModel().setSelectionInterval(0, 0);
+
         }
     }
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
- 
+
         String categoria = (String) cmbTipos.getSelectedItem();
         if (categoria == "Inactivos") {
             try {
@@ -714,11 +732,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                 llenarCmb_Marca();
                 llenarCmb_Modelo();
                 llenarCmb_Anio();
-//                BtnKilometraje.setEnabled(false);
-//                BtnCombustible.setEnabled(false);
-//                BtnEliminar.setEnabled(false);
-//                BtnModificar.setEnabled(false);
-//                BtnRMantenimiento.setEnabled(false);
+
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -747,11 +761,11 @@ public class FrmConsulta extends javax.swing.JDialog {
                     & CMBAnyo.getSelectedItem().toString() == "Año") {
 
                 mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
-                if(estado.equals("Todos")){
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaPorMarca(mvehiculo);
-                }else if(estado.equals("Activos")){
+                } else if (estado.equals("Activos")) {
                     ListaVehiculos = mBD.ConsultaPorMarca_Activos(mvehiculo);
-                }else if(estado.equals("Inactivos")){
+                } else if (estado.equals("Inactivos")) {
                     ListaVehiculos = mBD.ConsultaPorMarca_Inactivos(mvehiculo);
 
                 }
@@ -761,12 +775,12 @@ public class FrmConsulta extends javax.swing.JDialog {
                     & CMBAnyo.getSelectedItem().toString() == "Año") {
 
                 mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
-                
-                if(estado.equals("Todos")){
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaPorModelo(mvehiculo);
-                }else if(estado.equals("Activos")){
+                } else if (estado.equals("Activos")) {
                     ListaVehiculos = mBD.ConsultaPorModelo_Activos(mvehiculo);
-                }else if(estado.equals("Inactivos")){
+                } else if (estado.equals("Inactivos")) {
                     ListaVehiculos = mBD.ConsultaPorModelo_Inactivos(mvehiculo);
                 }
                 //Buscar por Año    
@@ -774,12 +788,12 @@ public class FrmConsulta extends javax.swing.JDialog {
                     & CMBAnyo.getSelectedItem().toString() != "Año") {
 
                 mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
-                
-                if(estado.equals("Todos")){
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaPorAnio(mvehiculo);
-                }else if(estado.equals("Activos")){
+                } else if (estado.equals("Activos")) {
                     ListaVehiculos = mBD.ConsultaPorAnio_Activos(mvehiculo);
-                }else if(estado.equals("Inactivos")){
+                } else if (estado.equals("Inactivos")) {
                     ListaVehiculos = mBD.ConsultaPorAnio_Inactivos(mvehiculo);
                 }
 
@@ -790,12 +804,12 @@ public class FrmConsulta extends javax.swing.JDialog {
                 mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
                 mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
                 mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
-                
-                if(estado.equals("Todos")){
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaMixta(mvehiculo);
-                }else if(estado.equals("Activos")){
+                } else if (estado.equals("Activos")) {
                     ListaVehiculos = mBD.ConsultaMixta_Activos(mvehiculo);
-                }else if(estado.equals("Inactivos")){
+                } else if (estado.equals("Inactivos")) {
                     ListaVehiculos = mBD.ConsultaMixta_Inactivos(mvehiculo);
                 }
 
@@ -805,12 +819,12 @@ public class FrmConsulta extends javax.swing.JDialog {
 
                 mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
                 mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
-                
-                if(estado.equals("Todos")){
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaMarcaModelo(mvehiculo);
-                }else if(estado.equals("Activos")){
+                } else if (estado.equals("Activos")) {
                     ListaVehiculos = mBD.ConsultaMarcaModelo_Activos(mvehiculo);
-                }else if(estado.equals("Inactivos")){
+                } else if (estado.equals("Inactivos")) {
                     ListaVehiculos = mBD.ConsultaMarcaModelo_Inactivos(mvehiculo);
                 }
 
@@ -820,12 +834,12 @@ public class FrmConsulta extends javax.swing.JDialog {
 
                 mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
                 mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
-                
-                if(estado.equals("Todos")){
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaMarcaAnio(mvehiculo);
-                }else if(estado.equals("Activos")){
+                } else if (estado.equals("Activos")) {
                     ListaVehiculos = mBD.ConsultaMarcaAnio_Activos(mvehiculo);
-                }else if(estado.equals("Inactivos")){
+                } else if (estado.equals("Inactivos")) {
                     ListaVehiculos = mBD.ConsultaMarcaAnio_Inactivos(mvehiculo);
                 }
 
@@ -835,12 +849,12 @@ public class FrmConsulta extends javax.swing.JDialog {
 
                 mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
                 mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
-                
-                if(estado.equals("Todos")){
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaModeloAnio(mvehiculo);
-                }else if(estado.equals("Activos")){
+                } else if (estado.equals("Activos")) {
                     ListaVehiculos = mBD.ConsultaModeloAnio_Activos(mvehiculo);
-                }else if(estado.equals("Inactivos")){
+                } else if (estado.equals("Inactivos")) {
                     ListaVehiculos = mBD.ConsultaModeloAnio_Inactivos(mvehiculo);
                 }
 
@@ -877,18 +891,18 @@ public class FrmConsulta extends javax.swing.JDialog {
                 lblkmi.setText(String.valueOf(kmi));
                 String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
                 estado.setText(String.valueOf(estado1));
-                if(estado1.equals( "activo")){
-                BtnKilometraje.setEnabled(true);
-                BtnCombustible.setEnabled(true);
-                BtnEliminar.setEnabled(true);
-                BtnModificar.setEnabled(true);
-                BtnRMantenimiento.setEnabled(true);
-                }else if(estado1.equals("inactivo")){
-                     BtnKilometraje.setEnabled(false);
-                BtnCombustible.setEnabled(false);
-                BtnEliminar.setEnabled(false);
-                BtnModificar.setEnabled(false);
-                BtnRMantenimiento.setEnabled(false);
+                if (estado1.equals("activo")) {
+                    BtnKilometraje.setEnabled(true);
+                    BtnCombustible.setEnabled(true);
+                    BtnEliminar.setEnabled(true);
+                    BtnModificar.setEnabled(true);
+                    BtnRMantenimiento.setEnabled(true);
+                } else if (estado1.equals("inactivo")) {
+                    BtnKilometraje.setEnabled(false);
+                    BtnCombustible.setEnabled(false);
+                    BtnEliminar.setEnabled(false);
+                    BtnModificar.setEnabled(false);
+                    BtnRMantenimiento.setEnabled(false);
                 }
 
             }
@@ -908,7 +922,6 @@ public class FrmConsulta extends javax.swing.JDialog {
                 lblid.setText(String.valueOf(ID));
                 float Co = (float) JtVehiculos.getValueAt(fila, 6);
                 lblc.setText(String.valueOf(Co));
-                // JOptionPane.showMessageDialog(this, "ID SELECCIONADO"+ID);
                 float km = (float) JtVehiculos.getValueAt(fila, 5);
                 LblKm.setText(String.valueOf(km));
                 float Combu = (float) JtVehiculos.getValueAt(fila, 7);
@@ -917,18 +930,18 @@ public class FrmConsulta extends javax.swing.JDialog {
                 lblkmi.setText(String.valueOf(kmi));
                 String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
                 estado.setText(String.valueOf(estado1));
-                if(estado1.equals("activo")){
-                BtnKilometraje.setEnabled(true);
-                BtnCombustible.setEnabled(true);
-                BtnEliminar.setEnabled(true);
-                BtnModificar.setEnabled(true);
-                BtnRMantenimiento.setEnabled(true);
-                }else if(estado1.equals("inactivo")){
-                     BtnKilometraje.setEnabled(false);
-                BtnCombustible.setEnabled(false);
-                BtnEliminar.setEnabled(false);
-                BtnModificar.setEnabled(false);
-                BtnRMantenimiento.setEnabled(false);
+                if (estado1.equals("activo")) {
+                    BtnKilometraje.setEnabled(true);
+                    BtnCombustible.setEnabled(true);
+                    BtnEliminar.setEnabled(true);
+                    BtnModificar.setEnabled(true);
+                    BtnRMantenimiento.setEnabled(true);
+                } else if (estado1.equals("inactivo")) {
+                    BtnKilometraje.setEnabled(false);
+                    BtnCombustible.setEnabled(false);
+                    BtnEliminar.setEnabled(false);
+                    BtnModificar.setEnabled(false);
+                    BtnRMantenimiento.setEnabled(false);
                 }
 
             }
@@ -961,196 +974,361 @@ public class FrmConsulta extends javax.swing.JDialog {
     private void BtnBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBuscarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
-                BD mBD = new BD();
-                mBD.Conectar();
+            BD mBD = new BD();
+            mBD.Conectar();
 
-                vehiculo mvehiculo = new vehiculo();
-                List<vehiculo> ListaVehiculos = null;
-                //Buscar por Marca
-                if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
-                        & CMBAnyo.getSelectedItem().toString() == "Año") {
+            vehiculo mvehiculo = new vehiculo();
+            List<vehiculo> ListaVehiculos = null;
+            String estado = cmbTipos.getSelectedItem().toString();
+            //Buscar por Marca
+            if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() == "Año") {
 
-                    mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaPorMarca(mvehiculo);
+                } else if (estado.equals("Activos")) {
+                    ListaVehiculos = mBD.ConsultaPorMarca_Activos(mvehiculo);
+                } else if (estado.equals("Inactivos")) {
+                    ListaVehiculos = mBD.ConsultaPorMarca_Inactivos(mvehiculo);
 
-                    //Buscar por Modelo
-                } else if (CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
-                        & CMBAnyo.getSelectedItem().toString() == "Año") {
+                }
 
-                    mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                //Buscar por Modelo
+            } else if (CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() == "Año") {
+
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaPorModelo(mvehiculo);
-                    //Buscar por Año    
-                } else if (CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
-                        & CMBAnyo.getSelectedItem().toString() != "Año") {
+                } else if (estado.equals("Activos")) {
+                    ListaVehiculos = mBD.ConsultaPorModelo_Activos(mvehiculo);
+                } else if (estado.equals("Inactivos")) {
+                    ListaVehiculos = mBD.ConsultaPorModelo_Inactivos(mvehiculo);
+                }
+                //Buscar por Año    
+            } else if (CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año") {
 
-                    mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaPorAnio(mvehiculo);
+                } else if (estado.equals("Activos")) {
+                    ListaVehiculos = mBD.ConsultaPorAnio_Activos(mvehiculo);
+                } else if (estado.equals("Inactivos")) {
+                    ListaVehiculos = mBD.ConsultaPorAnio_Inactivos(mvehiculo);
+                }
 
-                    //Buscar por Marca, Modelo Y Año.    
-                } else if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
-                        & CMBAnyo.getSelectedItem().toString() != "Año") {
+                //Buscar por Marca, Modelo Y Año.    
+            } else if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año") {
 
-                    mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
-                    mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
-                    mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaMixta(mvehiculo);
+                } else if (estado.equals("Activos")) {
+                    ListaVehiculos = mBD.ConsultaMixta_Activos(mvehiculo);
+                } else if (estado.equals("Inactivos")) {
+                    ListaVehiculos = mBD.ConsultaMixta_Inactivos(mvehiculo);
+                }
 
-                    //Buscar Por Marca y Modelo
-                } else if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
-                        & CMBAnyo.getSelectedItem().toString() == "Año") {
+                //Buscar Por Marca y Modelo
+            } else if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() == "Año") {
 
-                    mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
-                    mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaMarcaModelo(mvehiculo);
+                } else if (estado.equals("Activos")) {
+                    ListaVehiculos = mBD.ConsultaMarcaModelo_Activos(mvehiculo);
+                } else if (estado.equals("Inactivos")) {
+                    ListaVehiculos = mBD.ConsultaMarcaModelo_Inactivos(mvehiculo);
+                }
 
-                    //Buscar Marca y Año
-                } else if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
-                        & CMBAnyo.getSelectedItem().toString() != "Año") {
+                //Buscar Marca y Año
+            } else if (CBMarca.getSelectedItem().toString() != "Marca" & CBModelo.getSelectedItem().toString() == "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año") {
 
-                    mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
-                    mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                mvehiculo.setMarca(CBMarca.getSelectedItem().toString());
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaMarcaAnio(mvehiculo);
+                } else if (estado.equals("Activos")) {
+                    ListaVehiculos = mBD.ConsultaMarcaAnio_Activos(mvehiculo);
+                } else if (estado.equals("Inactivos")) {
+                    ListaVehiculos = mBD.ConsultaMarcaAnio_Inactivos(mvehiculo);
+                }
 
-                    //Buscar Modelo y Año
-                } else if (CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
-                        & CMBAnyo.getSelectedItem().toString() != "Año") {
+                //Buscar Modelo y Año
+            } else if (CBMarca.getSelectedItem().toString() == "Marca" & CBModelo.getSelectedItem().toString() != "Modelo"
+                    & CMBAnyo.getSelectedItem().toString() != "Año") {
 
-                    mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
-                    mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+                mvehiculo.setModelo(CBModelo.getSelectedItem().toString());
+                mvehiculo.setAnio(Integer.parseInt(CMBAnyo.getSelectedItem().toString()));
+
+                if (estado.equals("Todos")) {
                     ListaVehiculos = mBD.ConsultaModeloAnio(mvehiculo);
-
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "No se encontro el vehículo");
+                } else if (estado.equals("Activos")) {
+                    ListaVehiculos = mBD.ConsultaModeloAnio_Activos(mvehiculo);
+                } else if (estado.equals("Inactivos")) {
+                    ListaVehiculos = mBD.ConsultaModeloAnio_Inactivos(mvehiculo);
                 }
 
-                if (ListaVehiculos == null || ListaVehiculos.size() > 0) {
-                    LLenarTabla(ListaVehiculos);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "No se encontro el vehículo");
-                }
-
-            } catch (Exception ex) {
-                Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se encontro el vehículo");
             }
+
+            if (ListaVehiculos == null || ListaVehiculos.size() > 0) {
+                LLenarTabla(ListaVehiculos);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se encontro el vehículo");
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_BtnBuscarKeyPressed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-        // TODO add your handling code here:
-        String id = lblid.getText();
-        int dato = Integer.valueOf(id);
-        String kmr = LblKm.getText();
-        float kmre = Float.valueOf(kmr);
-        String com = lblCom.getText();
-        float comb = Float.valueOf(com);
+        int fila = JtVehiculos.getSelectedRow();
+        if (fila >= 0) {
+            int ID = (int) JtVehiculos.getValueAt(fila, 0);
+            float km = (float) JtVehiculos.getValueAt(fila, 5);
+            float Combu = (float) JtVehiculos.getValueAt(fila, 7);
 
-        if (dato != 0) {
+            if (ID != 0) {
 
-            if ((kmre > 0) || (comb > 0)) {
-                int n = JOptionPane.showConfirmDialog(rootPane, "Su vehículo pasara a estado inactivo ¿esta seguro?\n",
-                        "Aviso", JOptionPane.YES_NO_OPTION);
-                if (n == 0) {
+                if ((km > 0) || (Combu > 0)) {
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Su vehículo pasara a estado inactivo ¿esta seguro?\n",
+                            "Aviso", JOptionPane.YES_NO_OPTION);
+                    if (n == 0) {
+                        try {
+                            vehiculo mVehiculo = new vehiculo();
+                            mVehiculo.setIdentificador(ID);
+                            BD mBD = new BD();
+                            if (mBD.Conectar()) {
+                                mBD.Vehiculo_inactivo(mVehiculo);
+                                JOptionPane.showMessageDialog(rootPane, "Vehículo inactivo con Exito");
+
+                            } else {
+                                JOptionPane.showMessageDialog(rootPane, "Error");
+                            }
+                        } catch (Exception ex) {
+                            System.out.println(ex.toString());
+                            JOptionPane.showMessageDialog(rootPane, "Error ");
+                        }
+                    }
+                } else {
+
                     try {
-                        vehiculo mVehiculo = new vehiculo();
-                        mVehiculo.setIdentificador(dato);
-                        BD mBD = new BD();
-                        if (mBD.Conectar()) {
-                            mBD.Vehiculo_inactivo(mVehiculo);
-                            JOptionPane.showMessageDialog(rootPane, "Vehículo inactivo con Exito");
+                        int c = JOptionPane.showConfirmDialog(rootPane, "Su vehículo sera eliminado por completo ¿esta seguro?\n",
+                                "Aviso", JOptionPane.YES_NO_OPTION);
+                        if (c == 0) {
+                            vehiculo mVehiculo = new vehiculo();
+                            mVehiculo.setIdentificador(ID);
+                            BD mBD = new BD();
+                            if (mBD.Conectar()) {
+                                mBD.EliminarVehiculo(mVehiculo);
+                                JOptionPane.showMessageDialog(rootPane, "Vehículo Eliminado con Exito");
 
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "Error");
+                            } else {
+                                JOptionPane.showMessageDialog(rootPane, "Error");
+                            }
                         }
                     } catch (Exception ex) {
                         System.out.println(ex.toString());
                         JOptionPane.showMessageDialog(rootPane, "Error ");
                     }
                 }
-                }else{
-                
-                 try {
-                     int c = JOptionPane.showConfirmDialog(rootPane, "Su vehículo sera eliminado por completo ¿esta seguro?\n",
-                        "Aviso", JOptionPane.YES_NO_OPTION);
-                if (c == 0){
-                        vehiculo mVehiculo = new vehiculo();
-                        mVehiculo.setIdentificador(dato);
-                        BD mBD = new BD();
-                        if (mBD.Conectar()) {
-                            mBD.EliminarVehiculo(mVehiculo);
-                            JOptionPane.showMessageDialog(rootPane, "Vehículo Eliminado con Exito");
-
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "Error");
-                        }
-                    }
-                    } catch (Exception ex) {
-                        System.out.println(ex.toString());
-                        JOptionPane.showMessageDialog(rootPane, "Error ");
-                    }
-                }
-            }else{
-            JOptionPane.showMessageDialog(rootPane, "Seleccione un vehículo ");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Seleccione un vehículo ");
+            }
         }
-            
-    
+
 
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEliminarKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int fila = JtVehiculos.getSelectedRow();
+            if (fila >= 0) {
+                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                float km = (float) JtVehiculos.getValueAt(fila, 5);
+                float Combu = (float) JtVehiculos.getValueAt(fila, 7);
+
+                if (ID != 0) {
+
+                    if ((km > 0) || (Combu > 0)) {
+                        int n = JOptionPane.showConfirmDialog(rootPane, "Su vehículo pasara a estado inactivo ¿esta seguro?\n",
+                                "Aviso", JOptionPane.YES_NO_OPTION);
+                        if (n == 0) {
+                            try {
+                                vehiculo mVehiculo = new vehiculo();
+                                mVehiculo.setIdentificador(ID);
+                                BD mBD = new BD();
+                                if (mBD.Conectar()) {
+                                    mBD.Vehiculo_inactivo(mVehiculo);
+                                    JOptionPane.showMessageDialog(rootPane, "Vehículo inactivo con Exito");
+
+                                } else {
+                                    JOptionPane.showMessageDialog(rootPane, "Error");
+                                }
+                            } catch (Exception ex) {
+                                System.out.println(ex.toString());
+                                JOptionPane.showMessageDialog(rootPane, "Error ");
+                            }
+                        }
+                    } else {
+
+                        try {
+                            int c = JOptionPane.showConfirmDialog(rootPane, "Su vehículo sera eliminado por completo ¿esta seguro?\n",
+                                    "Aviso", JOptionPane.YES_NO_OPTION);
+                            if (c == 0) {
+                                vehiculo mVehiculo = new vehiculo();
+                                mVehiculo.setIdentificador(ID);
+                                BD mBD = new BD();
+                                if (mBD.Conectar()) {
+                                    mBD.EliminarVehiculo(mVehiculo);
+                                    JOptionPane.showMessageDialog(rootPane, "Vehículo Eliminado con Exito");
+
+                                } else {
+                                    JOptionPane.showMessageDialog(rootPane, "Error");
+                                }
+                            }
+                        } catch (Exception ex) {
+                            System.out.println(ex.toString());
+                            JOptionPane.showMessageDialog(rootPane, "Error ");
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Seleccione un vehículo ");
+                }
+            }
+        }
     }//GEN-LAST:event_BtnEliminarKeyPressed
 
     private void BtnRMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRMantenimientoActionPerformed
-        String id = lblid.getText();
-        int dato = Integer.valueOf(id);
-        String kmre = LblKm.getText();
-        float kmr = Float.valueOf(kmre);
-        String kmi = lblkmi.getText();
-        float kmin = Float.valueOf(kmi);
-        new FrmRegistroMantenimiento(this, true, dato, kmr, kmin).setVisible(true);
+        int fila = JtVehiculos.getSelectedRow();
+        if (fila >= 0) {
+            int ID = (int) JtVehiculos.getValueAt(fila, 0);
+            float km = (float) JtVehiculos.getValueAt(fila, 5);
+            float Combu = (float) JtVehiculos.getValueAt(fila, 7);
+
+            float kmi = (float) JtVehiculos.getValueAt(fila, 4);
+
+            new FrmRegistroMantenimiento(this, true, ID, km, kmi).setVisible(true);
+        }
         lblid.setText("");
     }//GEN-LAST:event_BtnRMantenimientoActionPerformed
 
     private void BtnRMantenimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRMantenimientoKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int fila = JtVehiculos.getSelectedRow();
+            if (fila >= 0) {
+                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                float km = (float) JtVehiculos.getValueAt(fila, 5);
+                float Combu = (float) JtVehiculos.getValueAt(fila, 7);
+
+                float kmi = (float) JtVehiculos.getValueAt(fila, 4);
+
+                new FrmRegistroMantenimiento(this, true, ID, km, kmi).setVisible(true);
+            }
+            lblid.setText("");
+        }
     }//GEN-LAST:event_BtnRMantenimientoKeyPressed
 
     private void BtnRendimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRendimientoActionPerformed
-        Float km = Float.valueOf(LblKm.getText());
-        Float com = Float.valueOf(lblCom.getText());
-        if ((km > 0) & (com > 0)) {
-            Float Rendimiento = km / com;
-            Rendimiento mRendimiento = new Rendimiento();
-            mRendimiento.setId_vehiculo(Integer.valueOf(lblid.getText()));
-            mRendimiento.setRendimiento(Float.valueOf(Rendimiento));
-            try {
-                BD mBD = new BD();
-                if (mBD.Conectar()) {
-                    mBD.regRendimiento(mRendimiento);
-                    JOptionPane.showMessageDialog(rootPane, "Rendimiento de vehículo:" + Rendimiento + " Kilometros por Litro");
+        int fila = JtVehiculos.getSelectedRow();
+        if (fila >= 0) {
+            int id = (int) JtVehiculos.getValueAt(fila, 0);
+            float km = (float) JtVehiculos.getValueAt(fila, 5);
+            float com = (float) JtVehiculos.getValueAt(fila, 7);
+            System.out.println(km + "com " + com);
+
+//        Float com = Float.valueOf(lblCom.getText());
+            if ((km > 0) & (com > 0)) {
+                Float Rendimiento = km / com;
+                Rendimiento mRendimiento = new Rendimiento();
+                mRendimiento.setId_vehiculo(Integer.valueOf(id));
+                mRendimiento.setRendimiento(Float.valueOf(Rendimiento));
+                try {
+                    BD mBD = new BD();
+                    if (mBD.Conectar()) {
+                        mBD.regRendimiento(mRendimiento);
+                        JOptionPane.showMessageDialog(rootPane, "Rendimiento de vehículo:" + Rendimiento + " Kilometros por Litro");
+                        LblKm.setText("");
+                        lblCom.setText("");
+                        lblid.setText("");
+                    }
+
+                } catch (Exception ex) {
+                    System.out.println(ex.toString());
+                    JOptionPane.showMessageDialog(rootPane, "ERROR");
                     LblKm.setText("");
                     lblCom.setText("");
                     lblid.setText("");
-                }
 
-            } catch (Exception ex) {
-                System.out.println(ex.toString());
-                JOptionPane.showMessageDialog(rootPane, "ERROR");
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Rendimiento no se puede calcular");
                 LblKm.setText("");
                 lblCom.setText("");
                 lblid.setText("");
-
             }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Rendimiento no se puede calcular");
-            LblKm.setText("");
-            lblCom.setText("");
-            lblid.setText("");
         }
     }//GEN-LAST:event_BtnRendimientoActionPerformed
 
     private void BtnRendimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRendimientoKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int fila = JtVehiculos.getSelectedRow();
+            if (fila >= 0) {
+                int id = (int) JtVehiculos.getValueAt(fila, 0);
+                float km = (float) JtVehiculos.getValueAt(fila, 5);
+                float com = (float) JtVehiculos.getValueAt(fila, 7);
+                System.out.println(km + "com " + com);
+
+//        Float com = Float.valueOf(lblCom.getText());
+                if ((km > 0) & (com > 0)) {
+                    Float Rendimiento = km / com;
+                    Rendimiento mRendimiento = new Rendimiento();
+                    mRendimiento.setId_vehiculo(Integer.valueOf(id));
+                    mRendimiento.setRendimiento(Float.valueOf(Rendimiento));
+                    try {
+                        BD mBD = new BD();
+                        if (mBD.Conectar()) {
+                            mBD.regRendimiento(mRendimiento);
+                            JOptionPane.showMessageDialog(rootPane, "Rendimiento de vehículo:" + Rendimiento + " Kilometros por Litro");
+                            LblKm.setText("");
+                            lblCom.setText("");
+                            lblid.setText("");
+                        }
+
+                    } catch (Exception ex) {
+                        System.out.println(ex.toString());
+                        JOptionPane.showMessageDialog(rootPane, "ERROR");
+                        LblKm.setText("");
+                        lblCom.setText("");
+                        lblid.setText("");
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Rendimiento no se puede calcular");
+                    LblKm.setText("");
+                    lblCom.setText("");
+                    lblid.setText("");
+                }
+            }
+
+        }
     }//GEN-LAST:event_BtnRendimientoKeyPressed
 
     private void BtnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReporteActionPerformed

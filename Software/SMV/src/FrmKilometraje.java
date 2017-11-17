@@ -24,13 +24,13 @@ public class FrmKilometraje extends javax.swing.JDialog {
     double kmA = 0;
     double kmC = 0;
     float kmi = 0;
-    public FrmKilometraje(javax.swing.JDialog parent, boolean modal, int ID, String kmi) {
+    public FrmKilometraje(javax.swing.JDialog parent, boolean modal, int ID, float kmi) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
          txtid.setText(String.valueOf(ID));
          txtid.setVisible(false);
-         this.kmi = Float.parseFloat(kmi);
+         this.kmi = (kmi);
     }
 
     /**
@@ -560,7 +560,7 @@ public class FrmKilometraje extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 int dato=0;
-                String kmi = "";
+                float kmi = 0;
                 FrmKilometraje dialog = new FrmKilometraje(new javax.swing.JDialog(), true, dato, kmi );
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override

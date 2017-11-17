@@ -211,7 +211,7 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(RBA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblkma, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(RBC)
@@ -307,15 +307,15 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(RBC)
                             .addComponent(kmCarroceria, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(9, 9, 9)
+                        .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RBA, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(RBA)
                             .addComponent(lblkma, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblkms)
-                            .addComponent(RBS))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(RBS)
+                            .addComponent(lblkms))
+                        .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblkmn)
                             .addComponent(RBN))
@@ -392,21 +392,21 @@ public class FrmRegistroMantenimiento extends javax.swing.JDialog {
             c = Float.valueOf(kmCarroceria.getText());
             s = Float.valueOf(lblkms.getText());
             n = Float.valueOf(lblkmn.getText());
-            RBA.setVisible(false);
-            RBS.setVisible(false);
-            RBC.setVisible(false);
-            RBN.setVisible(false);
+            RBA.setEnabled(false);
+            RBS.setEnabled(false);
+            RBC.setEnabled(false);
+            RBN.setEnabled(false);
             if (a >= 5000) {
-                RBA.setVisible(true);
+                RBA.setEnabled(true);
             }
             if (s >= 10000) {
-                RBS.setVisible(true);
+                RBS.setEnabled(true);
             }
             if (n >= 10000) {
-                RBN.setVisible(true);
+                RBN.setEnabled(true);
             }
             if (c >= 50000) {
-                RBC.setVisible(true);
+                RBC.setEnabled(true);
 
             }
         } catch (SQLException ex) {
