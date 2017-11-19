@@ -454,14 +454,18 @@ public class FrmConsulta extends javax.swing.JDialog {
         if (fila >= 0) {
             int ID = (int) JtVehiculos.getValueAt(fila, 0);
             lblid.setText(String.valueOf(ID));
-            //   float Co = (float) JtVehiculos.getValueAt(fila, 6);
-            //    lblc.setText(String.valueOf(Co));
+           
             float km = (float) JtVehiculos.getValueAt(fila, 5);
             String id = lblid.getText();
             String kmi = lblkmi.getText();
             int dato = Integer.valueOf(id);
+            String estado = (String) JtVehiculos.getValueAt(fila, 9);
+            
+            if(estado.equals("inactivo")){
+                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+            }else{
             new FrmKilometraje(this, true, ID, km).setVisible(true);
-            //  lblid.setText("");
+            }
         }
 
 
@@ -490,7 +494,13 @@ public class FrmConsulta extends javax.swing.JDialog {
                 String id = lblid.getText();
                 String kmi = lblkmi.getText();
                 int dato = Integer.valueOf(id);
-                new FrmKilometraje(this, true, ID, km).setVisible(true);
+                String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
+                if(estado1.equals("inactivo")){
+                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+            }else{
+                    new FrmKilometraje(this, true, ID, km).setVisible(true);
+                }
+              
             }
             //  lblid.setText("");
         }
@@ -502,8 +512,12 @@ public class FrmConsulta extends javax.swing.JDialog {
             if (fila >= 0) {
                 int ID = (int) JtVehiculos.getValueAt(fila, 0);
                 float Combu = (float) JtVehiculos.getValueAt(fila, 6);
+                String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
+                if(estado1.equals("inactivo")){
+                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+            }else{
                 new FrmCombustible(this, true, ID, Combu).setVisible(true);
-                lblid.setText("");
+                }lblid.setText("");
             }
         }
     }//GEN-LAST:event_BtnCombustibleKeyPressed
@@ -513,8 +527,12 @@ public class FrmConsulta extends javax.swing.JDialog {
         if (fila >= 0) {
             int ID = (int) JtVehiculos.getValueAt(fila, 0);
             float Combu = (float) JtVehiculos.getValueAt(fila, 6);
+            String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
+                if(estado1.equals("inactivo")){
+                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+            }else{
             new FrmCombustible(this, true, ID, Combu).setVisible(true);
-            lblid.setText("");
+                } lblid.setText("");
         }
 
 // TODO add your handling code here:
@@ -686,7 +704,8 @@ public class FrmConsulta extends javax.swing.JDialog {
 
             JtVehiculos.setModel(modelo);
             JtVehiculos.getSelectionModel().setSelectionInterval(0, 0);
-
+           
+                
         }
     }
 
@@ -736,6 +755,11 @@ public class FrmConsulta extends javax.swing.JDialog {
                 llenarCmb_Marca();
                 llenarCmb_Modelo();
                 llenarCmb_Anio();
+                BtnKilometraje.setEnabled(true);
+                    BtnCombustible.setEnabled(true);
+                    BtnEliminar.setEnabled(true);
+                    BtnModificar.setEnabled(true);
+                    BtnRMantenimiento.setEnabled(true);
 
             } catch (Exception e) {
                 System.out.println(e.toString());
@@ -956,7 +980,27 @@ public class FrmConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_JtVehiculosKeyReleased
 
     private void BtnModificarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnModificarKeyPressed
-        // TODO add your handling code here:
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+            int fila = JtVehiculos.getSelectedRow();
+            if (fila >= 0) {
+                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                String Marc = JtVehiculos.getValueAt(fila, 1).toString();
+                String Mod = JtVehiculos.getValueAt(fila, 2).toString();
+                String A = JtVehiculos.getValueAt(fila, 3).toString();
+                String Desc = JtVehiculos.getValueAt(fila, 8).toString();
+                String estado = (String) JtVehiculos.getValueAt(fila, 9);
+            
+            if(estado.equals("inactivo")){
+                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+            }else{
+                new FrmModificar(this, true, ID, Marc, Mod, A, Desc).setVisible(true);
+            }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        } 
+         }
     }//GEN-LAST:event_BtnModificarKeyPressed
 
     private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
@@ -968,7 +1012,13 @@ public class FrmConsulta extends javax.swing.JDialog {
                 String Mod = JtVehiculos.getValueAt(fila, 2).toString();
                 String A = JtVehiculos.getValueAt(fila, 3).toString();
                 String Desc = JtVehiculos.getValueAt(fila, 8).toString();
+                String estado = (String) JtVehiculos.getValueAt(fila, 9);
+            
+            if(estado.equals("inactivo")){
+                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+            }else{
                 new FrmModificar(this, true, ID, Marc, Mod, A, Desc).setVisible(true);
+            }
             }
         } catch (Exception ex) {
             System.out.println(ex.toString());
@@ -1108,8 +1158,10 @@ public class FrmConsulta extends javax.swing.JDialog {
             int ID = (int) JtVehiculos.getValueAt(fila, 0);
             float km = (float) JtVehiculos.getValueAt(fila, 5);
             float Combu = (float) JtVehiculos.getValueAt(fila, 7);
+            String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
+               
 
-            if (ID != 0) {
+            if (estado1.equals("activo")) {
 
                 if ((km > 0) || (Combu > 0)) {
                     int n = JOptionPane.showConfirmDialog(rootPane, "Su vehículo pasara a estado inactivo ¿esta seguro?\n",
@@ -1154,7 +1206,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Seleccione un vehículo ");
+                JOptionPane.showMessageDialog(rootPane, "vehículo inactivo");
             }
         }
 
@@ -1163,50 +1215,31 @@ public class FrmConsulta extends javax.swing.JDialog {
 
     private void BtnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEliminarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+       
             int fila = JtVehiculos.getSelectedRow();
-            if (fila >= 0) {
-                int ID = (int) JtVehiculos.getValueAt(fila, 0);
-                float km = (float) JtVehiculos.getValueAt(fila, 5);
-                float Combu = (float) JtVehiculos.getValueAt(fila, 7);
+        if (fila >= 0) {
+            int ID = (int) JtVehiculos.getValueAt(fila, 0);
+            float km = (float) JtVehiculos.getValueAt(fila, 5);
+            float Combu = (float) JtVehiculos.getValueAt(fila, 7);
+            String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
+               
 
-                if (ID != 0) {
+            if (estado1.equals("activo")) {
 
-                    if ((km > 0) || (Combu > 0)) {
-                        int n = JOptionPane.showConfirmDialog(rootPane, "Su vehículo pasara a estado inactivo ¿esta seguro?\n",
-                                "Aviso", JOptionPane.YES_NO_OPTION);
-                        if (n == 0) {
-                            try {
-                                vehiculo mVehiculo = new vehiculo();
-                                mVehiculo.setIdentificador(ID);
-                                BD mBD = new BD();
-                                if (mBD.Conectar()) {
-                                    mBD.Vehiculo_inactivo(mVehiculo);
-                                    JOptionPane.showMessageDialog(rootPane, "Vehículo inactivo con Exito");
-
-                                } else {
-                                    JOptionPane.showMessageDialog(rootPane, "Error");
-                                }
-                            } catch (Exception ex) {
-                                System.out.println(ex.toString());
-                                JOptionPane.showMessageDialog(rootPane, "Error ");
-                            }
-                        }
-                    } else {
-
+                if ((km > 0) || (Combu > 0)) {
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Su vehículo pasara a estado inactivo ¿esta seguro?\n",
+                            "Aviso", JOptionPane.YES_NO_OPTION);
+                    if (n == 0) {
                         try {
-                            int c = JOptionPane.showConfirmDialog(rootPane, "Su vehículo sera eliminado por completo ¿esta seguro?\n",
-                                    "Aviso", JOptionPane.YES_NO_OPTION);
-                            if (c == 0) {
-                                vehiculo mVehiculo = new vehiculo();
-                                mVehiculo.setIdentificador(ID);
-                                BD mBD = new BD();
-                                if (mBD.Conectar()) {
-                                    mBD.EliminarVehiculo(mVehiculo);
-                                    JOptionPane.showMessageDialog(rootPane, "Vehículo Eliminado con Exito");
+                            vehiculo mVehiculo = new vehiculo();
+                            mVehiculo.setIdentificador(ID);
+                            BD mBD = new BD();
+                            if (mBD.Conectar()) {
+                                mBD.Vehiculo_inactivo(mVehiculo);
+                                JOptionPane.showMessageDialog(rootPane, "Vehículo inactivo con Exito");
 
-                                } else {
-                                    JOptionPane.showMessageDialog(rootPane, "Error");
-                                }
+                            } else {
+                                JOptionPane.showMessageDialog(rootPane, "Error");
                             }
                         } catch (Exception ex) {
                             System.out.println(ex.toString());
@@ -1214,9 +1247,31 @@ public class FrmConsulta extends javax.swing.JDialog {
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Seleccione un vehículo ");
+
+                    try {
+                        int c = JOptionPane.showConfirmDialog(rootPane, "Su vehículo sera eliminado por completo ¿esta seguro?\n",
+                                "Aviso", JOptionPane.YES_NO_OPTION);
+                        if (c == 0) {
+                            vehiculo mVehiculo = new vehiculo();
+                            mVehiculo.setIdentificador(ID);
+                            BD mBD = new BD();
+                            if (mBD.Conectar()) {
+                                mBD.EliminarVehiculo(mVehiculo);
+                                JOptionPane.showMessageDialog(rootPane, "Vehículo Eliminado con Exito");
+
+                            } else {
+                                JOptionPane.showMessageDialog(rootPane, "Error");
+                            }
+                        }
+                    } catch (Exception ex) {
+                        System.out.println(ex.toString());
+                        JOptionPane.showMessageDialog(rootPane, "Error ");
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "vehículo inactivo");
             }
+        }
         }
     }//GEN-LAST:event_BtnEliminarKeyPressed
 
@@ -1228,8 +1283,13 @@ public class FrmConsulta extends javax.swing.JDialog {
             float Combu = (float) JtVehiculos.getValueAt(fila, 7);
 
             float kmi = (float) JtVehiculos.getValueAt(fila, 4);
+            String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
+                if(estado1.equals("inactivo")){
+                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+            }else{
 
             new FrmRegistroMantenimiento(this, true, ID, km, kmi).setVisible(true);
+                }
         }
         lblid.setText("");
     }//GEN-LAST:event_BtnRMantenimientoActionPerformed
@@ -1243,8 +1303,13 @@ public class FrmConsulta extends javax.swing.JDialog {
                 float Combu = (float) JtVehiculos.getValueAt(fila, 7);
 
                 float kmi = (float) JtVehiculos.getValueAt(fila, 4);
+                String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
+                if(estado1.equals("inactivo")){
+                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+            }else{
 
                 new FrmRegistroMantenimiento(this, true, ID, km, kmi).setVisible(true);
+                }
             }
             lblid.setText("");
         }
@@ -1336,31 +1401,29 @@ public class FrmConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnRendimientoKeyPressed
 
     private void BtnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReporteActionPerformed
-        JFileChooser dir = new JFileChooser();
-        int opcion = dir.showSaveDialog(this);
-        File f = null;
-        if(opcion == JFileChooser.APPROVE_OPTION){
-            f = dir.getSelectedFile();
-            int fila = JtVehiculos.getSelectedRow();
-            if(fila >=0){
-                try {
-                    int id =(int) JtVehiculos.getValueAt(fila, 0);
-                    Reporte mReporte = new Reporte();
-                    mReporte.GenerarReporte(f.toString(), id);
-                    //JOptionPane.showMessageDialog(rootPane, "seleccionaste el vehiculo " + id + " y se guardara en: " + f.toString());
-                
-                
-                } catch (BadElementException ex) {
-                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Seleccione un Vehículo");
-            }
-        }
-        
+//        JFileChooser dir = new JFileChooser();
+//        int opcion = dir.showSaveDialog(this);
+//        File f = null;
+//        if(opcion == JFileChooser.APPROVE_OPTION){
+//            f = dir.getSelectedFile();
+//            int fila = JtVehiculos.getSelectedRow();
+//            if(fila >=0){
+//                try {
+//                    int id =(int) JtVehiculos.getValueAt(fila, 0);
+//                    Reporte mReporte = new Reporte();
+//                    mReporte.GenerarReporte(f.toString(),id);
+//                    //JOptionPane.showMessageDialog(rootPane, "seleccionaste el vehiculo " + id + " y se guardara en: " + f.toString());
+//                
+//                
+//                } catch (BadElementException ex) {
+//                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            
+//            }else{
+//                JOptionPane.showMessageDialog(rootPane, "Seleccione un Vehículo");
+//            }
+//        }
+//        
         
     }//GEN-LAST:event_BtnReporteActionPerformed
 
@@ -1417,11 +1480,11 @@ public class FrmConsulta extends javax.swing.JDialog {
                 llenarCmb_Marca();
                 llenarCmb_Modelo();
                 llenarCmb_Anio();
-//                BtnKilometraje.setEnabled(true);
-//                BtnCombustible.setEnabled(true);
-//                BtnEliminar.setEnabled(true);
-//                BtnModificar.setEnabled(true);
-//                BtnRMantenimiento.setEnabled(true);
+                    BtnKilometraje.setEnabled(true);
+                    BtnCombustible.setEnabled(true);
+                    BtnEliminar.setEnabled(true);
+                    BtnModificar.setEnabled(true);
+                    BtnRMantenimiento.setEnabled(true);
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
