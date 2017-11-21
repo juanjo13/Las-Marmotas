@@ -47,7 +47,6 @@ CREATE TABLE `automovil` (
 
 LOCK TABLES `automovil` WRITE;
 /*!40000 ALTER TABLE `automovil` DISABLE KEYS */;
-INSERT INTO `automovil` VALUES (1,'Ford','Ranger',1999,'Camioneta de color azul turqueza, con detalle de estrellado en el vidrio de la ventana del chofer.',2508.9,0,23.2,0,0,0,0,0,'0'),(3,'Audi','R8',2016,'Recien pintado el muy pinshe',4000,0,16,9,0,0,0,0,'0'),(4,'Ford','Mustang',1998,'asdocnpasvpa',7500,0,35.3,0,0,0,0,0,'0'),(5,'Dodge','Viper',2010,'sadacmapsdnapncd',45000,0,20.12,0,0,0,0,0,'0'),(6,'Ford','Expedition',1998,'N/A',5600,0,30,0,0,0,0,0,'1'),(7,'Dodge','Caravan',1999,'asdasefs',56000,0,32,0,0,0,0,0,'1'),(8,'Maseratti','Vanquish',2017,'Está perron',2000,0,49.1,0,0,0,0,0,'activo'),(9,'Mitsubishi','Lancer EVO',2016,'Irelo desgraciado',50000,0,23.98,0,0,0,0,0,'activo');
 /*!40000 ALTER TABLE `automovil` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -20,6 +20,7 @@ import java.io.IOException;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -90,6 +91,55 @@ public class Reporte {
             list.add(item3);
             documento.add(list);
             documento.add(salto);
+            
+            frase = new Phrase("Mantenimientos Realizados", FontFactory.getFont(FontFactory.TIMES_ITALIC, 14, Font.BOLD));
+            PdfPCell column2 = new PdfPCell(frase);
+            column2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            PdfPTable tabla2 = new PdfPTable(1);
+            tabla2.addCell(column2);
+            tabla2.setHorizontalAlignment(Chunk.ALIGN_LEFT);
+            documento.add(tabla2);
+            frase = new Phrase("Mantenimiento", FontFactory.getFont(FontFactory.TIMES_ITALIC,12, Font.BOLD));
+            PdfPTable tabla3 = new PdfPTable(2);
+            tabla3.addCell(frase);
+            frase = new Phrase("Fecha",FontFactory.getFont(FontFactory.TIMES_ITALIC,12,Font.BOLD));
+            tabla3.addCell(frase);
+            tabla3.setHorizontalAlignment(Chunk.ALIGN_LEFT);
+            documento.add(tabla3);
+            java.util.List<Mantenimiento> listamant = mbd.ConsultaMantimiento(id);
+            for(Mantenimiento mMantenimiento : listamant){
+                PdfPTable tabla4 = new PdfPTable(2);
+                String tipo = "";
+                if(mMantenimiento.getTipo().equals("a")){
+                    tipo = "Afinación";
+                }else if(mMantenimiento.getTipo().equals("n")){
+                    tipo = "Neumaticos";
+                }else if(mMantenimiento.getTipo().equals("c")){
+                    tipo = "Carrocería";
+                }else if(mMantenimiento.getTipo().equals("s")){
+                    tipo = "Suspensión y Frenos";
+                }
+                Phrase mantenimiento = new Phrase(tipo,FontFactory.getFont(FontFactory.TIMES_ITALIC,12));
+                tabla4.addCell(mantenimiento);
+                Phrase fecha = new Phrase(mMantenimiento.getFecha_consulta(),FontFactory.getFont(FontFactory.TIMES_ITALIC,12));
+                tabla4.addCell(fecha);
+                tabla4.setHorizontalAlignment(Chunk.ALIGN_LEFT);
+                documento.add(tabla4);
+            }
+            documento.add(salto);
+            
+            frase = new Phrase("Ultimo Rendimiento Calculado: " + mbd.ConsultaRendimiento(id), FontFactory.getFont(FontFactory.TIMES_ITALIC, 12, Font.BOLD));
+            PdfPTable tabla5 = new PdfPTable(1);
+            tabla5.addCell(frase);
+            tabla5.setHorizontalAlignment(Chunk.ALIGN_LEFT);
+            documento.add(tabla5);
+            
+            documento.add(salto);
+             frase = new Phrase("Estado: " + mbd.ConsultaEstado(id), FontFactory.getFont(FontFactory.TIMES_ITALIC, 12, Font.BOLD));
+             PdfPTable tabla6 = new PdfPTable(1);
+             tabla6.addCell(frase);
+             tabla6.setHorizontalAlignment(Chunk.ALIGN_LEFT);
+             documento.add(tabla6);
             documento.close();
             
         } catch (DocumentException ex) {

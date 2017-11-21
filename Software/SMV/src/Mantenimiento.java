@@ -19,6 +19,7 @@ public class Mantenimiento {
     private int Id_Vehiculo;
     private String Tipo;
     private LocalDate Fecha;
+    private String Fecha_consulta;
     private int Estado;
     private float Km_recorrido;
     private float Km_realizado;
@@ -31,6 +32,14 @@ public class Mantenimiento {
      Estado=0;
      Km_recorrido=0;
      Km_realizado=0;
+    }
+    
+    public String getFecha_consulta() {
+        return Fecha_consulta;
+    }
+
+    public void setFecha_consulta(String Fecha_consulta) {
+        this.Fecha_consulta = Fecha_consulta;
     }
     public int getId_Mantenimiento() {
         return Id_Mantenimiento;

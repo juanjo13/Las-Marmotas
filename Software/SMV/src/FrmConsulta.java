@@ -1176,6 +1176,8 @@ public class FrmConsulta extends javax.swing.JDialog {
                     Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
                 }
             
             }else{

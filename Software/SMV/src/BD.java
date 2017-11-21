@@ -624,6 +624,44 @@ public class BD {
         
         return mVehiculo;
     }
+    //Consulta de mantenimiento
+    public List<Mantenimiento> ConsultaMantimiento(int id)throws SQLException{
+        List<Mantenimiento> ListaMantenimientos = new ArrayList();
+        Mantenimiento mMantenimiento = new Mantenimiento();
+        String SQL = "select Tipo, Fecha from mantenimiento where automovil_idAutomovil=" + id + ";";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mMantenimiento = new Mantenimiento();
+            mMantenimiento.setTipo(consulta.getString("Tipo"));
+            mMantenimiento.setFecha_consulta(consulta.getString("Fecha"));
+            ListaMantenimientos.add(mMantenimiento);
+        }
+        
+        return ListaMantenimientos;
+    }
+    
+    public float ConsultaRendimiento(int id)throws SQLException{
+        Rendimiento mRendi = new Rendimiento();
+        String SQL = "select Rendimiento from rendimiento where automovil_idAutomovil=" + id + ";";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mRendi = new Rendimiento();
+            mRendi.setRendimiento(consulta.getFloat("Rendimiento"));
+        }
+        
+        return mRendi.getRendimiento();
+    }
+    public String ConsultaEstado(int id)throws SQLException{
+        vehiculo mVehiculo = new vehiculo();
+        String SQL = "select estado from automovil where idAutomovil=" + id + ";";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            mVehiculo = new vehiculo();
+            mVehiculo.setEstado(consulta.getString("estado"));
+        }
+        
+        return mVehiculo.getEstado();
+    }
     public ResultSet ConsultarMarcas() throws SQLException{
         String sql = "select distinct marca from automovil";
         ResultSet resultado = ejecutarConsulta(sql);
