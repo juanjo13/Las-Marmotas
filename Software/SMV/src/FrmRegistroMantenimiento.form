@@ -71,7 +71,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="RBA" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblkma" min="-2" pref="48" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -199,17 +199,17 @@
                           <Component id="RBC" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="kmCarroceria" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="RBA" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblkma" alignment="0" min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="RBA" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblkma" min="-2" pref="15" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblkms" min="-2" max="-2" attributes="0"/>
                           <Component id="RBS" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblkms" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblkmn" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="RBN" min="-2" max="-2" attributes="0"/>
