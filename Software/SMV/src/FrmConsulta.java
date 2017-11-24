@@ -1359,29 +1359,12 @@ public class FrmConsulta extends javax.swing.JDialog {
     private void BtnRendimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRendimientoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int fila = JtVehiculos.getSelectedRow();
-<<<<<<< HEAD
-            if(fila >=0){
-                try {
-                    int id =(int) JtVehiculos.getValueAt(fila, 0);
-                    Reporte mReporte = new Reporte();
-                    mReporte.GenerarReporte(f.toString(), id);
-                    //JOptionPane.showMessageDialog(rootPane, "seleccionaste el vehiculo " + id + " y se guardara en: " + f.toString());
-                
-                
-                } catch (BadElementException ex) {
-                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex) {
-                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-=======
             if (fila >= 0) {
                 int id = (int) JtVehiculos.getValueAt(fila, 0);
                 float km = (float) JtVehiculos.getValueAt(fila, 5);
                 float com = (float) JtVehiculos.getValueAt(fila, 7);
                 System.out.println(km + "com " + com);
 
-//        Float com = Float.valueOf(lblCom.getText());
                 if ((km > 0) & (com > 0)) {
                     Float Rendimiento = km / com;
                     Rendimiento mRendimiento = new Rendimiento();
@@ -1410,7 +1393,6 @@ public class FrmConsulta extends javax.swing.JDialog {
                     LblKm.setText("");
                     lblCom.setText("");
                     lblid.setText("");
->>>>>>> d5ac1d2b11bbe4d6ee70ad0265632c138da8476e
                 }
             }
 
@@ -1418,29 +1400,30 @@ public class FrmConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnRendimientoKeyPressed
 
     private void BtnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReporteActionPerformed
-//        JFileChooser dir = new JFileChooser();
-//        int opcion = dir.showSaveDialog(this);
-//        File f = null;
-//        if(opcion == JFileChooser.APPROVE_OPTION){
-//            f = dir.getSelectedFile();
-//            int fila = JtVehiculos.getSelectedRow();
-//            if(fila >=0){
-//                try {
-//                    int id =(int) JtVehiculos.getValueAt(fila, 0);
-//                    Reporte mReporte = new Reporte();
-//                    mReporte.GenerarReporte(f.toString(),id);
-//                    //JOptionPane.showMessageDialog(rootPane, "seleccionaste el vehiculo " + id + " y se guardara en: " + f.toString());
-//                
-//                
-//                } catch (BadElementException ex) {
-//                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            
-//            }else{
-//                JOptionPane.showMessageDialog(rootPane, "Seleccione un Vehículo");
-//            }
-//        }
-//        
+        JFileChooser dir = new JFileChooser();
+        int opcion = dir.showSaveDialog(this);
+        File f = null;
+        if(opcion == JFileChooser.APPROVE_OPTION){
+            f = dir.getSelectedFile();
+            int fila = JtVehiculos.getSelectedRow();
+            if(fila >=0){
+                try {
+                    int id =(int) JtVehiculos.getValueAt(fila, 0);
+                    Reporte mReporte = new Reporte();
+                    mReporte.GenerarReporte(f.toString(),id);
+
+                
+                } catch (BadElementException ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Seleccione un Vehículo");
+            }
+        }
+        
         
     }//GEN-LAST:event_BtnReporteActionPerformed
 

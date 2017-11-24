@@ -33,7 +33,6 @@ public class Mantenimiento {
      Km_recorrido=0;
      Km_realizado=0;
     }
-    
     public String getFecha_consulta() {
         return Fecha_consulta;
     }
@@ -41,6 +40,7 @@ public class Mantenimiento {
     public void setFecha_consulta(String Fecha_consulta) {
         this.Fecha_consulta = Fecha_consulta;
     }
+    
     public int getId_Mantenimiento() {
         return Id_Mantenimiento;
     }

@@ -604,6 +604,8 @@ public class BD {
         }
         return ListaVehiculos;
     }
+    
+    
     public vehiculo ConsultaReporte(int id)throws SQLException{
         vehiculo mVehiculo = new vehiculo();
         String SQL = "select * from automovil where idAutomovil=" + id + ";";
@@ -624,7 +626,8 @@ public class BD {
         
         return mVehiculo;
     }
-    //Consulta de mantenimiento
+    
+    //Consulta de mantenimientos realizados
     public List<Mantenimiento> ConsultaMantimiento(int id)throws SQLException{
         List<Mantenimiento> ListaMantenimientos = new ArrayList();
         Mantenimiento mMantenimiento = new Mantenimiento();
@@ -639,7 +642,7 @@ public class BD {
         
         return ListaMantenimientos;
     }
-    
+    //consultar ultimo rendimiento calculado
     public float ConsultaRendimiento(int id)throws SQLException{
         Rendimiento mRendi = new Rendimiento();
         String SQL = "select Rendimiento from rendimiento where automovil_idAutomovil=" + id + ";";
@@ -651,6 +654,8 @@ public class BD {
         
         return mRendi.getRendimiento();
     }
+    
+    //Consulta del estado del vehiculo
     public String ConsultaEstado(int id)throws SQLException{
         vehiculo mVehiculo = new vehiculo();
         String SQL = "select estado from automovil where idAutomovil=" + id + ";";
