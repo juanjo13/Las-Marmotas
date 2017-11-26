@@ -37,10 +37,8 @@ public class FrmConsulta extends javax.swing.JDialog {
         lblCom.setVisible(false);
         LblKm.setVisible(false);
         lblkmi.setVisible(false);
-        estado.setVisible(true);
-//           JtVehiculos.editCellAt(0, 0);
-//    JtVehiculos.setSurrendersFocusOnKeystroke(true);
-//    JtVehiculos.getEditorComponent().requestFocus();
+        estado.setVisible(false);
+
     }
     //   int ID=0;
 
