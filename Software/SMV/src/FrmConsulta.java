@@ -1,5 +1,6 @@
 
 import com.itextpdf.text.BadElementException;
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -1410,8 +1411,10 @@ public class FrmConsulta extends javax.swing.JDialog {
                 try {
                     int id =(int) JtVehiculos.getValueAt(fila, 0);
                     Reporte mReporte = new Reporte();
-                    mReporte.GenerarReporte(f.toString(),id);
-
+                    String ruta = mReporte.GenerarReporte(f.toString(),id);
+//                    JOptionPane.showMessageDialog(rootPane, "Abriendo el archivo ivo ivo....");
+//                    f = new File(ruta);
+//                    Desktop.getDesktop().open(f);
                 
                 } catch (BadElementException ex) {
                     Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
@@ -1423,12 +1426,34 @@ public class FrmConsulta extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Seleccione un Vehículo");
             }
         }
-        
-        
     }//GEN-LAST:event_BtnReporteActionPerformed
 
     private void BtnReporteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnReporteKeyPressed
-        // TODO add your handling code here:
+        JFileChooser dir = new JFileChooser();
+        int opcion = dir.showSaveDialog(this);
+        File f = null;
+        if(opcion == JFileChooser.APPROVE_OPTION){
+            f = dir.getSelectedFile();
+            int fila = JtVehiculos.getSelectedRow();
+            if(fila >=0){
+                try {
+                    int id =(int) JtVehiculos.getValueAt(fila, 0);
+                    Reporte mReporte = new Reporte();
+                    String ruta = mReporte.GenerarReporte(f.toString(),id);
+//                    JOptionPane.showMessageDialog(rootPane, "Abriendo el archivo ivo ivo....");
+//                    f = new File(ruta);
+//                    Desktop.getDesktop().open(f);
+                
+                } catch (BadElementException ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Seleccione un Vehículo");
+            }
+        }
     }//GEN-LAST:event_BtnReporteKeyPressed
 
     private void cmbTiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTiposMouseClicked

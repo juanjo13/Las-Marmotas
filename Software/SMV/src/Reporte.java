@@ -18,9 +18,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import com.itextpdf.text.pdf.PdfPTable;
+import java.awt.Desktop;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,7 +37,7 @@ import java.util.*;
  */
 public class Reporte {
     
-    public void GenerarReporte(String Ruta, int id) throws FileNotFoundException, BadElementException, IOException, Exception{
+    public String GenerarReporte(String Ruta, int id) throws FileNotFoundException, BadElementException, IOException, Exception{
         try {
             //Se crea el documento
             Document documento = new Document();
@@ -142,10 +145,14 @@ public class Reporte {
              documento.add(tabla6);
             documento.close();
             
+            //Mostrar el pdf
+            Ruta = Ruta + ".pdf";
+            
         } catch (DocumentException ex) {
             Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
                 System.out.println("Image IOException " +  ex);
          }
+        return Ruta;
     }
 }
