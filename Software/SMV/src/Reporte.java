@@ -18,12 +18,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import com.itextpdf.text.pdf.PdfPTable;
-import java.awt.Desktop;
-import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.*;
-import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -53,59 +50,65 @@ public class Reporte {
             //Se establece la imagen de encabezado
             Image imagen = null;
             //Imagen
-            imagen = Image.getInstance("src\\Imagenes\\REGISTRO BIEN.png");
+            imagen = Image.getInstance("src\\Imagenes\\REPORTE2.png");
+            
             //Tamaño de la imagen
-            imagen.scaleAbsolute(500, 70);
+            imagen.scaleAbsolute(450,70);
             //Alineación de donde empieza la imagen
-            imagen.setAlignment(Chunk.ALIGN_LEFT);
+            imagen.setAlignment(Chunk.ALIGN_CENTER);
             //Agregamos la imagen al documento
             documento.add(imagen);
             
+            
             //Parrafo que contiene el titulo del documento
-            Paragraph Titulo = new Paragraph("Reporte De Vehículo",FontFactory.getFont(
-                    FontFactory.TIMES_ROMAN, 18, Font.BOLD, BaseColor.BLACK));
+            Paragraph Titulo = new Paragraph("Datos de vehículo",FontFactory.getFont(
+                    FontFactory.TIMES_ROMAN, 14, Font.BOLD, BaseColor.RED));
             Titulo.setAlignment(Chunk.ALIGN_CENTER);
             documento.add(Titulo);
             //Salto de linea(Parrafo en blanco)
             Paragraph salto = new Paragraph(" ");
-            documento.add(salto);
+           
             
             //Encabezado de Datos del vehiculo 
             PdfPTable tabla = new PdfPTable(1);
-            Phrase frase = new Phrase("Datos Del Vehículo", FontFactory.getFont(FontFactory.TIMES_BOLDITALIC,14));
-            PdfPCell celda = new PdfPCell(frase);
-            tabla.addCell(celda);
-            tabla.setHorizontalAlignment(Chunk.ALIGN_LEFT);
-            documento.add(tabla);
-            
+            Phrase frase = new Phrase();
+//            
             //Datos del Vehiculo
             BD mbd = new BD();
             mbd.Conectar();
             vehiculo mVehiculo = mbd.ConsultaReporte(id);
             List list = new List(List.UNORDERED);
-            ListItem item = new ListItem("Marca: " + mVehiculo.getMarca(), FontFactory.getFont(FontFactory.TIMES_BOLDITALIC, 12));
-            ListItem item1 = new ListItem("Modelo: " + mVehiculo.getModelo(),FontFactory.getFont(FontFactory.TIMES_BOLDITALIC,12));
-            ListItem item2 = new ListItem("Año: " + mVehiculo.getAnio(),FontFactory.getFont(FontFactory.TIMES_BOLDITALIC,12));
-            ListItem item3 = new ListItem("Descripción: " + mVehiculo.getDesc_Extra(),FontFactory.getFont(FontFactory.TIMES_BOLDITALIC,12));
+            ListItem item = new ListItem("Marca: " + mVehiculo.getMarca(), FontFactory.getFont(FontFactory.TIMES_ROMAN, 12));
+            ListItem item1 = new ListItem("Modelo: " + mVehiculo.getModelo(),FontFactory.getFont(FontFactory.TIMES_ROMAN,12));
+            ListItem item2 = new ListItem("Año: " + mVehiculo.getAnio(),FontFactory.getFont(FontFactory.TIMES_ROMAN,12));
+            ListItem item3 = new ListItem("Descripción: " + mVehiculo.getDesc_Extra(),FontFactory.getFont(FontFactory.TIMES_ROMAN,12));
 
             list.add(item);
             list.add(item1);
             list.add(item2);
             list.add(item3);
             documento.add(list);
+            
+            frase = new Phrase("-Rendimiento calculado en kilometros por litro: " + mbd.ConsultaRendimiento(id), FontFactory.getFont(FontFactory.TIMES_ROMAN, 12 ));
+            PdfPTable tabla5 = new PdfPTable(1);
+            documento.add(frase);
+            
+         
+             frase = new Phrase(" \n-Estado de vehículo : " + mbd.ConsultaEstado(id), FontFactory.getFont(FontFactory.TIMES_ROMAN, 12));
+             PdfPTable tabla6 = new PdfPTable(1);
+             documento.add(frase);
             documento.add(salto);
             
-            frase = new Phrase("Mantenimientos Realizados", FontFactory.getFont(FontFactory.TIMES_ITALIC, 14, Font.BOLD));
-            PdfPCell column2 = new PdfPCell(frase);
-            column2.setHorizontalAlignment(Element.ALIGN_CENTER);
-            PdfPTable tabla2 = new PdfPTable(1);
-            tabla2.addCell(column2);
-            tabla2.setHorizontalAlignment(Chunk.ALIGN_LEFT);
-            documento.add(tabla2);
-            frase = new Phrase("Mantenimiento", FontFactory.getFont(FontFactory.TIMES_ITALIC,12, Font.BOLD));
+         Paragraph Titulo2 = new Paragraph("Mantenimientos realizados",FontFactory.getFont(
+                    FontFactory.TIMES_ROMAN, 14, Font.BOLD, BaseColor.RED));
+            Titulo2.setAlignment(Chunk.ALIGN_CENTER);
+            documento.add(Titulo2);
+            documento.add(salto);
+
+            frase = new Phrase("Mantenimiento", FontFactory.getFont(FontFactory.TIMES_ROMAN,14, Font.BOLD));
             PdfPTable tabla3 = new PdfPTable(2);
             tabla3.addCell(frase);
-            frase = new Phrase("Fecha",FontFactory.getFont(FontFactory.TIMES_ITALIC,12,Font.BOLD));
+            frase = new Phrase("Fecha",FontFactory.getFont(FontFactory.TIMES_ROMAN,14,Font.BOLD));
             tabla3.addCell(frase);
             tabla3.setHorizontalAlignment(Chunk.ALIGN_LEFT);
             documento.add(tabla3);
@@ -122,30 +125,16 @@ public class Reporte {
                 }else if(mMantenimiento.getTipo().equals("s")){
                     tipo = "Suspensión y Frenos";
                 }
-                Phrase mantenimiento = new Phrase(tipo,FontFactory.getFont(FontFactory.TIMES_ITALIC,12));
+                Phrase mantenimiento = new Phrase(tipo,FontFactory.getFont(FontFactory.TIMES_ROMAN,12));
                 tabla4.addCell(mantenimiento);
-                Phrase fecha = new Phrase(mMantenimiento.getFecha_consulta(),FontFactory.getFont(FontFactory.TIMES_ITALIC,12));
+                Phrase fecha = new Phrase(mMantenimiento.getFecha_consulta(),FontFactory.getFont(FontFactory.TIMES_ROMAN,12));
                 tabla4.addCell(fecha);
                 tabla4.setHorizontalAlignment(Chunk.ALIGN_LEFT);
                 documento.add(tabla4);
             }
             documento.add(salto);
-            
-            frase = new Phrase("Ultimo Rendimiento Calculado: " + mbd.ConsultaRendimiento(id), FontFactory.getFont(FontFactory.TIMES_ITALIC, 12, Font.BOLD));
-            PdfPTable tabla5 = new PdfPTable(1);
-            tabla5.addCell(frase);
-            tabla5.setHorizontalAlignment(Chunk.ALIGN_LEFT);
-            documento.add(tabla5);
-            
-            documento.add(salto);
-             frase = new Phrase("Estado: " + mbd.ConsultaEstado(id), FontFactory.getFont(FontFactory.TIMES_ITALIC, 12, Font.BOLD));
-             PdfPTable tabla6 = new PdfPTable(1);
-             tabla6.addCell(frase);
-             tabla6.setHorizontalAlignment(Chunk.ALIGN_LEFT);
-             documento.add(tabla6);
             documento.close();
-            
-            //Mostrar el pdf
+              //Mostrar el pdf
             Ruta = Ruta + ".pdf";
             
         } catch (DocumentException ex) {

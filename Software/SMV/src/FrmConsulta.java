@@ -1412,7 +1412,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                     int id =(int) JtVehiculos.getValueAt(fila, 0);
                     Reporte mReporte = new Reporte();
                     String ruta = mReporte.GenerarReporte(f.toString(),id);
-//                    JOptionPane.showMessageDialog(rootPane, "Abriendo el archivo ivo ivo....");
+//                    JOptionPane.showMessageDialog(rootPane, "Abriendo el archivo ");
 //                    f = new File(ruta);
 //                    Desktop.getDesktop().open(f);
                 
@@ -1440,7 +1440,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                     int id =(int) JtVehiculos.getValueAt(fila, 0);
                     Reporte mReporte = new Reporte();
                     String ruta = mReporte.GenerarReporte(f.toString(),id);
-//                    JOptionPane.showMessageDialog(rootPane, "Abriendo el archivo ivo ivo....");
+//                    JOptionPane.showMessageDialog(rootPane, "Abriendo el archivo....");
 //                    f = new File(ruta);
 //                    Desktop.getDesktop().open(f);
                 
