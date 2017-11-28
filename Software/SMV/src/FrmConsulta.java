@@ -450,6 +450,7 @@ public class FrmConsulta extends javax.swing.JDialog {
 
     private void BtnKilometrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKilometrajeActionPerformed
         int fila = JtVehiculos.getSelectedRow();
+        
         if (fila >= 0) {
             int ID = (int) JtVehiculos.getValueAt(fila, 0);
             lblid.setText(String.valueOf(ID));
@@ -709,7 +710,7 @@ public class FrmConsulta extends javax.swing.JDialog {
     }
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-
+        
         String categoria = (String) cmbTipos.getSelectedItem();
         if (categoria == "Inactivos") {
             try {
@@ -742,6 +743,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                 BtnEliminar.setEnabled(true);
                 BtnModificar.setEnabled(true);
                 BtnRMantenimiento.setEnabled(true);
+                JtVehiculos.changeSelection(5, 1, false, false);
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
