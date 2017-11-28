@@ -465,6 +465,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
             }else{
             new FrmKilometraje(this, true, ID, km).setVisible(true);
+            JtVehiculos.setRowSelectionInterval(20, 20);
             }
         }
 
@@ -710,7 +711,11 @@ public class FrmConsulta extends javax.swing.JDialog {
     }
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+<<<<<<< HEAD
         
+=======
+                JtVehiculos.changeSelection(20, 20, false, false);
+>>>>>>> 3b6edcbaae8efc9badaf70f1aa4b058f67262c63
         String categoria = (String) cmbTipos.getSelectedItem();
         if (categoria == "Inactivos") {
             try {
