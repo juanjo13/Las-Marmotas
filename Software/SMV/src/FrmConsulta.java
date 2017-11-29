@@ -1,6 +1,8 @@
 
 import com.itextpdf.text.BadElementException;
 import java.awt.Desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +42,6 @@ public class FrmConsulta extends javax.swing.JDialog {
         estado.setVisible(false);
 
     }
-    //   int ID=0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -489,8 +490,7 @@ public class FrmConsulta extends javax.swing.JDialog {
             if (fila >= 0) {
                 int ID = (int) JtVehiculos.getValueAt(fila, 0);
                 lblid.setText(String.valueOf(ID));
-                //   float Co = (float) JtVehiculos.getValueAt(fila, 6);
-                //    lblc.setText(String.valueOf(Co));
+
                 float km = (float) JtVehiculos.getValueAt(fila, 5);
                 String id = lblid.getText();
                 String kmi = lblkmi.getText();
@@ -500,10 +500,8 @@ public class FrmConsulta extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
             }else{
                     new FrmKilometraje(this, true, ID, km).setVisible(true);
-                }
-              
+                }              
             }
-            //  lblid.setText("");
         }
     }//GEN-LAST:event_BtnKilometrajeKeyPressed
 
@@ -597,20 +595,20 @@ public class FrmConsulta extends javax.swing.JDialog {
             CBMarca.removeAllItems();
             CBMarca.addItem("Marca");
             while (resultado.next()) {
-                CBMarca.addItem(resultado.getString(1));
-            }
+                CBMarca.addItem(resultado.getString(1));            
+            }        
         } catch (SQLException ex) {
             Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+            } catch (Exception ex) {
+                Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }            
 
     public void llenarCmb_Modelo_Activos() {
         try {
             BD mBD = new BD();
-            mBD.Conectar();
-            ResultSet resultado = mBD.ConsultarModelos_Activos();
+            mBD.Conectar();           
+            ResultSet resultado = mBD.ConsultarModelos_Activos();            
             CBModelo.removeAllItems();
             CBModelo.addItem("Modelo");
             while (resultado.next()) {
@@ -705,17 +703,13 @@ public class FrmConsulta extends javax.swing.JDialog {
 
             JtVehiculos.setModel(modelo);
             JtVehiculos.getSelectionModel().setSelectionInterval(0, 0);
-           
-                
         }
     }
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-<<<<<<< HEAD
         
-=======
-                JtVehiculos.changeSelection(20, 20, false, false);
->>>>>>> 3b6edcbaae8efc9badaf70f1aa4b058f67262c63
+        JtVehiculos.changeSelection(20, 20, false, false);
+
         String categoria = (String) cmbTipos.getSelectedItem();
         if (categoria == "Inactivos") {
             try {
@@ -775,11 +769,32 @@ public class FrmConsulta extends javax.swing.JDialog {
 
 
     private void CBMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMarcaActionPerformed
-        // TODO add your handling code here:
+        int c = CBModelo.getItemCount();
+        for(int i = 0; i >= c; i++){
+            CBModelo.removeItemAt(0);
+        }
+        
+        String cbmarca = String.valueOf(CBMarca.getSelectedItem());
+        if(!cbmarca.isEmpty() || cbmarca != null){
+            try {
+            BD mBD = new BD();
+            mBD.Conectar();           
+            ResultSet resultado = mBD.ConsultarModelos_ActivosD();            
+            CBModelo.removeAllItems();
+            CBModelo.addItem("Modelo");
+            while (resultado.next()) {
+                CBModelo.addItem(resultado.getString(1));
+            }
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
     }//GEN-LAST:event_CBMarcaActionPerformed
-
+        
     private void CBMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBMarcaItemStateChanged
-
+        
     }//GEN-LAST:event_CBMarcaItemStateChanged
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
