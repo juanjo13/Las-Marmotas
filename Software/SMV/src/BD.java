@@ -687,6 +687,19 @@ public class BD {
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
+    
+    public ResultSet ConsultarMarcas_Activosa(String anyo) throws SQLException{
+        String sql = "select distinct marca from automovil where anio = '" + anyo + "' and estado='activo' order by marca;" ;
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
+    public ResultSet ConsultarMarcas_ActivosM(String modelo) throws SQLException{
+        String sql = "select distinct marca from automovil where modelo = '" + modelo + "' and estado='activo' order by marca;" ;
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
     public ResultSet ConsultarModelos_Activos() throws SQLException{
 
         String sql = "select distinct modelo from automovil where estado='activo' order by modelo;";
@@ -694,9 +707,16 @@ public class BD {
         return resultado;
     }
     
-    public ResultSet ConsultarModelos_ActivosD() throws SQLException{
-               
-        String sql = "select distinct modelo from automovil where marca = ' ' and estado='activo' order by modelo;";
+    public ResultSet ConsultarModelos_ActivosM(String marca) throws SQLException{
+        
+        String sql = "select distinct modelo from automovil where marca = '"+ marca +"' and estado='activo' order by modelo;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
+    public ResultSet ConsultarModelos_ActivosMo(String anyo) throws SQLException{
+        
+        String sql = "select distinct modelo from automovil where anio = '"+ anyo +"' and estado='activo' order by modelo;";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
@@ -706,6 +726,19 @@ public class BD {
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
+    
+    public ResultSet ConsultarAnios_ActivosM(String modelo) throws SQLException{
+        String sql = "select distinct anio from automovil where modelo = '"+ modelo +"' and estado='activo' order by anio desc;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
+    public ResultSet ConsultarAnios_ActivosA(String marca) throws SQLException{
+        String sql = "select distinct anio from automovil where marca = '"+ marca +"' and estado='activo' order by anio desc;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
     public ResultSet ConsultarMarcas_Inactivos() throws SQLException{
         String sql = "select distinct marca from automovil where estado='inactivo' order by marca;";
         ResultSet resultado = ejecutarConsulta(sql);

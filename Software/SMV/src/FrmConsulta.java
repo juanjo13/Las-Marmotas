@@ -132,6 +132,11 @@ public class FrmConsulta extends javax.swing.JDialog {
         CBModelo.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
         CBModelo.setForeground(new java.awt.Color(102, 0, 0));
         CBModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
+        CBModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBModeloActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
         jLabel4.setText("MODELO");
@@ -139,6 +144,11 @@ public class FrmConsulta extends javax.swing.JDialog {
         CMBAnyo.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
         CMBAnyo.setForeground(new java.awt.Color(102, 0, 0));
         CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
+        CMBAnyo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CMBAnyoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
         jLabel5.setText("AÑO");
@@ -769,21 +779,21 @@ public class FrmConsulta extends javax.swing.JDialog {
 
 
     private void CBMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMarcaActionPerformed
-        int c = CBModelo.getItemCount();
-        for(int i = 0; i >= c; i++){
-            CBModelo.removeItemAt(0);
-        }
-        
+                
         String cbmarca = String.valueOf(CBMarca.getSelectedItem());
         if(!cbmarca.isEmpty() || cbmarca != null){
             try {
             BD mBD = new BD();
             mBD.Conectar();           
-            ResultSet resultado = mBD.ConsultarModelos_ActivosD();            
+            ResultSet resultadoM = mBD.ConsultarModelos_ActivosM(cbmarca);
+            ResultSet resultadoA = mBD.ConsultarAnios_ActivosA(cbmarca);
             CBModelo.removeAllItems();
+            CMBAnyo.removeAllItems();
             CBModelo.addItem("Modelo");
-            while (resultado.next()) {
-                CBModelo.addItem(resultado.getString(1));
+            CMBAnyo.addItem("Año");
+            while (resultadoM.next() && resultadoA.next()) {
+                CBModelo.addItem(resultadoM.getString(1));
+                CMBAnyo.addItem(resultadoA.getString(1));
             }
             } catch (SQLException ex) {
                 Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
@@ -1536,6 +1546,54 @@ public class FrmConsulta extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_cmbTiposItemStateChanged
+
+    private void CBModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBModeloActionPerformed
+        String cbmodelo = String.valueOf(CBModelo.getSelectedItem());
+        if(!cbmodelo.isEmpty() || cbmodelo != null){
+            try {
+            BD mBD = new BD();
+            mBD.Conectar();           
+            ResultSet resultadoA = mBD.ConsultarAnios_ActivosM(cbmodelo);
+            ResultSet resultadoma = mBD.ConsultarMarcas_ActivosM(cbmodelo);              
+            CBMarca.removeAllItems();
+            CMBAnyo.removeAllItems();            
+            CBMarca.addItem("Marca");
+            CMBAnyo.addItem("Año");
+            while (resultadoma.next() && resultadoA.next()) {
+                CBMarca.addItem(resultadoma.getString(1));
+                CMBAnyo.addItem(resultadoA.getString(1));                
+            }
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                }        
+        }
+    }//GEN-LAST:event_CBModeloActionPerformed
+
+    private void CMBAnyoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CMBAnyoActionPerformed
+        String cbanio = String.valueOf(CMBAnyo.getSelectedItem());
+        if(!cbanio.isEmpty() || cbanio != null){
+            try {
+            BD mBD = new BD();
+            mBD.Conectar();           
+            ResultSet resultadoMa = mBD.ConsultarMarcas_ActivosM(cbanio);
+            ResultSet resultadomo = mBD.ConsultarModelos_ActivosMo(cbanio);
+            CBMarca.removeAllItems();
+            CBModelo.removeAllItems();            
+            CBMarca.addItem("Marca");
+            CBModelo.addItem("Modelo");
+            while (resultadoMa.next() && resultadomo.next()) {
+                CBMarca.addItem(resultadoMa.getString(1));
+                CMBAnyo.addItem(resultadomo.getString(1));                
+            }
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                }        
+        }
+    }//GEN-LAST:event_CMBAnyoActionPerformed
 
     /**
      * @param args the command line arguments
