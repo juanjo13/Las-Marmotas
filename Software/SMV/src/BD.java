@@ -80,7 +80,32 @@ public class BD {
     }
     public List<vehiculo> ConsultaGeneral()throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil";
+        String SQL = "select * from automovil order by marca, modelo, anio desc;";
+        ResultSet consulta = ejecutarConsulta(SQL);
+        while(consulta.next()){
+            vehiculo mVehiculo = new vehiculo();
+            mVehiculo.setIdentificador(consulta.getInt("idAutomovil"));
+            mVehiculo.setMarca(consulta.getString("Marca"));
+            mVehiculo.setModelo(consulta.getString("Modelo"));
+            mVehiculo.setAnio(consulta.getInt("Anio"));
+            mVehiculo.setDesc_Extra(consulta.getString("Desc_Extra"));
+            mVehiculo.setKm_inicial(consulta.getFloat("Kilometraje_Actual"));
+            mVehiculo.setKm_recorr(consulta.getFloat("Kilometraje_Recorrido"));
+            mVehiculo.setComb_actual(consulta.getFloat("Combustible_Actual"));
+            mVehiculo.setComb_gastado(consulta.getFloat("Combustible_Gastado"));
+            mVehiculo.setKm_carroceria(consulta.getFloat("km_carroceria"));
+            mVehiculo.setKm_neumaticos(consulta.getFloat("km_neumaticos"));
+            mVehiculo.setKm_frenos(consulta.getFloat("km_frenos"));
+            mVehiculo.setKm_afinacion(consulta.getFloat("km_afinacion"));
+            mVehiculo.setEstado(consulta.getString("estado"));
+            ListaVehiculos.add(mVehiculo);
+        }
+        return ListaVehiculos;
+    }
+    //consulta de vehiculo por id
+    public List<vehiculo> ConsultaAutomovil(int id)throws SQLException{
+        List<vehiculo> ListaVehiculos = new ArrayList();
+        String SQL = "select * from automovil where idAutomovil ="+id+";";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             vehiculo mVehiculo = new vehiculo();
@@ -104,7 +129,7 @@ public class BD {
     }
     public List<vehiculo> ConsultaInactivos()throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where estado='inactivo';";
+        String SQL = "select * from automovil where estado='inactivo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             vehiculo mVehiculo = new vehiculo();
@@ -128,7 +153,7 @@ public class BD {
     }
     public List<vehiculo> ConsultaActivos()throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where estado='activo';";
+        String SQL = "select * from automovil where estado='activo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             vehiculo mVehiculo = new vehiculo();
@@ -156,7 +181,7 @@ public class BD {
     //Buscar por Marca
     public List<vehiculo> ConsultaPorMarca(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "';";
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -178,7 +203,7 @@ public class BD {
     //Buscar por Marca en vehiculos activos
     public List<vehiculo> ConsultaPorMarca_Activos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and estado = 'activo';";
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and estado = 'activo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -200,7 +225,7 @@ public class BD {
     //Buscar por marca en vehiculos inactivos
     public List<vehiculo> ConsultaPorMarca_Inactivos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and estado = 'inactivo';";
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and estado = 'inactivo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -221,7 +246,7 @@ public class BD {
     //Buscar por Modelo
     public List<vehiculo> ConsultaPorModelo(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "';";
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -243,7 +268,7 @@ public class BD {
     //Buscar por Modelo en vehiculos activos
     public List<vehiculo> ConsultaPorModelo_Activos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and estado = 'activo';";
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and estado = 'activo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -264,7 +289,7 @@ public class BD {
     //Buscar por Modelo en vehiculos inactivos
     public List<vehiculo> ConsultaPorModelo_Inactivos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and estado='inactivo';";
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and estado='inactivo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -286,7 +311,7 @@ public class BD {
     //Buscar por Año
     public List<vehiculo> ConsultaPorAnio(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "';";
+        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -307,7 +332,7 @@ public class BD {
     //Buscar por Año en vehiculos activos
     public List<vehiculo> ConsultaPorAnio_Activos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and estado='activo';";
+        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and estado='activo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -328,7 +353,7 @@ public class BD {
     //Buscar por Año en vehiculos inactivos
     public List<vehiculo> ConsultaPorAnio_Inactivos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and estado = 'inactivo';";
+        String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and estado = 'inactivo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -351,7 +376,7 @@ public class BD {
     public List<vehiculo> ConsultaMixta(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
         String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and marca='" + mVehiculo.getMarca()+
-                "' and modelo='" + mVehiculo.getModelo() +"';";
+                "' and modelo='" + mVehiculo.getModelo() +"' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -373,7 +398,7 @@ public class BD {
     public List<vehiculo> ConsultaMixta_Activos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
         String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and marca='" + mVehiculo.getMarca()+
-                "' and modelo='" + mVehiculo.getModelo() +"' and estado = 'activo';";
+                "' and modelo='" + mVehiculo.getModelo() +"' and estado = 'activo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -395,7 +420,7 @@ public class BD {
     public List<vehiculo> ConsultaMixta_Inactivos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
         String SQL = "select * from automovil where anio='" + mVehiculo.getAnio() + "' and marca='" + mVehiculo.getMarca()+
-                "' and modelo='" + mVehiculo.getModelo() +"' and estado = 'inactivo';";
+                "' and modelo='" + mVehiculo.getModelo() +"' and estado = 'inactivo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -416,7 +441,7 @@ public class BD {
     //Buscar por marca modelo 
     public List<vehiculo> ConsultaMarcaModelo(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and modelo='" + mVehiculo.getModelo()+"';";
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and modelo='" + mVehiculo.getModelo()+"' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -437,7 +462,7 @@ public class BD {
     //Buscar por marca modelo en vehiculos activos 
     public List<vehiculo> ConsultaMarcaModelo_Activos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and modelo='" + mVehiculo.getModelo()+"' and estado = 'activo';";
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and modelo='" + mVehiculo.getModelo()+"' and estado = 'activo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -458,7 +483,7 @@ public class BD {
     //Buscar por marca modelo en vehiculos inactivos
     public List<vehiculo> ConsultaMarcaModelo_Inactivos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and modelo='" + mVehiculo.getModelo()+"' and estado = 'inactivo';";
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and modelo='" + mVehiculo.getModelo()+"' and estado = 'inactivo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -480,7 +505,7 @@ public class BD {
     //Buscar por marca año
     public List<vehiculo> ConsultaMarcaAnio(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and anio='" + mVehiculo.getAnio()+"';";
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and anio='" + mVehiculo.getAnio()+"' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -501,7 +526,7 @@ public class BD {
     //Buscar por marca año en vehiculos activos
     public List<vehiculo> ConsultaMarcaAnio_Activos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'activo';";
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'activo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -522,7 +547,7 @@ public class BD {
     //Buscar por marca año en vehiculos inactivos
     public List<vehiculo> ConsultaMarcaAnio_Inactivos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'inactivo';";
+        String SQL = "select * from automovil where marca='" + mVehiculo.getMarca() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'inactivo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -544,7 +569,7 @@ public class BD {
     //Buscar por modelo año
     public List<vehiculo> ConsultaModeloAnio(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and anio='" + mVehiculo.getAnio()+"';";
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and anio='" + mVehiculo.getAnio()+"' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -565,7 +590,7 @@ public class BD {
     //Buscar por modelo año en vehiculos activos
     public List<vehiculo> ConsultaModeloAnio_Activos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'activo';";
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'activo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -586,7 +611,7 @@ public class BD {
     //Buscar por modelo año en vehiculos inactivos
     public List<vehiculo> ConsultaModeloAnio_Inactivos(vehiculo mVehiculo)throws SQLException{
         List<vehiculo> ListaVehiculos = new ArrayList();
-        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'inactivo';";
+        String SQL = "select * from automovil where modelo='" + mVehiculo.getModelo() + "' and anio='" + mVehiculo.getAnio()+"' and estado = 'inactivo' order by marca, modelo, anio desc;";
         ResultSet consulta = ejecutarConsulta(SQL);
         while(consulta.next()){
             mVehiculo = new vehiculo();
@@ -668,47 +693,139 @@ public class BD {
         return mVehiculo.getEstado();
     }
     public ResultSet ConsultarMarcas() throws SQLException{
-        String sql = "select distinct marca from automovil";
+        String sql = "select distinct marca from automovil order by marca";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
     public ResultSet ConsultarModelos() throws SQLException{
-        String sql = "select distinct modelo from automovil";
+        String sql = "select distinct modelo from automovil order by modelo";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
     public ResultSet ConsultarAnios() throws SQLException{
-        String sql = "select distinct anio from automovil";
+        String sql = "select distinct anio from automovil order by anio desc;";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
     public ResultSet ConsultarMarcas_Activos() throws SQLException{
-        String sql = "select distinct marca from automovil where estado='activo';";
+        String sql = "select distinct marca from automovil where estado='activo' order by marca;" ;
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
+    
+    public ResultSet ConsultarMarcas_Activosa(String anyo) throws SQLException{
+        String sql = "select distinct marca from automovil where anio = '" + anyo + "' and estado='activo' order by marca;" ;
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
+    public ResultSet ConsultarMarcas_ActivosM(String modelo) throws SQLException{
+        String sql = "select distinct marca from automovil where modelo = '" + modelo + "' and estado='activo' order by marca;" ;
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
     public ResultSet ConsultarModelos_Activos() throws SQLException{
-        String sql = "select distinct modelo from automovil where estado='activo';";
+
+        String sql = "select distinct modelo from automovil where estado='activo' order by modelo;";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
+    
+    public ResultSet ConsultarModelos_ActivosM(String marca) throws SQLException{
+        
+        String sql = "select distinct modelo from automovil where marca = '"+ marca +"' and estado='activo' order by modelo;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    //consultar modelos de vehiculos inactivos coincidentes con la marca
+    public ResultSet ConsultarModelos_InactivosM(String marca) throws SQLException{
+        
+        String sql = "select distinct modelo from automovil where marca = '"+ marca +"' and estado='inactivo' order by modelo;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    //consultar modelos de vehiculos  coincidentes con la marca
+    public ResultSet ConsultarModelos_M(String marca) throws SQLException{
+        
+        String sql = "select distinct modelo from automovil where marca = '"+ marca +"' order by modelo;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    //Consultar modelos que coinciden con la marca y año de automoviles activos
+    public ResultSet ConsultarModelos_ActivosMA(String marca, String anyo) throws SQLException{
+        
+        String sql = "select distinct modelo from automovil where marca = '"+ marca +"' and anio = '"+ anyo +"'  and estado='activo' order by modelo;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    public ResultSet ConsultarModelos_ActivosMo(String anyo) throws SQLException{
+        
+        String sql = "select distinct modelo from automovil where anio = '"+ anyo +"' and estado='activo' order by modelo;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
     public ResultSet ConsultarAnios_Activos() throws SQLException{
-        String sql = "select distinct anio from automovil where estado='activo';";
+        String sql = "select distinct anio from automovil where estado='activo' order by anio desc;";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
+    
+    public ResultSet ConsultarAnios_ActivosM(String modelo) throws SQLException{
+        String sql = "select distinct anio from automovil where modelo = '"+ modelo +"' and estado='activo' order by anio desc;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    //consultar años que coinciden con la marca y modelo de automoviles activos
+    public ResultSet ConsultarAnios_ActivosMM(String modelo, String marca) throws SQLException{
+        String sql = "select distinct anio from automovil where modelo = '"+ modelo +"' and marca = '"+ marca +"' and estado='activo' order by anio desc;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    //consultar años que coinciden con la marca y modelo de automoviles inactivos
+    public ResultSet ConsultarAnios_InactivosMM(String modelo, String marca) throws SQLException{
+        String sql = "select distinct anio from automovil where modelo = '"+ modelo +"' and marca = '"+ marca +"' and estado='inactivo' order by anio desc;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    //consultar años que coinciden con la marca y modelo de automoviles 
+    public ResultSet ConsultarAnios_MM(String modelo, String marca) throws SQLException{
+        String sql = "select distinct anio from automovil where modelo = '"+ modelo +"' and marca = '"+ marca +"' order by anio desc;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
+    public ResultSet ConsultarAnios_ActivosA(String marca) throws SQLException{
+        String sql = "select distinct anio from automovil where marca = '"+ marca +"' and estado='activo' order by anio desc;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    //Consultar años de vehiculos inactivos que coinciden con la marca
+    public ResultSet ConsultarAnios_InactivosA(String marca) throws SQLException{
+        String sql = "select distinct anio from automovil where marca = '"+ marca +"' and estado='inactivo' order by anio desc;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    //Consultar años de vehiculos  que coinciden con la marca
+    public ResultSet ConsultarAnios_A(String marca) throws SQLException{
+        String sql = "select distinct anio from automovil where marca = '"+ marca +"' order by anio desc;";
+        ResultSet resultado = ejecutarConsulta(sql);
+        return resultado;
+    }
+    
     public ResultSet ConsultarMarcas_Inactivos() throws SQLException{
-        String sql = "select distinct marca from automovil where estado='inactivo';";
+        String sql = "select distinct marca from automovil where estado='inactivo' order by marca;";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
     public ResultSet ConsultarModelos_Inactivos() throws SQLException{
-        String sql = "select distinct modelo from automovil where estado='inactivo';";
+        String sql = "select distinct modelo from automovil where estado='inactivo' order by modelo;";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }
     public ResultSet ConsultarAnios_Inactivos() throws SQLException{
-        String sql = "select distinct anio from automovil where estado='inactivo';";
+        String sql = "select distinct anio from automovil where estado='inactivo' order by anio desc;";
         ResultSet resultado = ejecutarConsulta(sql);
         return resultado;
     }

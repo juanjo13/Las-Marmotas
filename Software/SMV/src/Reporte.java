@@ -45,24 +45,17 @@ public class Reporte {
 
             //Abrimos el documento para añadir sus componentes
             documento.open();
-             Paragraph salto = new Paragraph(" ");
-            //Parrafo que contiene el titulo del documento
-            Paragraph Titulo= new Paragraph("REPORTE DE VEHÍCULO ", FontFactory.getFont(
-                    FontFactory.TIMES_ROMAN, 16, Font.BOLD, BaseColor.RED));
-            Titulo.setAlignment(Chunk.ALIGN_CENTER);
-            documento.add(Titulo);
-                documento.add(salto);
-            Paragraph Titulo1 = new Paragraph("Datos de vehículo", FontFactory.getFont(
-                    FontFactory.TIMES_ROMAN, 14, Font.BOLD, BaseColor.RED));
+            Paragraph Titulo1 = new Paragraph("REPORTE DE VEHÍCULO", FontFactory.getFont(
+                    FontFactory.TIMES_BOLDITALIC, 18, BaseColor.BLACK));
             Titulo1.setAlignment(Chunk.ALIGN_CENTER);
             documento.add(Titulo1);
+            //Parrafo que contiene el titulo del documento
+            Paragraph Titulo = new Paragraph("Datos de vehículo", FontFactory.getFont(
+                    FontFactory.TIMES_ROMAN, 14, Font.BOLD, BaseColor.RED));
+            Titulo.setAlignment(Chunk.ALIGN_CENTER);
+            documento.add(Titulo);
             //Salto de linea(Parrafo en blanco)
-           
-            documento.add(salto);
-
-            
-            //Salto de linea(Parrafo en blanco)
-           
+            Paragraph salto = new Paragraph(" ");
 
             //Encabezado de Datos del vehiculo 
             PdfPTable tabla = new PdfPTable(1);
