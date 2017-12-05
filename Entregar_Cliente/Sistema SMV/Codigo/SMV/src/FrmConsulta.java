@@ -1,6 +1,8 @@
 
 import com.itextpdf.text.BadElementException;
 import java.awt.Desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -28,19 +30,31 @@ public class FrmConsulta extends javax.swing.JDialog {
     /**
      * Creates new form FrmConsulta
      */
+    int fila;
+    int cont;
+    
     public FrmConsulta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
-        setLocationRelativeTo(null);
-        lblid.setVisible(false);
-        lblc.setVisible(false);
-        lblCom.setVisible(false);
-        LblKm.setVisible(false);
-        lblkmi.setVisible(false);
-        estado.setVisible(false);
-
+        try {
+            initComponents();
+            setLocationRelativeTo(null);
+            lblid.setVisible(false);
+            lblc.setVisible(false);
+            lblCom.setVisible(false);
+            LblKm.setVisible(false);
+            lblkmi.setVisible(false);
+            estado.setVisible(false);
+            fila = 0;
+            cont = 0;
+            BD mBD = new BD();
+            mBD.Conectar();
+            List<vehiculo> ListaVehiculos = mBD.ConsultaActivos();
+            LLenarTabla(ListaVehiculos);
+            llenarCmb_Marca_Activos();
+        } catch (Exception ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    //   int ID=0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,11 +67,11 @@ public class FrmConsulta extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         JtVehiculos = new javax.swing.JTable();
-        CBMarca = new javax.swing.JComboBox<>();
+        CBMarca = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
-        CBModelo = new javax.swing.JComboBox<>();
+        CBModelo = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
-        CMBAnyo = new javax.swing.JComboBox<>();
+        CMBAnyo = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
         BtnBuscar = new javax.swing.JButton();
         BtnModificar = new javax.swing.JButton();
@@ -74,7 +88,7 @@ public class FrmConsulta extends javax.swing.JDialog {
         lblkmi = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         BtnReporte = new javax.swing.JButton();
-        cmbTipos = new javax.swing.JComboBox<>();
+        cmbTipos = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         estado = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -113,7 +127,7 @@ public class FrmConsulta extends javax.swing.JDialog {
 
         CBMarca.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
         CBMarca.setForeground(new java.awt.Color(102, 0, 0));
-        CBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca" }));
+        CBMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marca" }));
         CBMarca.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 CBMarcaItemStateChanged(evt);
@@ -130,14 +144,34 @@ public class FrmConsulta extends javax.swing.JDialog {
 
         CBModelo.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
         CBModelo.setForeground(new java.awt.Color(102, 0, 0));
-        CBModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
+        CBModelo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modelo" }));
+        CBModelo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBModeloItemStateChanged(evt);
+            }
+        });
+        CBModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBModeloActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
         jLabel4.setText("MODELO");
 
         CMBAnyo.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
         CMBAnyo.setForeground(new java.awt.Color(102, 0, 0));
-        CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
+        CMBAnyo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
+        CMBAnyo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CMBAnyoItemStateChanged(evt);
+            }
+        });
+        CMBAnyo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CMBAnyoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 12)); // NOI18N
         jLabel5.setText("AÑO");
@@ -293,7 +327,7 @@ public class FrmConsulta extends javax.swing.JDialog {
 
         cmbTipos.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         cmbTipos.setForeground(new java.awt.Color(102, 0, 0));
-        cmbTipos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activos", "Inactivos", "Todos" }));
+        cmbTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activos", "Inactivos", "Todos" }));
         cmbTipos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbTiposItemStateChanged(evt);
@@ -302,6 +336,11 @@ public class FrmConsulta extends javax.swing.JDialog {
         cmbTipos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbTiposMouseClicked(evt);
+            }
+        });
+        cmbTipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTiposActionPerformed(evt);
             }
         });
 
@@ -326,15 +365,14 @@ public class FrmConsulta extends javax.swing.JDialog {
                         .addComponent(jLabel1)
                         .addGap(76, 76, 76)
                         .addComponent(jLabel3)))
-                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
+                        .addGap(175, 175, 175)
                         .addComponent(CMBAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
+                        .addGap(190, 190, 190)
                         .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 454, Short.MAX_VALUE)
                 .addComponent(BtnKilometraje)
                 .addGap(18, 18, 18)
                 .addComponent(BtnCombustible)
@@ -405,7 +443,7 @@ public class FrmConsulta extends javax.swing.JDialog {
                         .addGap(55, 55, 55))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(cmbTipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LblKm)
                             .addComponent(lblCom)
@@ -449,22 +487,30 @@ public class FrmConsulta extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKilometrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKilometrajeActionPerformed
-        int fila = JtVehiculos.getSelectedRow();
+        fila = JtVehiculos.getSelectedRow();
+        
         if (fila >= 0) {
-            int ID = (int) JtVehiculos.getValueAt(fila, 0);
-            lblid.setText(String.valueOf(ID));
-           
-            float km = (float) JtVehiculos.getValueAt(fila, 5);
-            String id = lblid.getText();
-            String kmi = lblkmi.getText();
-            int dato = Integer.valueOf(id);
-            String estado = (String) JtVehiculos.getValueAt(fila, 9);
-            
-            if(estado.equals("inactivo")){
-                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
-            }else{
-            new FrmKilometraje(this, true, ID, km).setVisible(true);
-            JtVehiculos.setRowSelectionInterval(20, 20);
+            try {
+                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                lblid.setText(String.valueOf(ID));
+                
+                float km = (float) JtVehiculos.getValueAt(fila, 5);
+                String id = lblid.getText();
+                String kmi = lblkmi.getText();
+                int dato = Integer.valueOf(id);
+                String estado = (String) JtVehiculos.getValueAt(fila, 9);
+                
+                if(estado.equals("inactivo")){
+                    JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+                }else{
+                    new FrmKilometraje(this, true, ID, km).setVisible(true);
+                }
+                BD mbd = new BD();
+                mbd.Conectar();
+                List<vehiculo> lista = mbd.ConsultaAutomovil(ID);
+                LLenarTabla(lista);
+            } catch (Exception ex) {
+                Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -486,29 +532,34 @@ public class FrmConsulta extends javax.swing.JDialog {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int fila = JtVehiculos.getSelectedRow();
             if (fila >= 0) {
-                int ID = (int) JtVehiculos.getValueAt(fila, 0);
-                lblid.setText(String.valueOf(ID));
-                //   float Co = (float) JtVehiculos.getValueAt(fila, 6);
-                //    lblc.setText(String.valueOf(Co));
-                float km = (float) JtVehiculos.getValueAt(fila, 5);
-                String id = lblid.getText();
-                String kmi = lblkmi.getText();
-                int dato = Integer.valueOf(id);
-                String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
-                if(estado1.equals("inactivo")){
-                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
-            }else{
-                    new FrmKilometraje(this, true, ID, km).setVisible(true);
+                try {
+                    int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                    lblid.setText(String.valueOf(ID));
+                    
+                    float km = (float) JtVehiculos.getValueAt(fila, 5);
+                    String id = lblid.getText();
+                    String kmi = lblkmi.getText();
+                    int dato = Integer.valueOf(id);
+                    String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
+                    if(estado1.equals("inactivo")){
+                        JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+                    }else{
+                        new FrmKilometraje(this, true, ID, km).setVisible(true);
+                    }
+                    BD mbd = new BD();
+                    mbd.Conectar();
+                    List<vehiculo> lista = mbd.ConsultaAutomovil(ID);
+                    LLenarTabla(lista);
+                } catch (Exception ex) {
+                    Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
                 }
-              
             }
-            //  lblid.setText("");
         }
     }//GEN-LAST:event_BtnKilometrajeKeyPressed
 
     private void BtnCombustibleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCombustibleKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            int fila = JtVehiculos.getSelectedRow();
+            fila = JtVehiculos.getSelectedRow();
             if (fila >= 0) {
                 int ID = (int) JtVehiculos.getValueAt(fila, 0);
                 float Combu = (float) JtVehiculos.getValueAt(fila, 6);
@@ -523,16 +574,25 @@ public class FrmConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCombustibleKeyPressed
 
     private void BtnCombustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCombustibleActionPerformed
-        int fila = JtVehiculos.getSelectedRow();
+        fila = JtVehiculos.getSelectedRow();
         if (fila >= 0) {
-            int ID = (int) JtVehiculos.getValueAt(fila, 0);
-            float Combu = (float) JtVehiculos.getValueAt(fila, 6);
-            String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
+            try {
+                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                float Combu = (float) JtVehiculos.getValueAt(fila, 6);
+                String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
                 if(estado1.equals("inactivo")){
-                JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
-            }else{
-            new FrmCombustible(this, true, ID, Combu).setVisible(true);
-                } lblid.setText("");
+                    JOptionPane.showMessageDialog(rootPane," Veículo inactivo");
+                }else{
+                    new FrmCombustible(this, true, ID, Combu).setVisible(true);
+                } 
+                lblid.setText("");
+                BD mbd = new BD();
+                mbd.Conectar();
+                List<vehiculo> lista = mbd.ConsultaAutomovil(ID);
+                LLenarTabla(lista);
+            } catch (Exception ex) {
+                Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
 // TODO add your handling code here:
@@ -596,20 +656,20 @@ public class FrmConsulta extends javax.swing.JDialog {
             CBMarca.removeAllItems();
             CBMarca.addItem("Marca");
             while (resultado.next()) {
-                CBMarca.addItem(resultado.getString(1));
-            }
+                CBMarca.addItem(resultado.getString(1));            
+            }        
         } catch (SQLException ex) {
             Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+            } catch (Exception ex) {
+                Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }            
 
     public void llenarCmb_Modelo_Activos() {
         try {
             BD mBD = new BD();
-            mBD.Conectar();
-            ResultSet resultado = mBD.ConsultarModelos_Activos();
+            mBD.Conectar();           
+            ResultSet resultado = mBD.ConsultarModelos_Activos();            
             CBModelo.removeAllItems();
             CBModelo.addItem("Modelo");
             while (resultado.next()) {
@@ -703,27 +763,28 @@ public class FrmConsulta extends javax.swing.JDialog {
             }
 
             JtVehiculos.setModel(modelo);
-            JtVehiculos.getSelectionModel().setSelectionInterval(1,1);
+            JtVehiculos.getSelectionModel().setSelectionInterval(0, 0);
         }
     }
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-                JtVehiculos.changeSelection(20, 20, false, false);
+        cont = 0;
         String categoria = (String) cmbTipos.getSelectedItem();
         if (categoria == "Inactivos") {
             try {
                 BD mBD = new BD();
                 mBD.Conectar();
                 List<vehiculo> ListaVehiculos = mBD.ConsultaInactivos();
-                LLenarTabla(ListaVehiculos);
-                llenarCmb_Marca_Inactivos();
-                llenarCmb_Modelo_Inactivos();
-                llenarCmb_Anio_Inactivos();
+                //LLenarTabla(ListaVehiculos);
+                //llenarCmb_Marca_Inactivos();
+                //llenarCmb_Modelo_Inactivos();
+                //llenarCmb_Anio_Inactivos();
                 BtnKilometraje.setEnabled(false);
                 BtnCombustible.setEnabled(false);
                 BtnEliminar.setEnabled(false);
                 BtnModificar.setEnabled(false);
                 BtnRMantenimiento.setEnabled(false);
+                //JtVehiculos.changeSelection(fila, 1, false, false);
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -732,15 +793,16 @@ public class FrmConsulta extends javax.swing.JDialog {
                 BD mBD = new BD();
                 mBD.Conectar();
                 List<vehiculo> ListaVehiculos = mBD.ConsultaActivos();
-                LLenarTabla(ListaVehiculos);
-                llenarCmb_Marca_Activos();
-                llenarCmb_Modelo_Activos();
-                llenarCmb_Anio_Activos();
+                //LLenarTabla(ListaVehiculos);
+                //llenarCmb_Marca_Activos();
+                //llenarCmb_Modelo_Activos();
+                //llenarCmb_Anio_Activos();
                 BtnKilometraje.setEnabled(true);
                 BtnCombustible.setEnabled(true);
                 BtnEliminar.setEnabled(true);
                 BtnModificar.setEnabled(true);
                 BtnRMantenimiento.setEnabled(true);
+                //JtVehiculos.changeSelection(fila, 1, false, false);
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -749,29 +811,131 @@ public class FrmConsulta extends javax.swing.JDialog {
                 BD mBD = new BD();
                 mBD.Conectar();
                 List<vehiculo> ListaVehiculos = mBD.ConsultaGeneral();
-                LLenarTabla(ListaVehiculos);
-                llenarCmb_Marca();
-                llenarCmb_Modelo();
-                llenarCmb_Anio();
+                //LLenarTabla(ListaVehiculos);
+                //llenarCmb_Marca();
+                //llenarCmb_Modelo();
+                //llenarCmb_Anio();
                 BtnKilometraje.setEnabled(true);
-                    BtnCombustible.setEnabled(true);
-                    BtnEliminar.setEnabled(true);
-                    BtnModificar.setEnabled(true);
-                    BtnRMantenimiento.setEnabled(true);
-
+                BtnCombustible.setEnabled(true);
+                BtnEliminar.setEnabled(true);
+                BtnModificar.setEnabled(true);
+                BtnRMantenimiento.setEnabled(true);
+                //JtVehiculos.changeSelection(fila, 1, false, false);
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
         }
+        
     }//GEN-LAST:event_formWindowGainedFocus
-
-
+    String marcaanterior = "";
     private void CBMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMarcaActionPerformed
-        // TODO add your handling code here:
+        String cbmarca = String.valueOf(CBMarca.getSelectedItem());
+        
+        try {
+            BD mBD = new BD();
+            mBD.Conectar();
+
+            vehiculo mvehiculo = new vehiculo();
+            String estado = cmbTipos.getSelectedItem().toString();
+            if(cbmarca != marcaanterior){
+                marcaanterior = cbmarca;
+                CBModelo.removeAllItems();
+                CMBAnyo.removeAllItems();
+                CMBAnyo.addItem("Año");
+            }
+            if(true){
+               
+                mvehiculo.setMarca(cbmarca);
+                if (estado.equals("Todos")) {
+                    ResultSet resultadoM = mBD.ConsultarModelos_M(cbmarca);
+                    CBModelo.removeAllItems();
+                    while (resultadoM.next()) {
+                        CBModelo.addItem(resultadoM.getString(1));
+                    }
+                    mBD = new BD();
+                    mBD.Conectar(); 
+                    String Modelo = String.valueOf(CBModelo.getSelectedItem());
+                    ResultSet resultadoA = mBD.ConsultarAnios_MM(Modelo,cbmarca);
+                    CMBAnyo.removeAllItems();
+                    while (resultadoA.next()) {
+                        CMBAnyo.addItem(resultadoA.getString(1));
+                    }
+                } else if (estado.equals("Activos")) {
+                    ResultSet resultadoM = mBD.ConsultarModelos_ActivosM(cbmarca);
+                    CBModelo.removeAllItems();
+                    while (resultadoM.next()) {
+                        CBModelo.addItem(resultadoM.getString(1));
+                    }
+                    mBD = new BD();
+                    mBD.Conectar(); 
+                    String Modelo = String.valueOf(CBModelo.getSelectedItem());
+                    ResultSet resultadoA = mBD.ConsultarAnios_ActivosMM(Modelo,cbmarca);
+                    
+                    CMBAnyo.removeAllItems();
+                    
+                    while (resultadoA.next()) {
+                        CMBAnyo.addItem(resultadoA.getString(1));
+                    }
+                    
+                } else if (estado.equals("Inactivos")) {
+                    ResultSet resultadoM = mBD.ConsultarModelos_InactivosM(cbmarca);
+                    CBModelo.removeAllItems();
+                    while (resultadoM.next()) {
+                        CBModelo.addItem(resultadoM.getString(1));
+                    }
+                    mBD = new BD();
+                    mBD.Conectar(); 
+                    String Modelo = String.valueOf(CBModelo.getSelectedItem());
+                    ResultSet resultadoA = mBD.ConsultarAnios_InactivosMM(Modelo,cbmarca);
+                    
+                    CMBAnyo.removeAllItems();
+                    
+                    while (resultadoA.next()) {
+                        CMBAnyo.addItem(resultadoA.getString(1));
+                    }
+                }
+                
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_CBMarcaActionPerformed
-
+        
     private void CBMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBMarcaItemStateChanged
-
+       /* if(cont > 0){
+        try {
+            String marca = CBMarca.getSelectedItem().toString();
+            BD mBD = new BD();           
+            mBD.Conectar();
+            ResultSet resultadoM = mBD.ConsultarModelos_ActivosM(marca);
+            mBD = new BD();           
+            mBD.Conectar();
+            ResultSet resultadoA = mBD.ConsultarAnios_ActivosA(marca);
+            CBModelo.removeAllItems();
+            CMBAnyo.removeAllItems();
+            CBModelo.addItem("Modelo");
+            CMBAnyo.addItem("Año");
+            
+            while (resultadoM.next()) {
+                CBModelo.addItem(resultadoM.getString(1));
+            }
+            while (resultadoA.next()) {
+                CMBAnyo.addItem(resultadoA.getString(1));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        }
+        cont++;*/
     }//GEN-LAST:event_CBMarcaItemStateChanged
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
@@ -902,19 +1066,10 @@ public class FrmConsulta extends javax.swing.JDialog {
     private void JtVehiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtVehiculosMouseClicked
         try {
             //identificar el ID del  productor a modificar
-            int fila = JtVehiculos.getSelectedRow();
+            fila = JtVehiculos.getSelectedRow();
             if (fila >= 0) {
                 int ID = (int) JtVehiculos.getValueAt(fila, 0);
-
-                lblid.setText(String.valueOf(ID));
-                float Co = (float) JtVehiculos.getValueAt(fila, 6);
-                lblc.setText(String.valueOf(Co));
-                float km = (float) JtVehiculos.getValueAt(fila, 5);
-                LblKm.setText(String.valueOf(km));
-                float Combu = (float) JtVehiculos.getValueAt(fila, 7);
-                lblCom.setText(String.valueOf(Combu));
-                float kmi = (float) JtVehiculos.getValueAt(fila, 4);
-                lblkmi.setText(String.valueOf(kmi));
+                
                 String estado1 = (String) JtVehiculos.getValueAt(fila, 9);
                 estado.setText(String.valueOf(estado1));
                 if (estado1.equals("activo")) {
@@ -941,7 +1096,7 @@ public class FrmConsulta extends javax.swing.JDialog {
     private void JtVehiculosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtVehiculosKeyReleased
         try {
             //identificar el ID del  productor a modificar
-            int fila = JtVehiculos.getSelectedRow();
+            fila = JtVehiculos.getSelectedRow();
             if (fila >= 0) {
                 int ID = (int) JtVehiculos.getValueAt(fila, 0);
 
@@ -980,7 +1135,7 @@ public class FrmConsulta extends javax.swing.JDialog {
     private void BtnModificarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnModificarKeyPressed
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
-            int fila = JtVehiculos.getSelectedRow();
+            fila = JtVehiculos.getSelectedRow();
             if (fila >= 0) {
                 int ID = (int) JtVehiculos.getValueAt(fila, 0);
                 String Marc = JtVehiculos.getValueAt(fila, 1).toString();
@@ -994,26 +1149,23 @@ public class FrmConsulta extends javax.swing.JDialog {
             }else{
                 new FrmModificar(this, true, ID, Marc, Mod, A, Desc).setVisible(true);
             }
+            BD mbd = new BD();
+            mbd.Conectar();
+            List<vehiculo> lista = mbd.ConsultaAutomovil(ID);
+            LLenarTabla(lista);
             }
         } catch (Exception ex) {
             System.out.println(ex.toString());
         } 
          }
     }//GEN-LAST:event_BtnModificarKeyPressed
-  private int regresarid(){
-    int id=5;
-    int fila = JtVehiculos.getSelectedRow();
-            if (fila >= 0) {
-                int ID = (int) JtVehiculos.getValueAt(fila, 0);
-            }
-       
- return id;   
-}
+
     private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
         try {
-            int fila = JtVehiculos.getSelectedRow();
+            fila = JtVehiculos.getSelectedRow();
+            int ID=0;
             if (fila >= 0) {
-                int ID = (int) JtVehiculos.getValueAt(fila, 0);
+                ID = (int) JtVehiculos.getValueAt(fila, 0);
                 String Marc = JtVehiculos.getValueAt(fila, 1).toString();
                 String Mod = JtVehiculos.getValueAt(fila, 2).toString();
                 String A = JtVehiculos.getValueAt(fila, 3).toString();
@@ -1025,6 +1177,11 @@ public class FrmConsulta extends javax.swing.JDialog {
             }else{
                 new FrmModificar(this, true, ID, Marc, Mod, A, Desc).setVisible(true);
             }
+            BD mbd = new BD();
+            mbd.Conectar();
+            List<vehiculo> lista = mbd.ConsultaAutomovil(ID);
+            LLenarTabla(lista);
+            
             }
         } catch (Exception ex) {
             System.out.println(ex.toString());
@@ -1159,7 +1316,7 @@ public class FrmConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnBuscarKeyPressed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-        int fila = JtVehiculos.getSelectedRow();
+        fila = JtVehiculos.getSelectedRow();
         if (fila >= 0) {
             int ID = (int) JtVehiculos.getValueAt(fila, 0);
             float km = (float) JtVehiculos.getValueAt(fila, 5);
@@ -1180,6 +1337,10 @@ public class FrmConsulta extends javax.swing.JDialog {
                             if (mBD.Conectar()) {
                                 mBD.Vehiculo_inactivo(mVehiculo);
                                 JOptionPane.showMessageDialog(rootPane, "Vehículo inactivo con Exito");
+                                BD mbd = new BD();
+                                mbd.Conectar();
+                                List<vehiculo> lista = mbd.ConsultaAutomovil(ID);
+                                LLenarTabla(lista);
 
                             } else {
                                 JOptionPane.showMessageDialog(rootPane, "Error");
@@ -1201,7 +1362,10 @@ public class FrmConsulta extends javax.swing.JDialog {
                             if (mBD.Conectar()) {
                                 mBD.EliminarVehiculo(mVehiculo);
                                 JOptionPane.showMessageDialog(rootPane, "Vehículo Eliminado con Exito");
-
+                                BD mbd = new BD();
+                                mbd.Conectar();
+                                List<vehiculo> lista = mbd.ConsultaGeneral();
+                                LLenarTabla(lista);
                             } else {
                                 JOptionPane.showMessageDialog(rootPane, "Error");
                             }
@@ -1222,7 +1386,7 @@ public class FrmConsulta extends javax.swing.JDialog {
     private void BtnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEliminarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
        
-            int fila = JtVehiculos.getSelectedRow();
+            fila = JtVehiculos.getSelectedRow();
         if (fila >= 0) {
             int ID = (int) JtVehiculos.getValueAt(fila, 0);
             float km = (float) JtVehiculos.getValueAt(fila, 5);
@@ -1243,7 +1407,10 @@ public class FrmConsulta extends javax.swing.JDialog {
                             if (mBD.Conectar()) {
                                 mBD.Vehiculo_inactivo(mVehiculo);
                                 JOptionPane.showMessageDialog(rootPane, "Vehículo inactivo con Exito");
-
+                                BD mbd = new BD();
+                                mbd.Conectar();
+                                List<vehiculo> lista = mbd.ConsultaAutomovil(ID);
+                                LLenarTabla(lista);
                             } else {
                                 JOptionPane.showMessageDialog(rootPane, "Error");
                             }
@@ -1264,7 +1431,10 @@ public class FrmConsulta extends javax.swing.JDialog {
                             if (mBD.Conectar()) {
                                 mBD.EliminarVehiculo(mVehiculo);
                                 JOptionPane.showMessageDialog(rootPane, "Vehículo Eliminado con Exito");
-
+                                BD mbd = new BD();
+                                mbd.Conectar();
+                                List<vehiculo> lista = mbd.ConsultaGeneral();
+                                LLenarTabla(lista);
                             } else {
                                 JOptionPane.showMessageDialog(rootPane, "Error");
                             }
@@ -1282,7 +1452,7 @@ public class FrmConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnEliminarKeyPressed
 
     private void BtnRMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRMantenimientoActionPerformed
-        int fila = JtVehiculos.getSelectedRow();
+        fila = JtVehiculos.getSelectedRow();
         if (fila >= 0) {
             int ID = (int) JtVehiculos.getValueAt(fila, 0);
             float km = (float) JtVehiculos.getValueAt(fila, 5);
@@ -1302,7 +1472,7 @@ public class FrmConsulta extends javax.swing.JDialog {
 
     private void BtnRMantenimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRMantenimientoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            int fila = JtVehiculos.getSelectedRow();
+            fila = JtVehiculos.getSelectedRow();
             if (fila >= 0) {
                 int ID = (int) JtVehiculos.getValueAt(fila, 0);
                 float km = (float) JtVehiculos.getValueAt(fila, 5);
@@ -1322,7 +1492,7 @@ public class FrmConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnRMantenimientoKeyPressed
 
     private void BtnRendimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRendimientoActionPerformed
-        int fila = JtVehiculos.getSelectedRow();
+        fila = JtVehiculos.getSelectedRow();
         if (fila >= 0) {
             int id = (int) JtVehiculos.getValueAt(fila, 0);
             float km = (float) JtVehiculos.getValueAt(fila, 5);
@@ -1364,7 +1534,7 @@ public class FrmConsulta extends javax.swing.JDialog {
 
     private void BtnRendimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRendimientoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            int fila = JtVehiculos.getSelectedRow();
+            fila = JtVehiculos.getSelectedRow();
             if (fila >= 0) {
                 int id = (int) JtVehiculos.getValueAt(fila, 0);
                 float km = (float) JtVehiculos.getValueAt(fila, 5);
@@ -1466,6 +1636,60 @@ public class FrmConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbTiposMouseClicked
 
     private void cmbTiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTiposItemStateChanged
+        
+
+    }//GEN-LAST:event_cmbTiposItemStateChanged
+    String modeloanterior = "";
+    private void CBModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBModeloActionPerformed
+      String estado = cmbTipos.getSelectedItem().toString();
+      String Marca = String.valueOf(CBMarca.getSelectedItem());
+      String Modelo = String.valueOf(CBModelo.getSelectedItem());
+      try {
+      if(estado.equals("Activos")){
+          BD mbd = new BD();
+          mbd.Conectar();
+          ResultSet resultadoA = mbd.ConsultarAnios_ActivosMM(Modelo,Marca);
+          CMBAnyo.removeAllItems();
+          while (resultadoA.next()) {
+              CMBAnyo.addItem(resultadoA.getString(1));
+          }
+      }else if(estado.equals("Inactivos")){
+          BD mbd = new BD();
+          mbd.Conectar();
+          ResultSet resultadoA = mbd.ConsultarAnios_InactivosMM(Modelo,Marca);
+          CMBAnyo.removeAllItems();
+          while (resultadoA.next()) {
+              CMBAnyo.addItem(resultadoA.getString(1));
+          }
+      }else if(estado.equals("Todos")){
+          BD mbd = new BD();
+          mbd.Conectar();
+          ResultSet resultadoA = mbd.ConsultarAnios_MM(Modelo,Marca);
+          CMBAnyo.removeAllItems();
+          while (resultadoA.next()) {
+              CMBAnyo.addItem(resultadoA.getString(1));
+          }
+      }
+      } catch (Exception ex) {
+         Logger.getLogger(FrmConsulta.class.getName()).log(Level.SEVERE, null, ex);
+      }
+         
+    }//GEN-LAST:event_CBModeloActionPerformed
+
+    private void CMBAnyoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CMBAnyoActionPerformed
+
+    }//GEN-LAST:event_CMBAnyoActionPerformed
+   
+
+    private void CBModeloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBModeloItemStateChanged
+      
+    }//GEN-LAST:event_CBModeloItemStateChanged
+
+    private void CMBAnyoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CMBAnyoItemStateChanged
+
+    }//GEN-LAST:event_CMBAnyoItemStateChanged
+
+    private void cmbTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTiposActionPerformed
         String categoria = (String) cmbTipos.getSelectedItem();
         if (categoria == "Inactivos") {
             try {
@@ -1474,8 +1698,8 @@ public class FrmConsulta extends javax.swing.JDialog {
                 List<vehiculo> ListaVehiculos = mBD.ConsultaInactivos();
                 LLenarTabla(ListaVehiculos);
                 llenarCmb_Marca_Inactivos();
-                llenarCmb_Modelo_Inactivos();
-                llenarCmb_Anio_Inactivos();
+                //llenarCmb_Modelo_Inactivos();
+                //llenarCmb_Anio_Inactivos();
                 BtnKilometraje.setEnabled(false);
                 BtnCombustible.setEnabled(false);
                 BtnEliminar.setEnabled(false);
@@ -1491,8 +1715,8 @@ public class FrmConsulta extends javax.swing.JDialog {
                 List<vehiculo> ListaVehiculos = mBD.ConsultaActivos();
                 LLenarTabla(ListaVehiculos);
                 llenarCmb_Marca_Activos();
-                llenarCmb_Modelo_Activos();
-                llenarCmb_Anio_Activos();
+                //llenarCmb_Modelo_Activos();
+                //llenarCmb_Anio_Activos();
                 BtnKilometraje.setEnabled(true);
                 BtnCombustible.setEnabled(true);
                 BtnEliminar.setEnabled(true);
@@ -1508,8 +1732,8 @@ public class FrmConsulta extends javax.swing.JDialog {
                 List<vehiculo> ListaVehiculos = mBD.ConsultaGeneral();
                 LLenarTabla(ListaVehiculos);
                 llenarCmb_Marca();
-                llenarCmb_Modelo();
-                llenarCmb_Anio();
+                //llenarCmb_Modelo();
+                //llenarCmb_Anio();
                     BtnKilometraje.setEnabled(true);
                     BtnCombustible.setEnabled(true);
                     BtnEliminar.setEnabled(true);
@@ -1519,12 +1743,9 @@ public class FrmConsulta extends javax.swing.JDialog {
                 System.out.println(e.toString());
             }
         }
+    }//GEN-LAST:event_cmbTiposActionPerformed
 
-    }//GEN-LAST:event_cmbTiposItemStateChanged
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
